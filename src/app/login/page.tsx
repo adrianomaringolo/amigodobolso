@@ -142,6 +142,24 @@ export default function Login() {
 						<div className="space-x-6 flex justify-center">
 							<GoogleLoginButton />
 						</div>
+
+						<p className="mt-8 text-center text-xs text-gray-500">
+							Ao continuar, você concorda com os{' '}
+							<Link
+								href="/termos-de-uso"
+								className="font-semibold text-blue-600 hover:underline"
+							>
+								Termos de uso
+							</Link>{' '}
+							e a{' '}
+							<Link
+								href="/politica-de-privacidade"
+								className="font-semibold text-blue-600 hover:underline"
+							>
+								Política de privacidade
+							</Link>
+							.
+						</p>
 					</form>
 				</div>
 			</div>
