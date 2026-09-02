@@ -49,7 +49,7 @@ export default function Login() {
 					<div>
 						<Image
 							src="/logo.png"
-							alt={`Logo ${process.env.NEXT_PUBLIC_APP_NAME}`}
+							alt="Logo Amigo do Bolso"
 							width={100}
 							height={100}
 							className="mb-4"
@@ -58,7 +58,7 @@ export default function Login() {
 							Controle suas finanças de forma simples e eficiente
 						</h2>
 						<p className="text-sm mt-6 text-gray-800">
-							Com o {process.env.NEXT_PUBLIC_APP_NAME} você pode controlar suas finanças
+							Com o Amigo do Bolso você pode controlar suas finanças
 							de forma simples e eficiente. Com ele você pode adicionar, editar e excluir
 							lançamentos, categorias e contas e ter uma clara visão de como está sua
 							situação financeira.

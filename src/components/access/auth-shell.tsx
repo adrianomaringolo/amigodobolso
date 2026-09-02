@@ -8,7 +8,7 @@ type AuthShellProps = PropsWithChildren<{
 	showBackToLogin?: boolean
 }>
 
-const appName = process.env.NEXT_PUBLIC_APP_NAME ?? 'Amigo do Bolso'
+const appName = 'Amigo do Bolso'
 
 export const AuthShell = ({
 	title,
