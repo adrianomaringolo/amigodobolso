@@ -9,7 +9,7 @@ import {
 	FormLabel,
 	FormMessage,
 } from '@/components/ui/form'
-import { Textarea } from '../ui/textarea'
+import { Textarea } from 'buildgrid-ui'
 
 type TextFormFieldProps = {
 	label?: string

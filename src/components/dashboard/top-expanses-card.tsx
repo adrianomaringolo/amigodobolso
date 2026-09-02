@@ -1,8 +1,8 @@
 import { FinancialEntry } from '@/lib/types/Entry.type'
 import { formatDateAndMonth } from '@/lib/utils/date'
+import { Card, CardContent, CardTitle } from 'buildgrid-ui'
 import { AmountValue } from '../financial/amount-value'
 import { TransactionTypes } from '../financial/financial.types'
-import { Card, CardContent, CardTitle } from '../ui/card'
 
 type TopExpansesCardProps = {
 	entries: FinancialEntry[]

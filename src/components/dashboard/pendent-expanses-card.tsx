@@ -1,10 +1,10 @@
 import { FinancialEntry } from '@/lib/types/Entry.type'
 import { formatDateAndMonth } from '@/lib/utils/date'
+import { Card, CardContent, CardTitle } from 'buildgrid-ui'
 import { BadgeAlert, BadgeCheck } from 'lucide-react'
 import { AmountValue } from '../financial/amount-value'
 import { TransactionTypes } from '../financial/financial.types'
 import { TooltipMessage } from '../helpers/tooltip-message'
-import { Card, CardContent, CardTitle } from '../ui/card'
 
 type PendentExpansesCardProps = {
 	entries: FinancialEntry[]

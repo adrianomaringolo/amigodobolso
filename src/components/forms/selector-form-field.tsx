@@ -11,7 +11,7 @@ import {
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '@/components/ui/select'
+} from 'buildgrid-ui'
 import { ReactElement } from 'react'
 import { useFormContext } from 'react-hook-form'
 

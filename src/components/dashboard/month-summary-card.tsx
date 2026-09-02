@@ -1,6 +1,6 @@
 import { FinancialEntry } from '@/lib/types/Entry.type'
+import { Card, CardContent, CardTitle } from 'buildgrid-ui'
 import { IncomeExpensesTotal } from '../reports/income-expenses-total'
-import { Card, CardContent, CardTitle } from '../ui/card'
 
 type MonthSummaryCardProps = {
 	entries: FinancialEntry[]

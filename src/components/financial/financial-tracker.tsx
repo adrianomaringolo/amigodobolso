@@ -1,16 +1,22 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { useUser } from '@/lib/hooks/use-user'
 import { groupTransactionsByDate } from '@/lib/utils/groupTransactionsByDate'
 import { useGetEntries } from '@/services/entries/useGetEntries'
-import { DialogDescription } from '@radix-ui/react-dialog'
+import {
+	Button,
+	Card,
+	CardContent,
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	Skeleton,
+} from 'buildgrid-ui'
 import { Plus } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { useState } from 'react'
-import { Skeleton } from '../ui/skeleton'
 import { DayGroup } from './day-group'
 import { MonthSummary } from './month-summary'
 import { TransactionForm } from './transaction-form'

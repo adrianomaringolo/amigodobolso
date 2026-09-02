@@ -2,8 +2,7 @@
 'use client'
 
 import { AmountTypes, TransactionTypes } from '@/components/financial/financial.types'
-import { Tabs, TabsContent, TabsTrigger } from '@/components/ui/tabs'
-import { TabsList } from '@radix-ui/react-tabs'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from 'buildgrid-ui'
 import { HelpCircle } from 'lucide-react'
 
 export default function Help() {

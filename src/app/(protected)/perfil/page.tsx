@@ -1,5 +1,7 @@
 'use client'
 
+import { useUser } from '@/lib/hooks/use-user'
+import { formatLongDate } from '@/lib/utils/date'
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -10,19 +12,18 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
-import { Button } from '@/components/ui/button'
-import {
+	Avatar,
+	AvatarFallback,
+	AvatarImage,
+	Button,
 	Card,
 	CardContent,
 	CardFooter,
 	CardHeader,
 	CardTitle,
-} from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { useUser } from '@/lib/hooks/use-user'
-import { formatLongDate } from '@/lib/utils/date'
-import { Avatar, AvatarFallback, AvatarImage, Label } from 'buildgrid-ui'
+	Input,
+	Label,
+} from 'buildgrid-ui'
 import { useState } from 'react'
 
 export default function UserProfile() {

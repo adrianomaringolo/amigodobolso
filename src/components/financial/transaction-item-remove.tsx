@@ -1,3 +1,6 @@
+import { useUser } from '@/lib/hooks/use-user'
+import { FinancialEntry } from '@/lib/types/Entry.type'
+import { useDeleteEntry } from '@/services/entries/useDeleteEntry'
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -8,10 +11,7 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	AlertDialogTrigger,
-} from '@/components/ui/alert-dialog'
-import { useUser } from '@/lib/hooks/use-user'
-import { FinancialEntry } from '@/lib/types/Entry.type'
-import { useDeleteEntry } from '@/services/entries/useDeleteEntry'
+} from 'buildgrid-ui'
 import { Trash2 } from 'lucide-react'
 import { toast } from 'sonner'
 import { LoadButton } from '../forms/load-button'

@@ -1,16 +1,16 @@
-import { Button } from '@/components/ui/button'
+import { useUser } from '@/lib/hooks/use-user'
+import { FinancialEntry } from '@/lib/types/Entry.type'
+import { formatDateAndWeekdayAndYear, getMonthYear } from '@/lib/utils/date'
+import { useUpdateEntry } from '@/services/entries/useUpdateEntry'
 import {
+	Button,
 	Dialog,
 	DialogContent,
 	DialogDescription,
 	DialogFooter,
 	DialogHeader,
 	DialogTitle,
-} from '@/components/ui/dialog'
-import { useUser } from '@/lib/hooks/use-user'
-import { FinancialEntry } from '@/lib/types/Entry.type'
-import { formatDateAndWeekdayAndYear, getMonthYear } from '@/lib/utils/date'
-import { useUpdateEntry } from '@/services/entries/useUpdateEntry'
+} from 'buildgrid-ui'
 import { BadgeAlert, BadgeCheck, Edit, Repeat2 } from 'lucide-react'
 import { useState } from 'react'
 import { toast } from 'sonner'

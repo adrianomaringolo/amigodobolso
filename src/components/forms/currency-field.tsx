@@ -1,5 +1,5 @@
+import { Input, InputProps } from 'buildgrid-ui'
 import React, { useEffect, useImperativeHandle, useRef, useState } from 'react'
-import { Input, InputProps } from '../ui/input'
 
 export interface CurrencyFieldProps extends InputProps {
 	currencySymbol?: string

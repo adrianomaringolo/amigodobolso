@@ -13,13 +13,12 @@ import {
 	FormLabel,
 	FormMessage,
 } from '@/components/ui/form'
-import { Switch } from '@/components/ui/switch'
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { useUser } from '@/lib/hooks/use-user'
 import { FinancialEntry } from '@/lib/types/Entry.type'
 import { formatCurrency } from '@/lib/utils'
 import { useAddEntry } from '@/services/entries/useAddEntry'
 import { useUpdateEntry } from '@/services/entries/useUpdateEntry'
+import { Switch, ToggleGroup, ToggleGroupItem } from 'buildgrid-ui'
 import { addMonths } from 'date-fns'
 import { toast } from 'sonner'
 import { CurrencyField } from '../forms/currency-field'
@@ -209,7 +208,7 @@ export const TransactionForm = (props: TransactionFormProps) => {
 										decimalSeparator=","
 										thousandSeparator="."
 										value={field.value}
-										onValueChange={(value) => {
+										onValueChange={(value: number) => {
 											field.onChange(value.toString())
 										}}
 									/>

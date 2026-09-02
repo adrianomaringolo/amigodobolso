@@ -1,7 +1,7 @@
 'use client'
 
-import { Card, CardContent, CardTitle } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
+import { Card, CardContent, CardTitle } from 'buildgrid-ui'
 import { BadgePlus, DollarSign, Gauge, List } from 'lucide-react'
 import Link from 'next/link'
 

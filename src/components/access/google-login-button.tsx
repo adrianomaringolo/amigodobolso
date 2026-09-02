@@ -1,7 +1,7 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
 import { createClient } from '@/lib/supabase/client'
+import { Button } from 'buildgrid-ui'
 import { Loader } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { useState } from 'react'

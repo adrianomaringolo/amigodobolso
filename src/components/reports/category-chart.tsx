@@ -1,9 +1,9 @@
 'use client'
 
 import { FinancialEntry } from '@/lib/types/Entry.type'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from 'buildgrid-ui'
 import { Pie, PieChart } from 'recharts'
 import { AmountTypes, TransactionTypes } from '../financial/financial.types'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card'
 import { ChartConfig, ChartContainer } from '../ui/chart'
 
 import { ChartTooltip, ChartTooltipContent } from '@/components/ui/chart'

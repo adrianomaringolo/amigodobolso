@@ -9,7 +9,7 @@ import {
 	FormLabel,
 	FormMessage,
 } from '@/components/ui/form'
-import { AdaptiveInput } from './adaptative-input'
+import { AdaptiveInput } from 'buildgrid-ui'
 
 type TextFormFieldProps = {
 	label?: string

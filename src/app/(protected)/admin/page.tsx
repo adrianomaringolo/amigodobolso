@@ -1,7 +1,7 @@
 'use client'
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { UsersTable } from '@/components/users/users-table'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from 'buildgrid-ui'
 import { Lock } from 'lucide-react'
 
 export default function AdminPanel() {
