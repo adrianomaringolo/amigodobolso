@@ -1,19 +1,16 @@
 'use client'
 
+import { AuthShell } from '@/components/access/auth-shell'
 import { createClient } from '@/lib/supabase/client'
 import { Button, Input, toast, useDialog } from 'buildgrid-ui'
 import { MailCheck } from 'lucide-react'
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
 import { FormEvent, useState } from 'react'
 
-export default function Register() {
+export default function Recover() {
 	const [email, setEmail] = useState('')
 	const [isLoading, setIsLoading] = useState(false)
 	const supabase = createClient()
 	const dialog = useDialog()
-
-	const router = useRouter()
 
 	async function handleSubmit(event: FormEvent) {
 		event.preventDefault()
@@ -25,8 +22,7 @@ export default function Register() {
 
 		setIsLoading(true)
 
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		const response = await supabase.auth.resetPasswordForEmail(email, {
+		await supabase.auth.resetPasswordForEmail(email, {
 			redirectTo: `${window.location.origin}/reset-password`,
 		})
 
@@ -40,53 +36,36 @@ export default function Register() {
 	}
 
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-center p-8">
-			<div className="w-96 mx-auto p-6">
-				<div className="flex flex-col items-center text-center mb-8">
-					<Image
-						src="/logo.png"
-						alt="Amigo do Bolso"
-						width={100}
-						height={100}
-						className="mb-4"
-					/>
-
-					<h4 className="text-gray-800 text-base font-semibold">
-						Insira seu e-mail de cadastro abaixo para receber as orientações de
-						recuperação da senha.
-					</h4>
+		<AuthShell
+			title="Recuperação da senha"
+			description="Insira seu e-mail de cadastro abaixo para receber as orientações de recuperação da senha."
+		>
+			<form onSubmit={handleSubmit} className="md:w-full">
+				<div className="grid gap-4">
+					<div>
+						<label className="mb-2 block text-sm text-gray-800">E-mail</label>
+						<Input
+							name="email"
+							type="email"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+							placeholder="Informe seu e-mail"
+						/>
+					</div>
 				</div>
 
-				<form onSubmit={handleSubmit} className="md:w-full">
-					<div className="grid gap-4">
-						<div>
-							<label className="text-gray-800 text-sm mb-2 block">E-mail</label>
-							<Input
-								name="email"
-								type="email"
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-								placeholder="Informe seu e-mail"
-							/>
-						</div>
-					</div>
-
-					<div className="!mt-12">
-						<Button
-							size="lg"
-							type="submit"
-							className="w-full"
-							isLoading={isLoading}
-							disabled={!email}
-						>
-							Enviar
-						</Button>
-					</div>
-				</form>
-				<Button variant="link" className="w-full" onClick={() => router.push('/login')}>
-					Voltar para login
-				</Button>
-			</div>
-		</main>
+				<div className="!mt-12">
+					<Button
+						size="lg"
+						type="submit"
+						className="w-full"
+						isLoading={isLoading}
+						disabled={!email}
+					>
+						Enviar
+					</Button>
+				</div>
+			</form>
+		</AuthShell>
 	)
 }

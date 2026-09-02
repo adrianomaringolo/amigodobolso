@@ -1,10 +1,10 @@
 'use client'
 
-import { LoadButton } from '@/components/forms/load-button'
+import { AuthShell } from '@/components/access/auth-shell'
+import { PasswordField } from '@/components/access/password-field'
 import { createClient } from '@/lib/supabase/client'
-import { Button, Input, PasswordInput, toast, useDialog } from 'buildgrid-ui'
+import { Button, Input, toast, useDialog } from 'buildgrid-ui'
 import { Key } from 'lucide-react'
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { FormEvent, useEffect, useState } from 'react'
 
@@ -29,10 +29,7 @@ export default function ResetPassword() {
 			return
 		}
 
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		const result = await supabase.auth.updateUser({
-			password: password,
-		})
+		await supabase.auth.updateUser({ password })
 
 		dialog.success({
 			icon: Key,
@@ -46,7 +43,7 @@ export default function ResetPassword() {
 	}
 
 	useEffect(() => {
-		supabase.auth.onAuthStateChange(async (event, session) => {
+		supabase.auth.onAuthStateChange(async (_event, session) => {
 			if (session) {
 				setEmail(session?.user?.email as string)
 				setIsLoading(false)
@@ -62,65 +59,47 @@ export default function ResetPassword() {
 	}, [])
 
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-center p-8">
-			<div className="w-96 mx-auto p-6">
-				<div className="flex flex-col items-center text-center mb-8">
-					<Image
-						src="/logo.png"
-						alt="Amigo do Bolso"
-						width={100}
-						height={100}
-						className="mb-4"
-					/>
+		<AuthShell title="Recuperação da senha" description="Defina sua nova senha abaixo">
+			<form onSubmit={handleSubmit} className="md:w-full">
+				<div className="grid gap-4">
+					<div>
+						<label className="mb-2 block text-sm text-gray-800">Email</label>
+						<Input
+							name="email"
+							type="text"
+							disabled
+							value={email}
+							placeholder="Informe seu email"
+						/>
+					</div>
 
-					<h4 className="text-gray-800 text-base font-semibold">Recuperação da senha</h4>
-					<p>Defina sua nova senha abaixo</p>
+					<div>
+						<label className="mb-2 block text-sm text-gray-800">Senha</label>
+						<PasswordField
+							name="password"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							placeholder="Informe sua senha"
+						/>
+					</div>
+					<div>
+						<label className="mb-2 block text-sm text-gray-800">Confirmação</label>
+						<Input
+							name="cpassword"
+							type="password"
+							value={confirmation}
+							onChange={(e) => setConfirmation(e.target.value)}
+							placeholder="Confirme sua senha"
+						/>
+					</div>
 				</div>
 
-				<form onSubmit={handleSubmit} className="md:w-full">
-					<div className="grid gap-4">
-						<div>
-							<label className="text-gray-800 text-sm mb-2 block">Email</label>
-							<Input
-								name="email"
-								type="text"
-								disabled
-								value={email}
-								placeholder="Informe seu email"
-							/>
-						</div>
-
-						<div>
-							<label className="text-gray-800 text-sm mb-2 block">Senha</label>
-							<PasswordInput
-								name="password"
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-								placeholder="Informe sua senha"
-							/>
-						</div>
-						<div>
-							<label className="text-gray-800 text-sm mb-2 block">Confirmação</label>
-							<Input
-								name="cpassword"
-								type="password"
-								value={confirmation}
-								onChange={(e) => setConfirmation(e.target.value)}
-								placeholder="Confirme sua senha"
-							/>
-						</div>
-					</div>
-
-					<div className="!mt-12">
-						<LoadButton size="lg" type="submit" className="w-full" isLoading={isLoading}>
-							Alterar senha
-						</LoadButton>
-					</div>
-				</form>
-				<Button variant="link" className="w-full" onClick={() => router.push('/login')}>
-					Voltar para login
-				</Button>
-			</div>
-		</main>
+				<div className="!mt-12">
+					<Button size="lg" type="submit" className="w-full" isLoading={isLoading}>
+						Alterar senha
+					</Button>
+				</div>
+			</form>
+		</AuthShell>
 	)
 }

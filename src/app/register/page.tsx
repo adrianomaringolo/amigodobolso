@@ -1,5 +1,7 @@
 'use client'
 
+import { AuthShell } from '@/components/access/auth-shell'
+import { PasswordField } from '@/components/access/password-field'
 import { Terms } from '@/components/terms'
 import { createClient } from '@/lib/supabase/client'
 import {
@@ -12,11 +14,9 @@ import {
 	DialogTitle,
 	Input,
 	Label,
-	PasswordInput,
 	toast,
 	useDialog,
 } from 'buildgrid-ui'
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { FormEvent, useState } from 'react'
 
@@ -68,103 +68,86 @@ export default function Register() {
 	}
 
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-center p-8">
-			<div className="w-96 mx-auto p-6">
-				<div className="flex flex-col items-center text-center mb-8">
-					<Image
-						src="/logo.png"
-						alt="Amigo do Bolso"
-						width={100}
-						height={100}
-						className="mb-4"
-					/>
+		<AuthShell title="Registre sua conta">
+			<form onSubmit={handleSubmit} className="md:w-full">
+				<div className="grid gap-4">
+					<div>
+						<label className="mb-2 block text-sm text-gray-800">Nome completo</label>
+						<Input
+							name="name"
+							value={name}
+							onChange={(e) => setName(e.target.value)}
+							placeholder="Informe seu nome completo"
+						/>
+					</div>
 
-					<h4 className="text-gray-800 text-base font-semibold">Registre sua conta</h4>
+					<div>
+						<label className="mb-2 block text-sm text-gray-800">E-mail</label>
+						<Input
+							name="email"
+							type="email"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+							placeholder="Informe seu e-mail"
+						/>
+					</div>
+
+					<div>
+						<label className="mb-2 block text-sm text-gray-800">Senha</label>
+						<PasswordField
+							name="password"
+							value={password}
+							onChange={(e) => setPassword(e.target.value)}
+							placeholder="Informe sua senha"
+						/>
+					</div>
+					<div>
+						<label className="mb-2 block text-sm text-gray-800">Confirmação</label>
+						<Input
+							name="cpassword"
+							type="password"
+							value={confirmation}
+							onChange={(e) => setConfirmation(e.target.value)}
+							placeholder="Confirme sua senha"
+						/>
+					</div>
+
+					<div className="flex items-center gap-2">
+						<Checkbox
+							id="agreement"
+							name="agreement"
+							checked={agreement}
+							onCheckedChange={(checked) =>
+								setAgreement(checked === 'indeterminate' ? false : checked)
+							}
+							className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+						/>
+						<Label htmlFor="agreement">
+							Concordo com os{' '}
+							<Button
+								type="button"
+								variant="link"
+								onClick={() => setOpen(true)}
+								className="px-0 underline"
+							>
+								termos
+							</Button>
+						</Label>
+					</div>
 				</div>
 
-				<form onSubmit={handleSubmit} className="md:w-full">
-					<div className="grid gap-4">
-						<div>
-							<label className="text-gray-800 text-sm mb-2 block">Nome completo</label>
-							<Input
-								name="name"
-								value={name}
-								onChange={(e) => setName(e.target.value)}
-								placeholder="Informe seu nome completo"
-							/>
-						</div>
-
-						<div>
-							<label className="text-gray-800 text-sm mb-2 block">E-mail</label>
-							<Input
-								name="email"
-								type="email"
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-								placeholder="Informe seu e-mail"
-							/>
-						</div>
-
-						<div>
-							<label className="text-gray-800 text-sm mb-2 block">Senha</label>
-							<PasswordInput
-								name="password"
-								value={password}
-								onChange={(e) => setPassword(e.target.value)}
-								placeholder="Informe sua senha"
-							/>
-						</div>
-						<div>
-							<label className="text-gray-800 text-sm mb-2 block">Confirmação</label>
-							<Input
-								name="cpassword"
-								type="password"
-								value={confirmation}
-								onChange={(e) => setConfirmation(e.target.value)}
-								placeholder="Confirme sua senha"
-							/>
-						</div>
-
-						<div className="flex items-center gap-2">
-							<Checkbox
-								id="agreement"
-								name="agreement"
-								checked={agreement}
-								onCheckedChange={(checked) =>
-									setAgreement(checked === 'indeterminate' ? false : checked)
-								}
-								className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-							/>
-							<Label htmlFor="agreement">
-								Concordo com os{' '}
-								<Button
-									type="button"
-									variant="link"
-									onClick={() => setOpen(true)}
-									className="px-0 underline"
-								>
-									termos
-								</Button>
-							</Label>
-						</div>
-					</div>
-
-					<div className="!mt-12">
-						<Button
-							isLoading={isLoading}
-							size="lg"
-							type="submit"
-							className="w-full"
-							disabled={!name || !email || !password || !agreement}
-						>
-							Registrar
-						</Button>
-					</div>
-				</form>
-				<Button variant="link" className="w-full" onClick={() => router.push('/login')}>
-					Voltar para login
-				</Button>
-			</div>
+				<div className="!mt-12">
+					<Button
+						isLoading={isLoading}
+						size="lg"
+						type="submit"
+						className="w-full"
+						disabled={!name || !email || !password || !agreement}
+					>
+						Registrar
+					</Button>
+				</div>
+			</form>
 
 			<Dialog open={open} onOpenChange={setOpen}>
 				<DialogContent className="max-h-screen">
@@ -177,6 +160,6 @@ export default function Register() {
 					<Terms />
 				</DialogContent>
 			</Dialog>
-		</main>
+		</AuthShell>
 	)
 }
