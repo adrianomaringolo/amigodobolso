@@ -1,66 +1,81 @@
-import { Button, usePWAInstall } from 'buildgrid-ui'
-import { Download, HelpCircle } from 'lucide-react'
-import React, { useState } from 'react'
+'use client'
 
-const InstallPWAButton: React.FC = () => {
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	usePWAInstall,
+} from 'buildgrid-ui'
+import { Download, Share } from 'lucide-react'
+import { useState } from 'react'
+
+/**
+ * Install-app affordance for the masthead. Styled for the institutional-blue bar
+ * (a quiet outline on dark), not the generic `secondary` button which is built
+ * for light surfaces and renders low-contrast here.
+ */
+const InstallPWAButton = () => {
 	const { isPromptReady, isInstalled, showInstallPrompt } = usePWAInstall()
 	const [showIOSPrompt, setShowIOSPrompt] = useState(false)
 
-	const handleIOSPrompt = () => setShowIOSPrompt(true)
-	const closeIOSPrompt = () => setShowIOSPrompt(false)
-
-	// Detect iOS
 	const isIOSDevice =
 		typeof window !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)
 
-	if (isInstalled || !isPromptReady) return null // Hide button if already installed
+	if (isInstalled || (!isPromptReady && !isIOSDevice)) return null
 
-	console.log(isInstalled, isPromptReady)
-
-	return (
-		<div className="flex flex-col items-center">
-			{isIOSDevice ? (
-				<>
-					<Button variant="secondary" onClick={handleIOSPrompt}>
-						<HelpCircle className="w-6 h-6" />
-						Como instalar
-					</Button>
-					{showIOSPrompt && (
-						<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-							<div className="bg-white p-6 rounded shadow-lg">
-								<h2 className="text-lg font-bold">
-									Instale esse app em seu dispositivo Apple
-								</h2>
-								<p className="mt-2">Para instalar esse app em seu iPhone ou iPad:</p>
-								<ol className="mt-2 list-decimal list-inside">
-									<li>
-										Clique no botão <strong>Compartilhar</strong> no Safari.
-									</li>
-									<li>
-										Mova para baixo e selecione a opção{' '}
-										<strong>Adicionar a tela inicial</strong>.
-									</li>
-									<li>Siga as instruções na tela para adicionar.</li>
-								</ol>
-								<div className="text-right">
-									<button
-										onClick={closeIOSPrompt}
-										className="mt-4 py-2 px-4 bg-gray-500 text-white rounded"
-									>
-										Fechar
-									</button>
-								</div>
-							</div>
-						</div>
-					)}
-				</>
-			) : (
-				<Button variant="secondary" onClick={showInstallPrompt}>
-					<Download className="w-6 h-6" /> Instalar app
-				</Button>
-			)}
-		</div>
+	const trigger = (onClick: () => void) => (
+		<button
+			type="button"
+			onClick={onClick}
+			className="flex items-center gap-2 border border-white/25 bg-white/10 px-2.5 py-1.5 text-xs font-semibold text-primary-foreground transition-colors hover:bg-white/20"
+		>
+			<Download className="h-4 w-4" strokeWidth={2} />
+			Instalar app
+		</button>
 	)
+
+	if (isIOSDevice) {
+		return (
+			<>
+				{trigger(() => setShowIOSPrompt(true))}
+				<Dialog open={showIOSPrompt} onOpenChange={setShowIOSPrompt}>
+					<DialogContent>
+						<DialogHeader>
+							<DialogTitle>Instalar no iPhone ou iPad</DialogTitle>
+							<DialogDescription>
+								O Safari não instala apps automaticamente. É rápido:
+							</DialogDescription>
+						</DialogHeader>
+						<ol className="mt-2 space-y-3 text-sm text-foreground">
+							<li className="flex gap-3">
+								<span className="notice-label mt-0.5 shrink-0 !text-xs">1</span>
+								<span>
+									Toque no botão{' '}
+									<Share className="inline h-4 w-4 align-text-bottom" /> {'"'}
+									Compartilhar{'"'} na barra do Safari.
+								</span>
+							</li>
+							<li className="flex gap-3">
+								<span className="notice-label mt-0.5 shrink-0 !text-xs">2</span>
+								<span>
+									Escolha{' '}
+									<strong className="font-semibold">Adicionar à Tela de Início</strong>.
+								</span>
+							</li>
+							<li className="flex gap-3">
+								<span className="notice-label mt-0.5 shrink-0 !text-xs">3</span>
+								<span>Confirme em Adicionar.</span>
+							</li>
+						</ol>
+					</DialogContent>
+				</Dialog>
+			</>
+		)
+	}
+
+	return trigger(showInstallPrompt)
 }
 
 export default InstallPWAButton

@@ -40,12 +40,8 @@ export const TransactionItemRemove = (props: TransactionItemRemoveProps) => {
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<LoadButton
-					variant="destructive"
-					className="my-1"
-					isLoading={deleteMutation.isPending}
-				>
-					<Trash2 className="w-4 h-4" />
+				<LoadButton variant="destructive" isLoading={deleteMutation.isPending}>
+					<Trash2 className="mr-1.5 h-4 w-4" />
 					Remover
 				</LoadButton>
 			</AlertDialogTrigger>

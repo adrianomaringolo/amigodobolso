@@ -1,5 +1,6 @@
 import { useUser } from '@/lib/hooks/use-user'
 import { FinancialEntry } from '@/lib/types/Entry.type'
+import { cn } from '@/lib/utils'
 import { formatDateAndWeekdayAndYear, getMonthYear } from '@/lib/utils/date'
 import { useUpdateEntry } from '@/services/entries/useUpdateEntry'
 import {
@@ -11,12 +12,13 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from 'buildgrid-ui'
-import { BadgeAlert, BadgeCheck, Edit, Repeat2 } from 'lucide-react'
+import { BadgeAlert, BadgeCheck, Pencil, Repeat2 } from 'lucide-react'
 import { useState } from 'react'
 import { toast } from 'sonner'
 import { TooltipMessage } from '../helpers/tooltip-message'
 import { AmountValue } from './amount-value'
 import { TransactionTypes } from './financial.types'
+import { TagList } from './tag-list'
 import { TransactionForm } from './transaction-form'
 import { TransactionItemRemove } from './transaction-item-remove'
 
@@ -31,8 +33,7 @@ export const TransactionItem = (props: TransactionItemProps) => {
 	const [isDetailOpen, setIsDetailOpen] = useState(false)
 	const [isEditing, setIsEditing] = useState(false)
 
-	const { category, date, description, amount, isCompleted, times } = transaction
-
+	const { category, date, description, amount, isCompleted, times, tags } = transaction
 	const typeDefinition = TransactionTypes[category as keyof typeof TransactionTypes]
 
 	const updateEntryMutation = useUpdateEntry({
@@ -41,82 +42,93 @@ export const TransactionItem = (props: TransactionItemProps) => {
 	})
 
 	const handleComplete = async () => {
-		await updateEntryMutation.mutateAsync({
-			...transaction,
-			isCompleted: !isCompleted,
-		})
-		toast.success('Lançamento atualizado com sucesso')
-	}
-
-	const handleEdit = () => {
-		setIsEditing(true)
+		await updateEntryMutation.mutateAsync({ ...transaction, isCompleted: !isCompleted })
+		toast.success('Lançamento atualizado')
 	}
 
 	return (
-		<>
-			<div className="flex items-center justify-between py-3 cursor-pointer gap-3">
-				<div
-					className="flex items-center gap-4 flex-1"
-					onClick={() => setIsDetailOpen(true)}
-				>
-					<TooltipMessage message={typeDefinition.label}>
-						<div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
-							{typeDefinition?.icon()}
-						</div>
-					</TooltipMessage>
-					<span className="text-lg">{description}</span>
-					{times && parseInt(times) > 1 && (
-						<TooltipMessage message={`Parcelado em ${times} vezes`}>
-							<Repeat2 className="w-4 h-4 text-muted-foreground" />
-						</TooltipMessage>
-					)}
-					<div className="flex items-center gap-2 ml-auto">
-						<AmountValue value={amount} className="text-lg font-medium" />
-					</div>
-				</div>
-
-				<TooltipMessage message={isCompleted ? 'Efetivada' : 'Pendente'}>
-					<button
-						onClick={(e) => {
-							e.preventDefault()
-							handleComplete()
-						}}
-						className="hover:border-gray-400 hover:bg-gray-50 p-1 rounded-full"
-					>
-						{isCompleted ? (
-							<BadgeCheck className="w-6 h-6 text-blue-500" />
-						) : (
-							<BadgeAlert className="w-6 h-6 text-gray-300" />
+		<div className="flex items-center gap-3 border-b border-border px-4 py-2.5 last:border-b-0">
+			<button
+				type="button"
+				onClick={() => setIsDetailOpen(true)}
+				className="flex min-w-0 flex-1 items-center gap-3 text-left"
+			>
+				<span className="flex h-9 w-9 shrink-0 items-center justify-center border border-border text-muted-foreground">
+					{typeDefinition?.icon('w-[18px] h-[18px]')}
+				</span>
+				<span className="min-w-0 flex-1">
+					<span className="flex items-center gap-1.5">
+						<span className="truncate text-sm text-foreground">{description}</span>
+						{times && parseInt(times) > 1 && (
+							<Repeat2 className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
 						)}
-					</button>
-				</TooltipMessage>
-			</div>
-			<Dialog open={isDetailOpen} onOpenChange={(open) => setIsDetailOpen(open)}>
+					</span>
+					<span className="notice-label !normal-case !tracking-normal">
+						{typeDefinition?.label}
+					</span>
+					<TagList tags={tags} className="mt-1" size="xs" />
+				</span>
+			</button>
+
+			<AmountValue value={amount} className="tabular text-sm font-semibold" signed />
+
+			<TooltipMessage message={isCompleted ? 'Efetivado' : 'Marcar como pago'}>
+				<button
+					type="button"
+					onClick={handleComplete}
+					className={cn(
+						'shrink-0 rounded-sm p-1 transition-colors',
+						isCompleted ? 'text-flag-green' : 'text-muted-foreground hover:text-foreground',
+					)}
+					aria-label={isCompleted ? 'Efetivado' : 'Marcar como pago'}
+				>
+					{isCompleted ? (
+						<BadgeCheck className="h-5 w-5" />
+					) : (
+						<BadgeAlert className="h-5 w-5" />
+					)}
+				</button>
+			</TooltipMessage>
+
+			<Dialog open={isDetailOpen} onOpenChange={setIsDetailOpen}>
 				<DialogContent>
 					<DialogHeader>
 						<DialogTitle>{description}</DialogTitle>
 						<DialogDescription>{formatDateAndWeekdayAndYear(date)}</DialogDescription>
 					</DialogHeader>
-					<div className="py-4">
-						<AmountValue value={amount} className="text-2xl font-semibold" />
+					<div className="space-y-4 py-2">
+						<AmountValue
+							value={amount}
+							className="tabular text-2xl font-bold"
+							signed
+						/>
 						{times && parseInt(times) > 1 && (
-							<div className="text-muted-foreground flex items-center gap-1 mb-4">
-								<Repeat2 className="w-4 h-4" />
-								Parcelado em {times} vezes de <AmountValue value={amount} />
+							<p className="flex items-center gap-1.5 text-sm text-muted-foreground">
+								<Repeat2 className="h-4 w-4" />
+								Parcelado em {times}x de <AmountValue value={amount} className="tabular" />
+							</p>
+						)}
+						<div className="flex items-center gap-3 border-t border-border pt-4">
+							<span className="flex h-10 w-10 items-center justify-center border border-border text-muted-foreground">
+								{typeDefinition?.icon('w-5 h-5')}
+							</span>
+							<div>
+								<p className="notice-label">Categoria</p>
+								<p className="text-sm font-medium text-foreground">
+									{typeDefinition?.label}
+								</p>
+							</div>
+						</div>
+						{tags && tags.length > 0 && (
+							<div>
+								<p className="notice-label mb-1.5">Tags</p>
+								<TagList tags={tags} />
 							</div>
 						)}
-
-						<div className="flex items-center gap-3">
-							<div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
-								{typeDefinition?.icon()}
-							</div>
-
-							<div>{typeDefinition?.label}</div>
-						</div>
 					</div>
-					<DialogFooter>
-						<Button onClick={handleEdit} className="my-1">
-							<Edit className="w-4 h-4" />
+					<DialogFooter className="flex-row items-center justify-end gap-2 sm:gap-2">
+						<Button variant="outline" onClick={() => setIsEditing(true)}>
+							<Pencil className="mr-1.5 h-4 w-4" />
 							Editar
 						</Button>
 						<TransactionItemRemove transaction={transaction} />
@@ -124,12 +136,12 @@ export const TransactionItem = (props: TransactionItemProps) => {
 				</DialogContent>
 			</Dialog>
 
-			<Dialog modal open={isEditing} onOpenChange={(open) => setIsEditing(open)}>
-				<DialogHeader className="sr-only">
-					<DialogTitle>Editar Lançamento</DialogTitle>
-					<DialogDescription>Edite os dados do lançamento</DialogDescription>
-				</DialogHeader>
+			<Dialog modal open={isEditing} onOpenChange={setIsEditing}>
 				<DialogContent>
+					<DialogHeader className="sr-only">
+						<DialogTitle>Editar lançamento</DialogTitle>
+						<DialogDescription>Edite os dados do lançamento</DialogDescription>
+					</DialogHeader>
 					<TransactionForm
 						handleClose={() => {
 							setIsEditing(false)
@@ -140,6 +152,6 @@ export const TransactionItem = (props: TransactionItemProps) => {
 					/>
 				</DialogContent>
 			</Dialog>
-		</>
+		</div>
 	)
 }

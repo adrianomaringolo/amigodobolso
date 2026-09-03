@@ -6,16 +6,16 @@ import { useEffect } from 'react'
 
 export default function Home() {
 	const router = useRouter()
-	const { session } = useUser()
+	const { session, loading } = useUser()
 
 	useEffect(() => {
-		if (session) {
-			router.push('/inicio')
-		} else {
-			router.push('/login')
-		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [session])
+		if (loading) return
+		router.replace(session ? '/inicio' : '/login')
+	}, [session, loading, router])
 
-	return <></>
+	return (
+		<div className="flex min-h-dvh items-center justify-center bg-background">
+			<p className="notice-label animate-pulse">Amigo do Bolso</p>
+		</div>
+	)
 }

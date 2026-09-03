@@ -9,27 +9,28 @@ export const metadata: Metadata = {
 
 export default function AuthCodeErrorPage() {
 	return (
-		<div className="min-h-dvh bg-gray-100 flex flex-col items-center justify-center p-8">
-			<div className="mx-auto w-full max-w-sm rounded-xl bg-white p-6 text-center">
+		<div className="flex min-h-dvh flex-col items-center justify-center bg-background p-6">
+			<div className="w-full max-w-sm border border-border bg-card p-6 text-center shadow-bill">
 				<Image
 					src="/logo.png"
-					alt="Logo Amigo do Bolso"
-					width={72}
-					height={72}
-					className="mx-auto mb-4"
+					alt=""
+					width={64}
+					height={64}
+					className="mx-auto mb-4 h-16 w-16"
 				/>
-				<h1 className="text-base font-semibold text-gray-800">
+				<p className="notice-label text-flag-red">Falha na autenticação</p>
+				<h1 className="mt-1 text-base font-bold text-foreground">
 					Não foi possível concluir o acesso
 				</h1>
-				<p className="mt-2 text-sm text-gray-600">
+				<p className="mt-2 text-sm text-muted-foreground">
 					O link de autenticação é inválido ou já expirou. Tente entrar novamente ou
 					solicitar um novo e-mail.
 				</p>
 				<Link
 					href="/login"
-					className="mt-6 inline-block text-sm font-semibold text-blue-600 hover:underline"
+					className="mt-6 inline-flex items-center gap-2 border border-accent bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground"
 				>
-					Voltar para login
+					Voltar para o login
 				</Link>
 			</div>
 		</div>

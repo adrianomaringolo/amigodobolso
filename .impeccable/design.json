@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-03T00:00:00Z",
+  "title": "Design System: Amigo do Bolso",
+  "extensions": {
+    "colorMeta": {
+      "bill-paper": { "role": "neutral", "displayName": "Bill Paper", "canonical": "hsl(40 24% 95.5%)", "tonalRamp": ["#2a2823","#403c33","#5c5648","#837c68","#a9a08a","#c9c2b0","#e4dfd2","#f7f5ef"] },
+      "panel-paper": { "role": "neutral", "displayName": "Panel Paper", "canonical": "hsl(42 40% 98%)", "tonalRamp": ["#2b2a26","#42403a","#5f5c52","#847f70","#aba593","#cfc9b8","#e9e5d9","#fcfbf7"] },
+      "institutional-blue": { "role": "primary", "displayName": "Institutional Blue", "canonical": "hsl(209 54% 20%)", "tonalRamp": ["#0a1826","#0f2438","#16324f","#1f4267","#2f5a86","#4f7ba5","#8aabc7","#cfe0ee"] },
+      "ink-muted": { "role": "neutral", "displayName": "Ink Muted", "canonical": "hsl(209 20% 38%)", "tonalRamp": ["#141c24","#20303c","#2f4657","#4d5f70","#6f8290","#96a6b1","#c0cbd2","#e6ecf0"] },
+      "action-orange": { "role": "primary", "displayName": "Amigo do Bolso Orange", "canonical": "hsl(22 86% 54%)", "tonalRamp": ["#3d1c08","#5c2a0a","#8a3f0f","#b8551a","#ef7d24","#f39a55","#f8c199","#fde5d3"] },
+      "flag-green": { "role": "secondary", "displayName": "Bandeira Verde", "canonical": "hsl(152 46% 30%)", "tonalRamp": ["#0d2b1e","#134028","#1b5636","#256f48","#29704f","#4f9a76","#8dc4ac","#dcefe6"] },
+      "flag-amber-fill": { "role": "secondary", "displayName": "Bandeira Amarela", "canonical": "hsl(38 88% 50%)", "tonalRamp": ["#3a2503","#5c3a05","#8a570b","#b87413","#f0a017","#f4b954","#f8d494","#f6ead4"] },
+      "flag-red": { "role": "secondary", "displayName": "Bandeira Vermelha", "canonical": "hsl(4 66% 45%)", "tonalRamp": ["#3a0f0c","#5c1712","#8a231c","#b82f26","#be2f26","#d4665f","#e6a49f","#f6e2e0"] }
+    },
+    "typographyMeta": {
+      "headline": { "displayName": "Headline", "purpose": "Page titles and the greeting." },
+      "label": { "displayName": "Notice Label", "purpose": "Section titles and field labels — the recurring statement device. Small-caps, 0.09em, ink-muted." },
+      "reading": { "displayName": "Meter Reading", "purpose": "Every currency value, gasto/alvo pair, and data figure. Spline Sans Mono, tabular-nums." }
+    },
+    "shadows": [
+      { "name": "bill", "value": "0 1px 0 0 hsl(40 13% 80%), 0 8px 24px -16px hsl(209 40% 20% / 0.28)", "purpose": "The only ambient shadow — a statement lying on a desk. Statement panels and the month bandeira." },
+      { "name": "bill-raised", "value": "0 1px 0 0 hsl(40 13% 80%), 0 18px 40px -20px hsl(209 40% 20% / 0.35)", "purpose": "The fixed bottom-bar Lançar button only." }
+    ],
+    "motion": [
+      { "name": "flag-raise", "value": "translateY(35%) scaleY(0.7) opacity 0 -> settled, 0.45s cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "One-time entrance of the month bandeira flag. The system's single authored motion moment." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ],
+    "textures": [
+      { "name": "security-tint", "value": "repeating-linear-gradient(135deg, hsl(209 30% 20% / 0.022) 0 1px, transparent 1px 7px), fixed", "purpose": "Faint diagonal hatch on the page ground — the security tint of a real bill." },
+      { "name": "edge-perf", "value": "repeating-linear-gradient(to right, hsl(40 13% 80%) 0 6px, transparent 6px 12px), 100% 1px no-repeat", "purpose": "The boleto tear line. Under the masthead, over the footer and the mobile bottom bar." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single primary action (+ Lançar). The only orange fill in the app.",
+      "html": "<button class=\"ds-btn-primary\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.75\" stroke-linecap=\"round\"><path d=\"M12 5v14M5 12h14\"/></svg> Lançar receita ou despesa</button>",
+      "css": ".ds-btn-primary { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; background:#ef7d24; color:#fff; padding:12px 16px; font-family:Archivo,system-ui,sans-serif; font-size:0.875rem; font-weight:700; text-transform:uppercase; letter-spacing:0.03em; border:none; border-radius:4px; transition:background 0.15s; } .ds-btn-primary:hover { background:#e0700f; } .ds-btn-primary:focus-visible { outline:2px solid #ef7d24; outline-offset:2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Auth submit and dialog confirms — institutional blue.",
+      "html": "<button class=\"ds-btn-secondary\">Entrar</button>",
+      "css": ".ds-btn-secondary { background:#16324f; color:#f7f5ef; padding:10px 20px; font-family:Archivo,system-ui,sans-serif; font-size:0.9375rem; font-weight:600; border:none; border-radius:4px; transition:background 0.15s; } .ds-btn-secondary:hover { background:#1f4267; } .ds-btn-secondary:focus-visible { outline:2px solid #ef7d24; outline-offset:2px; }"
+    },
+    {
+      "name": "Bandeira Tag",
+      "kind": "chip",
+      "refersTo": "flag-chip-red",
+      "description": "Read-only status marker — one per category, one for the month. Colour is never the only signal.",
+      "html": "<span class=\"ds-flag ds-flag--red\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 46 48\" fill=\"none\"><rect x=\"3\" y=\"0\" width=\"3.2\" height=\"48\" rx=\"1\" fill=\"#be2f26\" opacity=\"0.45\"/><path d=\"M6.2 3H44l-9.5 10.5L44 24H6.2z\" fill=\"#be2f26\"/></svg><span class=\"ds-flag__word\">no vermelho</span><span class=\"ds-flag__pct\">101%</span></span>",
+      "css": ".ds-flag { display:inline-flex; align-items:center; gap:6px; padding:2px 6px; font-family:Archivo,system-ui,sans-serif; font-size:0.6875rem; font-weight:600; border:1px solid; } .ds-flag--red { background:#f6e2e0; color:#be2f26; border-color:#be2f26; } .ds-flag__word { text-transform:uppercase; letter-spacing:0.03em; } .ds-flag__pct { font-family:'Spline Sans Mono',monospace; font-weight:700; font-variant-numeric:tabular-nums; }"
+    },
+    {
+      "name": "Statement Panel",
+      "kind": "card",
+      "refersTo": "panel",
+      "description": "The recurring container — an edge-to-edge bordered field with a ruled header.",
+      "html": "<section class=\"ds-panel\"><header class=\"ds-panel__head\"><h2 class=\"ds-label\">Maiores despesas do mês</h2></header><div class=\"ds-panel__body\">…</div></section>",
+      "css": ".ds-panel { background:#fcfbf7; border:1px solid #d0ccc2; box-shadow:0 1px 0 0 #d0ccc2, 0 8px 24px -16px rgba(20,40,60,0.28); } .ds-panel__head { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 16px; border-bottom:1px solid #d0ccc2; } .ds-panel__body { padding:14px 16px; } .ds-label { font-family:Archivo,system-ui,sans-serif; font-size:0.6875rem; font-weight:600; text-transform:uppercase; letter-spacing:0.09em; color:#16324f; margin:0; }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Statement-form field with a notice-label above.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-label ds-label--muted\">E-mail</span><input class=\"ds-input\" type=\"email\" placeholder=\"voce@email.com\"></label>",
+      "css": ".ds-field { display:block; } .ds-label--muted { color:#4d5f70; display:block; margin-bottom:6px; } .ds-input { width:100%; background:#fcfbf7; color:#16324f; border:1px solid #c1bbae; border-radius:4px; padding:10px 12px; font-family:Archivo,system-ui,sans-serif; font-size:0.9375rem; } .ds-input:focus-visible { outline:2px solid #ef7d24; outline-offset:2px; border-color:#ef7d24; }"
+    },
+    {
+      "name": "Medidor (category meter)",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Signature row: icon plate + name + gasto/alvo + bandeira tag + shared-scale meter bar + 6-month consumo histogram.",
+      "html": "<a class=\"ds-medidor\"><span class=\"ds-medidor__plate\">…</span><div class=\"ds-medidor__body\"><div class=\"ds-medidor__top\"><span class=\"ds-label\">Necessidades essenciais</span><span class=\"ds-label ds-label--muted\">55% da renda</span></div><div class=\"ds-reading\">R$ 2.500,00 <span>/ R$ 2.475,00</span></div><div class=\"ds-bar\"><div class=\"ds-bar__fill\"></div><div class=\"ds-bar__tick\"></div></div></div></a>",
+      "css": ".ds-medidor { display:flex; gap:12px; padding:12px 16px; background:#fcfbf7; border-bottom:1px solid #d0ccc2; text-decoration:none; } .ds-medidor__plate { width:36px; height:36px; display:flex; align-items:center; justify-content:center; border:1px solid #be2f26; background:#f6e2e0; color:#be2f26; } .ds-reading { font-family:'Spline Sans Mono',monospace; font-variant-numeric:tabular-nums; font-size:0.875rem; color:#16324f; } .ds-reading span { color:#4d5f70; } .ds-bar { position:relative; height:10px; background:#e7e3d9; margin-top:12px; } .ds-bar__fill { height:100%; width:72%; background:#be2f26; } .ds-bar__tick { position:absolute; top:-4px; bottom:-4px; left:72%; width:2px; background:#16324f; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "A conta de luz do seu mês",
+    "overview": "Amigo do Bolso is built to look and read like a Brazilian utility bill. The ground is recycled bill paper, the ink is institutional deep blue, the numbers are a tabular monospace like a meter reading, and every section is a labeled ruled field. The one loud colour is not a brand colour — it is the bandeira tarifária, the verde/amarela/vermelha escalation flag every Brazilian reads on the electric bill. The design refuses the personal-finance category default: no fintech gradient, no donut dashboard, no giant balance number. The reading that matters is 'estou dentro do plano?' — a flag and a bar against a shared tick — and the raw reais are always secondary.",
+    "keyCharacteristics": [
+      "Warm bill-paper ground with a faint diagonal security-tint hatch; institutional-blue ink.",
+      "One action colour (Amigo do Bolso orange), reserved for the single primary action.",
+      "The bandeira (green/amber/red) is functional-only and appears one flag per category.",
+      "Every monetary or measured value is tabular monospace; labels are small-caps official-notice type.",
+      "Near-square corners, ruled hairlines, perforated boleto-style dashed edges. Flat by default."
+    ],
+    "rules": [
+      { "name": "The One Action Rule", "body": "Orange marks exactly one thing per screen: the primary action, plus the active-state markers pointing at navigation. Never a decorative fill, a heading colour, or a second CTA.", "section": "colors" },
+      { "name": "The Flag-Never-Alone Rule", "body": "A bandeira colour never carries meaning by itself — always with its word (no verde/amarelo/vermelho), its percentage, and an inline flag pennant.", "section": "colors" },
+      { "name": "The Two Grounds Rule", "body": "Only two paper values exist: bill-paper for the page, panel-paper for anything raised. No third surface tone, no tinted category backgrounds behind content.", "section": "colors" },
+      { "name": "The Meter-Reading Rule", "body": "If a value is money or a measurement it is Spline Sans Mono with tabular-nums. Never a currency figure in Archivo, never running prose in the mono.", "section": "typography" },
+      { "name": "The Notice-Label Rule", "body": "Section titles and field labels are the small-caps notice-label, not heading-scale type. The label is the heading in a statement layout — a functional field label, never a decorative eyebrow.", "section": "typography" },
+      { "name": "The Paper Rule", "body": "Surfaces do not lift on hover. Interactive rows respond with a bg tint, never a shadow change or scale.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do set every R$ value, percentage, and measurement in Spline Sans Mono with tabular-nums.",
+      "Do pair every bandeira colour with its word and its % — colour is never the only signal.",
+      "Do keep all six category meters on the one shared scale: target at 72% of the track, always marked by the bare tick.",
+      "Do use the notice-label (uppercase, 0.09em, ink-muted) for section titles and field labels.",
+      "Do build sections as edge-to-edge bordered statement panels with a hairline header rule.",
+      "Do reserve action-orange (#ef7d24) for the single primary action and the active-nav markers.",
+      "Do keep surfaces flat — hover is a bg-secondary/40 tint, never a shadow or lift."
+    ],
+    "donts": [
+      "Don't introduce a donut / pie chart, a fintech gradient, or a giant balance number as a screen hero.",
+      "Don't add a third paper tone or a tinted category background behind content.",
+      "Don't use action-orange as a decorative fill, a heading colour, or a second CTA on the same screen.",
+      "Don't set currency or data figures in Archivo, or running prose in the monospace.",
+      "Don't give category meters private scales — the shared 72% target tick is what makes them comparable.",
+      "Don't use rounded-full or pill shapes except the avatar; the system is near-square.",
+      "Don't reach for the AI-cluster rendition this world attracts (warm cream + serif display + terracotta)."
+    ]
+  }
+}

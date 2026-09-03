@@ -72,7 +72,7 @@ export default function Register() {
 			<form onSubmit={handleSubmit} className="md:w-full">
 				<div className="grid gap-4">
 					<div>
-						<label className="mb-2 block text-sm text-gray-800">Nome completo</label>
+						<label className="notice-label mb-1.5 block">Nome completo</label>
 						<Input
 							name="name"
 							value={name}
@@ -82,7 +82,7 @@ export default function Register() {
 					</div>
 
 					<div>
-						<label className="mb-2 block text-sm text-gray-800">E-mail</label>
+						<label className="notice-label mb-1.5 block">E-mail</label>
 						<Input
 							name="email"
 							type="email"
@@ -93,7 +93,7 @@ export default function Register() {
 					</div>
 
 					<div>
-						<label className="mb-2 block text-sm text-gray-800">Senha</label>
+						<label className="notice-label mb-1.5 block">Senha</label>
 						<PasswordField
 							name="password"
 							value={password}
@@ -102,7 +102,7 @@ export default function Register() {
 						/>
 					</div>
 					<div>
-						<label className="mb-2 block text-sm text-gray-800">Confirmação</label>
+						<label className="notice-label mb-1.5 block">Confirmação</label>
 						<Input
 							name="cpassword"
 							type="password"
@@ -120,7 +120,7 @@ export default function Register() {
 							onCheckedChange={(checked) =>
 								setAgreement(checked === 'indeterminate' ? false : checked)
 							}
-							className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+							className="h-4 w-4"
 						/>
 						<Label htmlFor="agreement">
 							Concordo com os{' '}
@@ -136,7 +136,7 @@ export default function Register() {
 					</div>
 				</div>
 
-				<div className="!mt-12">
+				<div className="!mt-8">
 					<Button
 						isLoading={isLoading}
 						size="lg"

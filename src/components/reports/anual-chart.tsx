@@ -14,8 +14,8 @@ export const AnnualChart = () => {
 	}
 
 	return (
-		<section className="mt-4">
-			<div className="rounded-xl bg-gray-100 py-2 px-4 mb-4">
+		<div className="space-y-4">
+			<div className="border border-border bg-card px-3 py-2 shadow-bill">
 				<MonthNavigator
 					locale={ptBR}
 					mode="year"
@@ -24,7 +24,9 @@ export const AnnualChart = () => {
 					currentMonth={0}
 				/>
 			</div>
-			<YearBarChart summary={entries} year={year} />
-		</section>
+			<div className="border border-border bg-card p-4 shadow-bill">
+				<YearBarChart summary={entries} year={year} />
+			</div>
+		</div>
 	)
 }

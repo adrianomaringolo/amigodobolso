@@ -1,6 +1,9 @@
+'use client'
+
+import { Painel } from '@/components/bandeira/painel'
 import { useUser } from '@/lib/hooks/use-user'
 import { useGetEntries } from '@/services/entries/useGetEntries'
-import { Card, CardContent, Month, MonthNavigator } from 'buildgrid-ui'
+import { Month, MonthNavigator } from 'buildgrid-ui'
 import { ptBR } from 'date-fns/locale'
 import { useState } from 'react'
 import { CategoryChart } from './category-chart'
@@ -19,33 +22,27 @@ export const ExpensesTab = () => {
 	})
 
 	return (
-		<>
-			<section className="mt-4">
-				<div className="rounded-xl bg-gray-100 py-2 px-4 mb-4">
-					<MonthNavigator
-						locale={ptBR}
-						mode="month"
-						currentYear={year}
-						onChangeMonthYear={(month, year) => {
-							setMonth(month)
-							setYear(year)
-						}}
-						currentMonth={month as Month}
-					/>
-				</div>
+		<div className="space-y-5">
+			<div className="border border-border bg-card px-3 py-2 shadow-bill">
+				<MonthNavigator
+					locale={ptBR}
+					mode="month"
+					currentYear={year}
+					currentMonth={month as Month}
+					onChangeMonthYear={(m, y) => {
+						setMonth(m)
+						setYear(y)
+					}}
+				/>
+			</div>
 
-				<Card>
-					<CardContent className="grid md:grid-cols-3 gap-4 py-4">
-						<IncomeExpensesTotal entries={entries} />
-					</CardContent>
-				</Card>
-			</section>
-			<section className="mt-4">
+			<IncomeExpensesTotal entries={entries} />
+
+			<Painel title="Gasto por categoria" bodyClassName="px-0 py-0">
 				<ExpensesCategoryTotal entries={entries} />
-			</section>
-			<section className="mt-4">
-				<CategoryChart entries={entries} />
-			</section>
-		</>
+			</Painel>
+
+			<CategoryChart entries={entries} />
+		</div>
 	)
 }

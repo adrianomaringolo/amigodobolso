@@ -1,83 +1,87 @@
 'use client'
-import {
-	ChartConfig,
-	ChartContainer,
-	ChartTooltip,
-	ChartTooltipContent,
-} from '@/components/ui/chart'
-import { MonthlyEntriesSum } from '@/lib/types/Entry.type'
-import { Bar, BarChart, CartesianGrid, XAxis } from 'recharts'
 
-const chartConfig = {
-	totalIncome: {
-		label: 'Receitas',
-		color: '#295f9d',
-	},
-	totalExpanse: {
-		label: 'Despesas',
-		color: '#da5151',
-	},
-} satisfies ChartConfig
+import { MonthlyEntriesSum } from '@/lib/types/Entry.type'
+import { cn, formatCurrency } from '@/lib/utils'
+
+const MONTHS = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez']
 
 type YearBarChartProps = {
 	year: number
 	summary: MonthlyEntriesSum[]
 }
 
-export function YearBarChart(props: YearBarChartProps) {
-	const getNumbersFromMonthYear = (month: number, year: number) => {
-		const item = props.summary.find(
-			(entry) => entry.month === month && entry.year === year,
-		)
+/**
+ * The year at a glance — receitas vs. despesas per month, drawn as paired
+ * bars in the bill palette. Plain markup so it reads the same everywhere.
+ */
+export function YearBarChart({ year, summary }: YearBarChartProps) {
+	const data = MONTHS.map((label, i) => {
+		const item = summary.find((s) => s.month === i + 1 && s.year === year)
 		return {
-			totalIncome: Math.abs(item?.totalIncome ?? 0),
-			totalExpanse: Math.abs(item?.totalExpense ?? 0),
+			label,
+			income: Math.abs(item?.totalIncome ?? 0),
+			expense: Math.abs(item?.totalExpense ?? 0),
 		}
+	})
+
+	const max = Math.max(1, ...data.flatMap((d) => [d.income, d.expense]))
+	const hasData = data.some((d) => d.income > 0 || d.expense > 0)
+
+	if (!hasData) {
+		return (
+			<div className="flex h-56 items-center justify-center border border-dashed border-border text-sm text-muted-foreground">
+				Nenhum lançamento encontrado para {year}
+			</div>
+		)
 	}
 
-	const hasItemsForYear = props.summary.some((item) => item.year === props.year)
-
-	const chartData = [
-		{ month: 'Janeiro', ...getNumbersFromMonthYear(1, props.year) },
-		{ month: 'Fevereiro', ...getNumbersFromMonthYear(2, props.year) },
-		{ month: 'Março', ...getNumbersFromMonthYear(3, props.year) },
-		{ month: 'Abril', ...getNumbersFromMonthYear(4, props.year) },
-		{ month: 'Maio', ...getNumbersFromMonthYear(5, props.year) },
-		{ month: 'Junho', ...getNumbersFromMonthYear(6, props.year) },
-		{ month: 'Julho', ...getNumbersFromMonthYear(7, props.year) },
-		{ month: 'Agosto', ...getNumbersFromMonthYear(8, props.year) },
-		{ month: 'Setembro', ...getNumbersFromMonthYear(9, props.year) },
-		{ month: 'Outubro', ...getNumbersFromMonthYear(10, props.year) },
-		{ month: 'Novembro', ...getNumbersFromMonthYear(11, props.year) },
-		{ month: 'Dezembro', ...getNumbersFromMonthYear(12, props.year) },
-	]
-
 	return (
-		<section className="h-80 w-full">
-			{!hasItemsForYear ? (
-				<div className="text-center bg-gray-100 h-full flex items-center justify-center">
-					Nenhum lançamento encontrado para esse ano
-				</div>
-			) : (
-				<ChartContainer config={chartConfig} className="h-80 w-full">
-					<BarChart accessibilityLayer data={chartData}>
-						<CartesianGrid vertical={false} />
-						<XAxis
-							dataKey="month"
-							tickLine={false}
-							tickMargin={10}
-							axisLine={false}
-							tickFormatter={(value) => value.slice(0, 3)}
-						/>
-						<ChartTooltip
-							cursor={false}
-							content={<ChartTooltipContent indicator="dashed" />}
-						/>
-						<Bar dataKey="totalIncome" fill="#295f9d" radius={4} />
-						<Bar dataKey="totalExpanse" fill="#da5151" radius={4} />
-					</BarChart>
-				</ChartContainer>
-			)}
-		</section>
+		<div>
+			<div className="flex items-end gap-2 sm:gap-3" style={{ height: 200 }}>
+				{data.map((d) => (
+					<div key={d.label} className="flex flex-1 flex-col items-center gap-1.5">
+						<div className="flex h-full w-full items-end justify-center gap-[3px]">
+							<Bar value={d.income} max={max} tone="income" />
+							<Bar value={d.expense} max={max} tone="expense" />
+						</div>
+						<span className="notice-label !text-[0.5625rem] leading-none">{d.label}</span>
+					</div>
+				))}
+			</div>
+			<div className="mt-4 flex gap-5 border-t border-border pt-3 text-xs">
+				<Key tone="income" label="Receitas" />
+				<Key tone="expense" label="Despesas" />
+			</div>
+		</div>
+	)
+}
+
+function Bar({
+	value,
+	max,
+	tone,
+}: {
+	value: number
+	max: number
+	tone: 'income' | 'expense'
+}) {
+	const h = value > 0 ? Math.max(2, (value / max) * 100) : 0
+	return (
+		<div
+			className={cn('w-1/2 max-w-[14px]', tone === 'income' ? 'bg-income' : 'bg-expense')}
+			style={{ height: `${h}%` }}
+			title={`${tone === 'income' ? 'Receitas' : 'Despesas'}: ${formatCurrency(value)}`}
+		/>
+	)
+}
+
+function Key({ tone, label }: { tone: 'income' | 'expense'; label: string }) {
+	return (
+		<span className="flex items-center gap-1.5 text-muted-foreground">
+			<span
+				className={cn('h-2.5 w-2.5', tone === 'income' ? 'bg-income' : 'bg-expense')}
+			/>
+			{label}
+		</span>
 	)
 }

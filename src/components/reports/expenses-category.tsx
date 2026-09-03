@@ -1,5 +1,5 @@
 import { FinancialEntry } from '@/lib/types/Entry.type'
-import { AmountValue } from '../financial/amount-value'
+import { formatCurrency } from '@/lib/utils'
 import { TransactionTypes } from '../financial/financial.types'
 
 type ExpensesCategoryTotalProps = {
@@ -9,42 +9,39 @@ type ExpensesCategoryTotalProps = {
 export const ExpensesCategoryTotal = (props: ExpensesCategoryTotalProps) => {
 	const { entries } = props
 
-	// group the entries by category
-	const groupedEntries = entries
-		.filter((entry) => entry.amount < 0)
-		.reduce(
-			(acc, entry) => {
-				const category = entry.category
-				const amount = entry.amount
+	const grouped = entries
+		.filter((e) => e.amount < 0)
+		.reduce<Record<string, number>>((acc, e) => {
+			acc[e.category] = (acc[e.category] ?? 0) + e.amount
+			return acc
+		}, {})
 
-				if (!acc[category]) {
-					acc[category] = 0
-				}
+	const rows = Object.entries(grouped).sort((a, b) => a[1] - b[1])
 
-				acc[category] += amount
-
-				return acc
-			},
-			{} as Record<string, number>,
+	if (rows.length === 0) {
+		return (
+			<p className="px-4 py-4 text-center text-sm text-muted-foreground">
+				Nenhuma despesa lançada neste mês
+			</p>
 		)
+	}
 
 	return (
-		<div>
-			{Object.entries(groupedEntries).map(([category, total]) => {
-				const typeDefinition = TransactionTypes[category as keyof typeof TransactionTypes]
+		<ul className="divide-y divide-border">
+			{rows.map(([category, total]) => {
+				const def = TransactionTypes[category as keyof typeof TransactionTypes]
 				return (
-					<div
-						key={category}
-						className="flex justify-between py-4 border-b hover:bg-gray-50"
-					>
-						<div className="flex gap-2">
-							{typeDefinition.icon()}
-							{typeDefinition.label}
-						</div>
-						<AmountValue value={total} />
-					</div>
+					<li key={category} className="flex items-center gap-3 px-4 py-2.5">
+						<span className="flex h-8 w-8 shrink-0 items-center justify-center border border-border text-muted-foreground">
+							{def?.icon('w-4 h-4')}
+						</span>
+						<span className="flex-1 text-sm text-foreground">{def?.label}</span>
+						<span data-reading className="tabular text-sm font-semibold text-expense">
+							{formatCurrency(Math.abs(total))}
+						</span>
+					</li>
 				)
 			})}
-		</div>
+		</ul>
 	)
 }

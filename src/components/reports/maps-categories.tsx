@@ -1,83 +1,64 @@
+'use client'
+
+import { Medidor } from '@/components/bandeira/medidor'
+import { useCategoryHistory } from '@/components/bandeira/use-category-history'
+import { computeReadings } from '@/components/bandeira/use-readings'
 import { useUser } from '@/lib/hooks/use-user'
-import { formatCurrency } from '@/lib/utils'
 import { useGetEntries } from '@/services/entries/useGetEntries'
 import { Month, MonthNavigator } from 'buildgrid-ui'
 import { ptBR } from 'date-fns/locale'
-import { useState } from 'react'
-import { DangerGauge } from '../danger-gauge'
-import { AmountValue } from '../financial/amount-value'
-import { AmountTypes, TransactionTypes } from '../financial/financial.types'
+import { useMemo, useState } from 'react'
 
 export const MapsCategories = () => {
 	const [year, setYear] = useState(new Date().getFullYear())
 	const [month, setMonth] = useState(new Date().getMonth())
 
 	const { user } = useUser()
+	const ref = useMemo(() => new Date(year, month, 1), [year, month])
 
 	const { data: entries = [] } = useGetEntries({
 		userId: user?.id as string,
 		monthYear: `${year}-${(month + 1).toString().padStart(2, '0')}`,
 	})
 
-	// sum incomes
-	const income = entries
-		.filter((entry) => entry.amount > 0)
-		.reduce((acc, entry) => acc + entry.amount, 1)
-
-	// for each categories, sum the total amount
-	const groupedEntries = entries.reduce(
-		(acc, entry) => {
-			const category = entry.category
-			const amount = entry.amount
-
-			if (!acc[category]) {
-				acc[category] = 0
-			}
-
-			acc[category] += amount
-
-			return acc
-		},
-		{} as Record<string, number>,
-	)
+	const readings = useMemo(() => computeReadings(entries), [entries])
+	const { history } = useCategoryHistory(user?.id, 6, ref)
 
 	return (
-		<section className="mt-4">
-			<div className="rounded-xl bg-gray-100 py-2 px-4 mb-4">
+		<div className="space-y-4">
+			<div className="border border-border bg-card px-3 py-2 shadow-bill">
 				<MonthNavigator
 					locale={ptBR}
 					currentYear={year}
-					onChangeMonthYear={(month, year) => {
-						setMonth(month)
-						setYear(year)
-					}}
 					currentMonth={month as Month}
+					onChangeMonthYear={(m, y) => {
+						setMonth(m)
+						setYear(y)
+					}}
 				/>
 			</div>
 
-			{Object.entries(TransactionTypes).map(([key, value]) => {
-				if (value.type !== AmountTypes.expanses) return null
-				return (
-					<div className="mb-3" key={key}>
-						<DangerGauge
-							key={key}
-							title={
-								<div className="flex gap-1 items-center mb-4">
-									{value.icon()}
-									{value.label}
-								</div>
-							}
-							value={(Math.abs(groupedEntries[key] ?? 0) / income) * 100}
-							maxValue={value.max}
+			<section className="border border-border bg-card shadow-bill">
+				<header className="flex items-center justify-between gap-3 border-b border-border px-4 py-2.5">
+					<h2 className="notice-label !text-xs text-foreground">Mapa de categorias</h2>
+					<span className="notice-label !normal-case !tracking-normal">
+						gasto / alvo · últimos 6 meses
+					</span>
+				</header>
+				{readings.income <= 0 ? (
+					<p className="px-4 py-8 text-center text-sm text-muted-foreground">
+						Sem receita lançada neste mês — os alvos das categorias dependem dela.
+					</p>
+				) : (
+					readings.categories.map((reading) => (
+						<Medidor
+							key={reading.key}
+							reading={reading}
+							history={history?.[reading.key]}
 						/>
-						<div className="mt-2">
-							<p className="text-sm text-gray-600 italic">Usado</p>
-							<AmountValue value={groupedEntries[key] ?? 0} /> /{' '}
-							{formatCurrency(income * (value.max / 100))}
-						</div>
-					</div>
-				)
-			})}
-		</section>
+					))
+				)}
+			</section>
+		</div>
 	)
 }

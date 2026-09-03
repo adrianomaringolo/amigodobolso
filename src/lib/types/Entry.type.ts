@@ -8,6 +8,12 @@ export interface FinancialEntry {
 	date: string
 	createdAt: string
 	category: string
+	tags?: string[]
+}
+
+export interface UserTag {
+	tag: string
+	uses: number
 }
 
 export interface MonthlyEntriesSum {

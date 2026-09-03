@@ -4,11 +4,12 @@ export default function manifest(): MetadataRoute.Manifest {
 	return {
 		name: 'Amigo do Bolso',
 		short_name: 'Amigo do Bolso',
-		description: 'Amigo do Bolso é um aplicativo que te ajuda a controlar suas finanças',
+		description:
+			'A conta do seu mês: cada categoria hasteia uma bandeira e você vê na hora se passou do plano.',
 		start_url: '/',
 		display: 'standalone',
-		background_color: '#ffffff',
-		theme_color: '#295f9d',
+		background_color: '#f7f5ef',
+		theme_color: '#16324f',
 		icons: [
 			{
 				src: '/web-app-manifest-192x192.png',

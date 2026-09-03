@@ -1,12 +1,11 @@
 'use client'
 
+import { BottomBar } from '@/components/navigation/bottom-bar'
+import { ContaMasthead } from '@/components/navigation/conta-masthead'
 import { FooterComponent } from '@/components/navigation/footer'
-import { ResponsiveNav } from '@/components/navigation/responsive-nav'
 import { createClient } from '@/lib/supabase/client'
 import { authErrors } from '@/lib/types/Auth.type'
 import { useDialog } from 'buildgrid-ui'
-
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { FileKey, Loader, MailCheck } from 'lucide-react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -18,16 +17,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 	const dialog = useDialog()
 	const searchParams = useSearchParams()
-
-	const queryClient = new QueryClient({
-		defaultOptions: {
-			queries: {
-				refetchOnWindowFocus: false,
-				refetchOnMount: false,
-				retry: 1,
-			},
-		},
-	})
 
 	const validateAccess = async () => {
 		const {
@@ -43,7 +32,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 	const checkError = () => {
 		const errorCode = searchParams.get('error_code')
-
 		if (errorCode) {
 			dialog.confirm({
 				icon: FileKey,
@@ -51,33 +39,26 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 				message: authErrors[errorCode as keyof typeof authErrors],
 				confirmButton: {
 					label: 'Ir para login',
-					onClick: () => {
-						router.push('/login')
-					},
+					onClick: () => router.push('/login'),
 				},
 			})
-
 			return true
 		}
 	}
 
 	const checkCodeVerification = () => {
 		const code = searchParams.get('code')
-
 		if (code) {
 			dialog.confirm({
 				icon: MailCheck,
-				title: 'Sua conta foi verificada com sucesso 🎉',
+				title: 'Sua conta foi verificada 🎉',
 				message:
 					'Agora você já pode acessar sua conta e começar a controlar suas finanças.',
 				confirmButton: {
-					label: 'Ir para meu dashboard',
-					onClick: () => {
-						router.push('/inicio')
-					},
+					label: 'Ir para meu início',
+					onClick: () => router.push('/inicio'),
 				},
 			})
-
 			return true
 		}
 	}
@@ -85,28 +66,27 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	useEffect(() => {
 		if (checkError()) return
 		if (checkCodeVerification()) return
-
 		validateAccess()
-
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [searchParams])
 
-	if (!isAuthenticated)
+	if (!isAuthenticated) {
 		return (
-			<div className="w-full h-dvh flex justify-center items-center">
-				<Loader className="animate-spin w-20 h-20 text-gray-500" />
+			<div className="flex h-dvh w-full flex-col items-center justify-center gap-3 bg-background">
+				<Loader className="h-10 w-10 animate-spin text-primary" />
+				<p className="notice-label">Carregando sua conta</p>
 			</div>
 		)
+	}
 
 	return (
-		<QueryClientProvider client={queryClient}>
-			<div className="bg-gray-100 min-h-dvh flex flex-col">
-				<ResponsiveNav />
-				<main className="m-5 rounded-xl max-w-4xl mx-auto bg-white p-2 md:p-6 flex-1 w-full">
-					{children}
-				</main>
-				<FooterComponent />
-			</div>
-		</QueryClientProvider>
+		<div className="flex min-h-dvh flex-col bg-background">
+			<ContaMasthead />
+			<main className="mx-auto w-full max-w-5xl flex-1 px-4 pb-28 pt-6 md:px-6 md:pb-14 md:pt-8">
+				{children}
+			</main>
+			<FooterComponent />
+			<BottomBar />
+		</div>
 	)
 }

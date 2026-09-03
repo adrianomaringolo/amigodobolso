@@ -2,59 +2,96 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  Amigo do Bolso — "A Bandeira" world.
+  A conta de serviço público: bill-paper ground, institutional blue ink,
+  one orange action, and the verde/amarela/vermelha flag system as the only
+  other colour. Light only — a utility bill is paper. `.dark` mirrors light
+  so a system-level toggle degrades gracefully rather than breaking.
+*/
+
 @layer base {
 	:root {
-		--background: 0 0% 100%;
-		--foreground: 222.2 84% 4.9%;
-		--card: 0 0% 100%;
-		--card-foreground: 222.2 84% 4.9%;
-		--popover: 0 0% 100%;
-		--popover-foreground: 222.2 84% 4.9%;
-		--primary: 222.2 47.4% 11.2%;
-		--primary-foreground: 210 40% 98%;
-		--secondary: 210 40% 96.1%;
-		--secondary-foreground: 222.2 47.4% 11.2%;
-		--muted: 210 40% 96.1%;
-		--muted-foreground: 215.4 16.3% 46.9%;
-		--accent: 210 40% 96.1%;
-		--accent-foreground: 222.2 47.4% 11.2%;
-		--destructive: 0 84.2% 60.2%;
-		--destructive-foreground: 210 40% 98%;
-		--border: 214.3 31.8% 91.4%;
-		--input: 214.3 31.8% 91.4%;
-		--ring: 222.2 84% 4.9%;
-		--chart-1: 12 76% 61%;
-		--chart-2: 173 58% 39%;
-		--chart-3: 197 37% 24%;
-		--chart-4: 43 74% 66%;
-		--chart-5: 27 87% 67%;
-		--radius: 0.5rem;
+		--background: 40 24% 95.5%; /* #f7f5ef warm bill paper */
+		--foreground: 209 54% 19%; /* #163150 institutional blue-black ink */
+
+		--card: 42 40% 98%; /* #fcfbf7 raised bill panel */
+		--card-foreground: 209 54% 18%;
+		--popover: 42 40% 99%;
+		--popover-foreground: 209 54% 18%;
+
+		--primary: 209 54% 20%; /* #16324f deep institutional blue */
+		--primary-foreground: 40 24% 97%;
+
+		--secondary: 40 20% 90%; /* paper shade */
+		--secondary-foreground: 209 42% 22%;
+
+		--muted: 40 17% 90.5%;
+		--muted-foreground: 209 20% 38%; /* tinted from the blue, never neutral gray */
+
+		--accent: 22 86% 54%; /* #ef7d24 Amigo do Bolso orange — the one action colour */
+		--accent-foreground: 0 0% 100%;
+
+		--destructive: 4 66% 45%; /* #be2f26 bandeira vermelha */
+		--destructive-foreground: 40 24% 97%;
+
+		--border: 40 13% 80%; /* pencil-line on paper */
+		--input: 40 13% 74%;
+		--ring: 22 86% 54%;
+
+		/* tooltip — buildgrid-ui's Tooltip reads `bg-tooltip` / `text-tooltip-foreground` */
+		--tooltip: 209 54% 15%; /* dark institutional ink chip */
+		--tooltip-foreground: 40 24% 96%;
+
+		/* Bandeira tarifária — semantic status, one per category, never decoration */
+		--flag-green: 152 46% 30%; /* #29704f */
+		--flag-green-soft: 152 34% 90%;
+		--flag-amber: 33 82% 33%; /* #9a5f13 — text-safe amber */
+		--flag-amber-fill: 38 88% 50%; /* #f09f17 */
+		--flag-amber-soft: 40 78% 89%;
+		--flag-red: 4 66% 45%; /* #be2f26 */
+		--flag-red-soft: 6 58% 92%;
+
+		/* money */
+		--income: 209 54% 30%; /* income reads as the institutional blue */
+		--expense: 4 55% 43%;
+
+		/* charts — the bill palette, in reading order */
+		--chart-1: 209 54% 30%;
+		--chart-2: 152 46% 33%;
+		--chart-3: 38 82% 45%;
+		--chart-4: 4 62% 47%;
+		--chart-5: 209 22% 52%;
+
+		--radius: 0.25rem;
+
+		--font-sans: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+		--font-mono: var(--font-spline), ui-monospace, 'SF Mono', monospace;
 	}
+
+	/* The app never sets .dark; kept as a graceful mirror, not a second theme. */
 	.dark {
-		--background: 222.2 84% 4.9%;
-		--foreground: 210 40% 98%;
-		--card: 222.2 84% 4.9%;
-		--card-foreground: 210 40% 98%;
-		--popover: 222.2 84% 4.9%;
-		--popover-foreground: 210 40% 98%;
-		--primary: 210 40% 98%;
-		--primary-foreground: 222.2 47.4% 11.2%;
-		--secondary: 217.2 32.6% 17.5%;
-		--secondary-foreground: 210 40% 98%;
-		--muted: 217.2 32.6% 17.5%;
-		--muted-foreground: 215 20.2% 65.1%;
-		--accent: 217.2 32.6% 17.5%;
-		--accent-foreground: 210 40% 98%;
-		--destructive: 0 62.8% 30.6%;
-		--destructive-foreground: 210 40% 98%;
-		--border: 217.2 32.6% 17.5%;
-		--input: 217.2 32.6% 17.5%;
-		--ring: 212.7 26.8% 83.9%;
-		--chart-1: 220 70% 50%;
-		--chart-2: 160 60% 45%;
-		--chart-3: 30 80% 55%;
-		--chart-4: 280 65% 60%;
-		--chart-5: 340 75% 55%;
+		--tooltip: 209 54% 15%;
+		--tooltip-foreground: 40 24% 96%;
+		--background: 40 24% 95.5%;
+		--foreground: 209 54% 19%;
+		--card: 42 40% 98%;
+		--card-foreground: 209 54% 18%;
+		--popover: 42 40% 99%;
+		--popover-foreground: 209 54% 18%;
+		--primary: 209 54% 20%;
+		--primary-foreground: 40 24% 97%;
+		--secondary: 40 20% 90%;
+		--secondary-foreground: 209 42% 22%;
+		--muted: 40 17% 90.5%;
+		--muted-foreground: 209 20% 38%;
+		--accent: 22 86% 54%;
+		--accent-foreground: 0 0% 100%;
+		--destructive: 4 66% 45%;
+		--destructive-foreground: 40 24% 97%;
+		--border: 40 13% 80%;
+		--input: 40 13% 74%;
+		--ring: 22 86% 54%;
 	}
 }
 
@@ -62,11 +99,133 @@
 	* {
 		@apply border-border;
 	}
+
+	html {
+		-webkit-text-size-adjust: 100%;
+	}
+
 	body {
 		@apply bg-background text-foreground;
+		font-family: var(--font-sans);
+		font-feature-settings: 'cv05', 'ss01';
+		/* faint security-tint hatching, like the ground of a real bill */
+		background-image:
+			repeating-linear-gradient(
+				135deg,
+				hsl(209 30% 20% / 0.022) 0px,
+				hsl(209 30% 20% / 0.022) 1px,
+				transparent 1px,
+				transparent 7px
+			);
+		background-attachment: fixed;
+	}
+
+	/* Tabular, lining figures everywhere numbers matter */
+	.tabular,
+	[data-reading] {
+		font-family: var(--font-mono);
+		font-variant-numeric: tabular-nums lining-nums;
+		letter-spacing: -0.01em;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		text-wrap: balance;
+	}
+
+	/*
+	  buildgrid-ui's Tooltip is compiled against Tailwind v4 and uses a couple of
+	  classes this project's v3 build can't emit (`origin-(--var)`, no max-width).
+	  Patch the primitive directly so the chip sizes and animates correctly.
+	*/
+	[data-slot='tooltip-content'] {
+		max-width: 18rem;
+		transform-origin: var(--radix-tooltip-content-transform-origin);
+	}
+
+	/* Official-notice label: the recurring caps device from a bill */
+	.notice-label {
+		font-family: var(--font-sans);
+		text-transform: uppercase;
+		letter-spacing: 0.09em;
+		font-weight: 600;
+		font-size: 0.6875rem;
+		color: hsl(var(--muted-foreground));
+	}
+
+	/* Browser surfaces carry the world too */
+	::selection {
+		background: hsl(22 86% 54% / 0.28);
+		color: hsl(var(--foreground));
+	}
+
+	:root {
+		accent-color: hsl(var(--accent));
+		caret-color: hsl(var(--accent));
+		color-scheme: light;
+	}
+
+	:focus-visible {
+		outline: 2px solid hsl(var(--accent));
+		outline-offset: 2px;
+	}
+
+	* {
+		scrollbar-width: thin;
+		scrollbar-color: hsl(209 20% 62%) transparent;
+	}
+	*::-webkit-scrollbar {
+		width: 10px;
+		height: 10px;
+	}
+	*::-webkit-scrollbar-thumb {
+		background: hsl(209 22% 60%);
+		border: 3px solid hsl(var(--background));
+		border-radius: 999px;
+	}
+	*::-webkit-scrollbar-thumb:hover {
+		background: hsl(209 28% 48%);
 	}
 
 	input[type='date']::-webkit-calendar-picker-indicator {
-		background: red;
+		cursor: pointer;
+		opacity: 0.55;
+		filter: saturate(0);
+	}
+	input[type='date']::-webkit-calendar-picker-indicator:hover {
+		opacity: 1;
+	}
+}
+
+@layer components {
+	/* The perforated / boleto edge — a hairline of dashes */
+	.edge-perf {
+		background-image: repeating-linear-gradient(
+			to right,
+			hsl(var(--border)) 0 6px,
+			transparent 6px 12px
+		);
+		background-repeat: no-repeat;
+		background-size: 100% 1px;
+	}
+	.edge-perf-top {
+		background-position: top;
+	}
+	.edge-perf-bottom {
+		background-position: bottom;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.001ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.001ms !important;
 	}
 }

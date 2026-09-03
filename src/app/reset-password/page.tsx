@@ -63,7 +63,7 @@ export default function ResetPassword() {
 			<form onSubmit={handleSubmit} className="md:w-full">
 				<div className="grid gap-4">
 					<div>
-						<label className="mb-2 block text-sm text-gray-800">Email</label>
+						<label className="notice-label mb-1.5 block">Email</label>
 						<Input
 							name="email"
 							type="text"
@@ -74,7 +74,7 @@ export default function ResetPassword() {
 					</div>
 
 					<div>
-						<label className="mb-2 block text-sm text-gray-800">Senha</label>
+						<label className="notice-label mb-1.5 block">Senha</label>
 						<PasswordField
 							name="password"
 							value={password}
@@ -83,7 +83,7 @@ export default function ResetPassword() {
 						/>
 					</div>
 					<div>
-						<label className="mb-2 block text-sm text-gray-800">Confirmação</label>
+						<label className="notice-label mb-1.5 block">Confirmação</label>
 						<Input
 							name="cpassword"
 							type="password"
@@ -94,7 +94,7 @@ export default function ResetPassword() {
 					</div>
 				</div>
 
-				<div className="!mt-12">
+				<div className="!mt-8">
 					<Button size="lg" type="submit" className="w-full" isLoading={isLoading}>
 						Alterar senha
 					</Button>

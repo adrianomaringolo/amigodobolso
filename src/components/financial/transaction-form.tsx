@@ -16,7 +16,9 @@ import {
 import { useUser } from '@/lib/hooks/use-user'
 import { FinancialEntry } from '@/lib/types/Entry.type'
 import { formatCurrency } from '@/lib/utils'
+import { parseLocalDate, toISODate, todayISODate } from '@/lib/utils/date'
 import { useAddEntry } from '@/services/entries/useAddEntry'
+import { useGetTags } from '@/services/entries/useGetTags'
 import { useUpdateEntry } from '@/services/entries/useUpdateEntry'
 import { Switch, ToggleGroup, ToggleGroupItem } from 'buildgrid-ui'
 import { addMonths } from 'date-fns'
@@ -28,6 +30,7 @@ import { SelectorFormField } from '../forms/selector-form-field'
 import { TextFormField } from '../forms/text-form-field'
 import { TextareaFormField } from '../forms/textarea-form-field'
 import { AmountType, AmountTypes, TransactionTypes } from './financial.types'
+import { TagField } from './tag-field'
 
 const formSchema = z.object({
 	type: z.enum([AmountTypes.expanses, AmountTypes.income]),
@@ -36,9 +39,8 @@ const formSchema = z.object({
 	category: z.string().min(1, 'Selecione a categoria'),
 	times: z.string().optional(),
 	notes: z.string().optional(),
-	date: z.string({
-		required_error: 'Selecione uma data',
-	}),
+	tags: z.array(z.string()).default([]),
+	date: z.string().min(1, 'Selecione uma data'), // YYYY-MM-DD
 	completed: z.boolean().default(true),
 })
 
@@ -53,9 +55,15 @@ type TransactionFormValues = Omit<FinancialEntry, 'id'>
 export const TransactionForm = (props: TransactionFormProps) => {
 	const { monthYear, handleClose, transactionToEdit } = props
 	const { user } = useUser()
-	const [formType, setFormType] = useState<AmountType>(AmountTypes.expanses as AmountType)
+
+	const initialType: AmountType =
+		(transactionToEdit?.amount ?? 0) > 0 ? AmountTypes.income : AmountTypes.expanses
+	const [formType, setFormType] = useState<AmountType>(initialType)
 
 	const isEditing = !!transactionToEdit
+
+	const { data: userTags } = useGetTags()
+	const tagSuggestions = userTags.map((t) => t.tag)
 
 	const addEntryMutation = useAddEntry({ userId: user?.id as string, monthYear })
 	const editUpdateMutation = useUpdateEntry({ userId: user?.id as string, monthYear })
@@ -63,25 +71,28 @@ export const TransactionForm = (props: TransactionFormProps) => {
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
-			type:
-				(transactionToEdit?.amount ?? 0) > 0 ? AmountTypes.income : AmountTypes.expanses,
+			type: initialType,
 			amount: Math.abs(transactionToEdit?.amount ?? 0).toString() ?? '',
 			description: transactionToEdit?.description ?? '',
-			category: transactionToEdit?.category ?? '',
+			category:
+				transactionToEdit?.category ??
+				(initialType === AmountTypes.income ? AmountTypes.income : ''),
 			times: transactionToEdit?.times ?? '1',
 			notes: transactionToEdit?.notes ?? '',
+			tags: transactionToEdit?.tags ?? [],
 			date: transactionToEdit?.date
-				? new Date(transactionToEdit?.date).toISOString()
-				: new Date().toISOString(),
+				? toISODate(transactionToEdit.date)
+				: todayISODate(),
 			completed: transactionToEdit?.isCompleted ?? true,
 		},
 	})
 
 	const onSubmit = async (values: z.infer<typeof formSchema>) => {
-		const { amount, description, category, notes, date, completed, times } = values
+		const { type, amount, description, category, notes, date, completed, times, tags } =
+			values
 
 		const correctAmount =
-			formType === AmountTypes.expanses
+			type === AmountTypes.expanses
 				? -Math.abs(parseFloat(amount))
 				: Math.abs(parseFloat(amount))
 
@@ -91,14 +102,15 @@ export const TransactionForm = (props: TransactionFormProps) => {
 			category,
 			notes,
 			times,
+			tags,
 			isCompleted: completed,
-			date: new Date(date).toISOString(),
+			date, // plain YYYY-MM-DD
 			createdAt: new Date().toISOString(),
 		}
 
 		if (transactionToEdit) {
 			await editUpdateMutation.mutateAsync({ ...transactionToEdit, ...newTransaction })
-			toast.success('O lançamento foi atualizada com sucesso!')
+			toast.success('Lançamento atualizado com sucesso')
 			handleClose()
 			form.reset()
 		} else {
@@ -107,17 +119,20 @@ export const TransactionForm = (props: TransactionFormProps) => {
 	}
 
 	const handleAddingTimes = async (transaction: TransactionFormValues) => {
-		const times = parseInt(transaction.times ?? '1')
+		const times = Math.max(1, parseInt(transaction.times ?? '1'))
 
 		for (let i = 0; i < times; i++) {
 			await addEntryMutation.mutate({
 				...transaction,
-				date: addMonths(new Date(transaction.date), i).toISOString(),
-				description: `${transaction.description} (${i + 1}/${transaction.times})`,
+				date: toISODate(addMonths(parseLocalDate(transaction.date), i)),
+				description:
+					times > 1
+						? `${transaction.description} (${i + 1}/${times})`
+						: transaction.description,
 			})
 		}
 
-		toast.success('O lançamento foi criado com sucesso!')
+		toast.success('Lançamento criado com sucesso')
 		handleClose()
 		form.reset()
 	}
@@ -127,6 +142,9 @@ export const TransactionForm = (props: TransactionFormProps) => {
 			setFormType(value as AmountType)
 			form.setValue('type', value as AmountType)
 			if (value === AmountTypes.income) {
+				// only one income category — select it automatically
+				form.setValue('category', AmountTypes.income, { shouldValidate: true })
+			} else if (form.getValues('category') === AmountTypes.income) {
 				form.setValue('category', '')
 			}
 		}
@@ -152,7 +170,6 @@ export const TransactionForm = (props: TransactionFormProps) => {
 	}
 
 	const expensesCategories = getTypeCategories(AmountTypes.expanses as AmountType)
-	const incomeCategories = getTypeCategories(AmountTypes.income as AmountType)
 
 	//  create an array of options to select the amount of times an expense is divided. It will go from 1 to 24. the label of 1 should be "A vista"
 	const timesOptions = Array.from({ length: 24 }, (_, i) => ({
@@ -222,22 +239,34 @@ export const TransactionForm = (props: TransactionFormProps) => {
 
 					<DateFormField />
 
-					{formType === AmountTypes.expanses ? (
+					{formType === AmountTypes.expanses && (
 						<SelectorFormField
 							key={'expanses-category-' + formType}
 							name="category"
 							options={expensesCategories}
 						/>
-					) : (
-						<SelectorFormField
-							key={'income-category-' + formType}
-							name="category"
-							options={incomeCategories}
-						/>
 					)}
 					<TextareaFormField
 						name="notes"
 						placeholder="Adicione observações se necessário"
+					/>
+
+					<FormField
+						control={form.control}
+						name="tags"
+						render={({ field }) => (
+							<FormItem>
+								<FormLabel className="notice-label">Tags</FormLabel>
+								<FormControl>
+									<TagField
+										value={field.value ?? []}
+										onChange={field.onChange}
+										suggestions={tagSuggestions}
+									/>
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
 					/>
 
 					{formType === AmountTypes.expanses && !isEditing && (
@@ -249,9 +278,11 @@ export const TransactionForm = (props: TransactionFormProps) => {
 								options={timesOptions}
 							/>
 							{+(form.watch('times') ?? 1) > 1 ? (
-								<p className="text-xs !mt-1 italic text-gray-600">
+								<p className="!mt-1 text-xs text-muted-foreground">
 									Você pagará em {form.watch('times')} parcelas de{' '}
-									{formatCurrency(+form.watch('amount'))}
+									<span className="tabular font-medium text-foreground">
+										{formatCurrency(+form.watch('amount'))}
+									</span>
 								</p>
 							) : null}
 						</>
@@ -261,9 +292,14 @@ export const TransactionForm = (props: TransactionFormProps) => {
 						control={form.control}
 						name="completed"
 						render={({ field }) => (
-							<FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
+							<FormItem className="flex flex-row items-center justify-between border border-border p-4">
 								<div className="space-y-0.5">
-									<FormLabel className="text-base">Efetivada</FormLabel>
+									<FormLabel className="text-sm font-semibold">
+										Já foi pago
+									</FormLabel>
+									<p className="text-xs text-muted-foreground">
+										Desmarque para deixar como pendente
+									</p>
 								</div>
 								<FormControl>
 									<Switch checked={field.value} onCheckedChange={field.onChange} />

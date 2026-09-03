@@ -36,10 +36,19 @@ yarn-error.log*
 # vercel
 .vercel
 
+# impeccable — transient review artifacts (DESIGN.md, PRODUCT.md, .impeccable/design.json are tracked)
+/.impeccable/review/
+/.impeccable/questions/
+/.impeccable/mocks/
+/.impeccable/config.local.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
+# @ducanh2912/next-pwa generated service worker (regenerated on every build)
 /public/workbox-*.js
 /public/*.map
 /public/sw.js
+/public/swe-worker-*.js
+/public/fallback-*.js

@@ -10,6 +10,10 @@ const config: Config = {
 	],
 	theme: {
 		extend: {
+			fontFamily: {
+				sans: ['var(--font-sans)'],
+				mono: ['var(--font-mono)'],
+			},
 			colors: {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
@@ -41,13 +45,26 @@ const config: Config = {
 					DEFAULT: 'hsl(var(--destructive))',
 					foreground: 'hsl(var(--destructive-foreground))',
 				},
+				tooltip: {
+					DEFAULT: 'hsl(var(--tooltip))',
+					foreground: 'hsl(var(--tooltip-foreground))',
+				},
+				flag: {
+					green: 'hsl(var(--flag-green))',
+					'green-soft': 'hsl(var(--flag-green-soft))',
+					amber: 'hsl(var(--flag-amber))',
+					'amber-fill': 'hsl(var(--flag-amber-fill))',
+					'amber-soft': 'hsl(var(--flag-amber-soft))',
+					red: 'hsl(var(--flag-red))',
+					'red-soft': 'hsl(var(--flag-red-soft))',
+				},
 				expense: {
-					DEFAULT: '#da5151',
-					foreground: '#f1c2c2',
+					DEFAULT: 'hsl(var(--expense))',
+					foreground: 'hsl(var(--flag-red-soft))',
 				},
 				income: {
-					DEFAULT: '#295f9d',
-					foreground: '#c8e0fa',
+					DEFAULT: 'hsl(var(--income))',
+					foreground: 'hsl(210 40% 92%)',
 				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -62,8 +79,22 @@ const config: Config = {
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)',
+				md: 'calc(var(--radius) - 1px)',
+				sm: 'calc(var(--radius) - 2px)',
+			},
+			boxShadow: {
+				bill: '0 1px 0 0 hsl(var(--border)), 0 8px 24px -16px hsl(209 40% 20% / 0.28)',
+				'bill-raised':
+					'0 1px 0 0 hsl(var(--border)), 0 18px 40px -20px hsl(209 40% 20% / 0.35)',
+			},
+			keyframes: {
+				'flag-raise': {
+					'0%': { transform: 'translateY(35%) scaleY(0.7)', opacity: '0' },
+					'100%': { transform: 'translateY(0) scaleY(1)', opacity: '1' },
+				},
+			},
+			animation: {
+				'flag-raise': 'flag-raise 0.45s cubic-bezier(0.22, 1, 0.36, 1)',
 			},
 		},
 	},

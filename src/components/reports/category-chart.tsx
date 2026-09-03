@@ -1,136 +1,76 @@
 'use client'
 
+import { Painel } from '@/components/bandeira/painel'
 import { FinancialEntry } from '@/lib/types/Entry.type'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from 'buildgrid-ui'
-import { Pie, PieChart } from 'recharts'
-import { AmountTypes, TransactionTypes } from '../financial/financial.types'
-import { ChartConfig, ChartContainer } from '../ui/chart'
-
-import { ChartTooltip, ChartTooltipContent } from '@/components/ui/chart'
 import { formatCurrency } from '@/lib/utils'
-import { Label } from 'recharts'
+import { AmountTypes, TransactionTypes } from '../financial/financial.types'
 
 type CategoryChartProps = {
 	entries: FinancialEntry[]
 }
 
-const chartConfig = {
-	total: {
-		label: 'Total',
-	},
-	essential: {
-		label: 'Necessidades essenciais',
-		color: 'hsl(var(--chart-1))',
-	},
-	leisure: {
-		label: 'Lazer',
-		color: 'hsl(var(--chart-2))',
-	},
-	charity: {
-		label: 'Fazer pelo outro',
-		color: 'hsl(var(--chart-3))',
-	},
-	'financial-security': {
-		label: 'Tranquilidade financeira',
-		color: 'hsl(var(--chart-4))',
-	},
-	'long-term': {
-		label: 'Compras de longo prazo',
-		color: 'hsl(var(--chart-5))',
-	},
-	'personal-growth': {
-		label: 'Compras de longo prazo',
-		color: 'hsl(var(--chart-5))',
-	},
-} satisfies ChartConfig
-
-export const CategoryChart = (props: CategoryChartProps) => {
-	//sum expenses
-	const totalExpenses = props.entries
-		.filter((entry) => entry.amount < 0)
-		.reduce((acc, entry) => acc + entry.amount, 0)
-
-	// for each categories, sum the total amount
-	const groupedEntries = props.entries.reduce(
-		(acc, entry) => {
-			const category = entry.category
-			const amount = entry.amount
-
-			if (!acc[category]) {
-				acc[category] = 0
-			}
-
-			acc[category] += amount
-
+/**
+ * How the month's spending split across categories — one horizontal bar
+ * (segments to scale) plus a keyed list. On-world for "A Bandeira": a reading,
+ * not a pie.
+ */
+export const CategoryChart = ({ entries }: CategoryChartProps) => {
+	const grouped = entries
+		.filter((e) => e.amount < 0)
+		.reduce<Record<string, number>>((acc, e) => {
+			acc[e.category] = (acc[e.category] ?? 0) + Math.abs(e.amount)
 			return acc
-		},
-		{} as Record<string, number>,
-	)
+		}, {})
 
-	const chartData = Object.entries(TransactionTypes)
-		.map(([key, value]) => {
-			if (value.type !== AmountTypes.expanses) return null
-			return {
-				category: key,
-				total: Math.abs(groupedEntries[key] ?? 0),
-				fill: value.color,
-			}
-		})
-		.filter(Boolean)
+	const rows = (Object.entries(TransactionTypes) as [string, (typeof TransactionTypes)[keyof typeof TransactionTypes]][])
+		.filter(([, def]) => def.type === AmountTypes.expanses)
+		.map(([key, def]) => ({ key, label: def.label, color: def.color, value: grouped[key] ?? 0 }))
+		.filter((r) => r.value > 0)
+		.sort((a, b) => b.value - a.value)
+
+	const total = rows.reduce((acc, r) => acc + r.value, 0)
+
+	if (total === 0) {
+		return (
+			<Painel title="Distribuição de despesas">
+				<p className="py-4 text-center text-sm text-muted-foreground">
+					Nenhuma despesa lançada neste mês
+				</p>
+			</Painel>
+		)
+	}
 
 	return (
-		<Card className="flex flex-col">
-			<CardHeader className="items-center pb-0">
-				<CardTitle>Distribuição de despesas</CardTitle>
-				<CardDescription className="sr-only">Gráfico de despesas do mês</CardDescription>
-			</CardHeader>
-			<CardContent className="flex-1 pb-0">
-				<ChartContainer
-					config={chartConfig}
-					className="mx-auto aspect-square max-h-[250px]"
-				>
-					<PieChart>
-						<ChartTooltip cursor={false} content={<ChartTooltipContent hideLabel />} />
-						<Pie
-							data={chartData}
-							dataKey="total"
-							nameKey="category"
-							innerRadius={60}
-							strokeWidth={10}
+		<Painel title="Distribuição de despesas">
+			<div className="flex h-4 w-full overflow-hidden border border-border">
+				{rows.map((r) => (
+					<div
+						key={r.key}
+						style={{ width: `${(r.value / total) * 100}%`, backgroundColor: r.color }}
+						title={`${r.label}: ${formatCurrency(r.value)}`}
+					/>
+				))}
+			</div>
+			<ul className="mt-4 space-y-2">
+				{rows.map((r) => (
+					<li key={r.key} className="flex items-center gap-2.5 text-sm">
+						<span
+							className="h-2.5 w-2.5 shrink-0"
+							style={{ backgroundColor: r.color }}
+						/>
+						<span className="flex-1 text-foreground">{r.label}</span>
+						<span data-reading className="tabular text-muted-foreground">
+							{Math.round((r.value / total) * 100)}%
+						</span>
+						<span
+							data-reading
+							className="tabular w-24 text-right font-semibold text-foreground"
 						>
-							<Label
-								content={({ viewBox }) => {
-									if (viewBox && 'cx' in viewBox && 'cy' in viewBox) {
-										return (
-											<text
-												x={viewBox.cx}
-												y={viewBox.cy}
-												textAnchor="middle"
-												dominantBaseline="middle"
-											>
-												<tspan
-													x={viewBox.cx}
-													y={viewBox.cy}
-													className="fill-foreground text-xl font-bold"
-												>
-													{formatCurrency(Math.abs(totalExpenses))}
-												</tspan>
-												<tspan
-													x={viewBox.cx}
-													y={(viewBox.cy || 0) + 24}
-													className="fill-muted-foreground"
-												>
-													Total
-												</tspan>
-											</text>
-										)
-									}
-								}}
-							/>
-						</Pie>
-					</PieChart>
-				</ChartContainer>
-			</CardContent>
-		</Card>
+							{formatCurrency(r.value)}
+						</span>
+					</li>
+				))}
+			</ul>
+		</Painel>
 	)
 }

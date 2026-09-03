@@ -1,38 +1,25 @@
 'use client'
 
+import { Painel } from '@/components/bandeira/painel'
 import { UsersTable } from '@/components/users/users-table'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from 'buildgrid-ui'
 import { Lock } from 'lucide-react'
 
 export default function AdminPanel() {
-	// const { user } = useUser()
-	// const isAdmin = false
-
-	// const router = useRouter()
-
-	// if (!isAdmin) {
-	// 	router.push('/')
-	// }
-
-	// if (!user) {
-	// 	return null
-	// }
-
 	return (
-		<section>
-			<h2 className="text-2xl font-semibold flex gap-2 items-center">
-				<Lock /> Administração
-			</h2>
-			<Tabs defaultValue="usuarios" className="mt-8">
-				<TabsList>
-					<TabsTrigger value="usuarios" className="px-4 py-3 gap-2 bg-gray-50">
-						Usuários
-					</TabsTrigger>
-				</TabsList>
-				<TabsContent value="usuarios" className="p-2">
-					<UsersTable />
-				</TabsContent>
-			</Tabs>
-		</section>
+		<div className="space-y-5">
+			<header className="border-b border-border pb-3">
+				<h1 className="flex items-center gap-2 text-xl font-bold text-foreground">
+					<Lock className="h-5 w-5 text-primary" />
+					Administração
+				</h1>
+				<p className="notice-label mt-0.5 !normal-case !tracking-normal">
+					gestão de usuários do Amigo do Bolso
+				</p>
+			</header>
+
+			<Painel title="Usuários" bodyClassName="px-0 py-0">
+				<UsersTable />
+			</Painel>
+		</div>
 	)
 }

@@ -43,7 +43,7 @@ export default function Recover() {
 			<form onSubmit={handleSubmit} className="md:w-full">
 				<div className="grid gap-4">
 					<div>
-						<label className="mb-2 block text-sm text-gray-800">E-mail</label>
+						<label className="notice-label mb-1.5 block">E-mail</label>
 						<Input
 							name="email"
 							type="email"
@@ -54,7 +54,7 @@ export default function Recover() {
 					</div>
 				</div>
 
-				<div className="!mt-12">
+				<div className="!mt-8">
 					<Button
 						size="lg"
 						type="submit"
