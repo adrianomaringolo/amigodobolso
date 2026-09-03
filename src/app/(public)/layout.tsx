@@ -10,9 +10,9 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
 					<Link href="/login" className="flex items-center gap-2.5" aria-label="Amigo do Bolso">
 						<Image
 							src="/logo-letter-white.png"
-							alt=""
-							width={132}
-							height={40}
+							alt="Amigo do Bolso"
+							width={500}
+							height={101}
 							className="h-8 w-auto"
 						/>
 					</Link>

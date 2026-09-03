@@ -62,10 +62,10 @@ export function ContaMasthead({ isAdmin = false }: { isAdmin?: boolean }) {
 				<Link href="/inicio" className="flex shrink-0 items-center gap-2.5" aria-label="Amigo do Bolso">
 					<Image
 						src="/logo-letter-white.png"
-						alt=""
-						width={132}
-						height={40}
-						className="h-8 w-auto"
+						alt="Amigo do Bolso"
+						width={500}
+						height={101}
+						className="h-7 w-auto"
 						priority
 					/>
 				</Link>

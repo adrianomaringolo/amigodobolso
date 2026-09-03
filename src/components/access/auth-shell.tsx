@@ -20,12 +20,12 @@ export const AuthShell = ({
 }: AuthShellProps) => (
 	<div className="grid min-h-dvh md:grid-cols-[minmax(0,22rem)_1fr]">
 		<aside className="hidden flex-col justify-between bg-primary p-8 text-primary-foreground md:flex">
-			<Link href="/login" className="flex items-center gap-2">
+			<Link href="/login" className="flex items-center gap-2 self-start">
 				<Image
 					src="/logo-letter-white.png"
 					alt="Amigo do Bolso"
-					width={150}
-					height={44}
+					width={500}
+					height={101}
 					className="h-9 w-auto"
 				/>
 			</Link>

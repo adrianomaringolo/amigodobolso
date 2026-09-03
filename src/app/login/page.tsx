@@ -52,9 +52,9 @@ export default function Login() {
 					<Image
 						src="/logo-letter-white.png"
 						alt="Amigo do Bolso"
-						width={170}
-						height={50}
-						className="h-10 w-auto"
+						width={500}
+						height={101}
+						className="h-9 w-auto shrink-0 self-start md:h-10"
 						priority
 					/>
 
