@@ -34,7 +34,7 @@ export const NAV_ITEMS = [
 	{ icon: LayoutGrid, label: 'Início', href: '/inicio' },
 	{ icon: ScrollText, label: 'Lançamentos', href: '/lancamentos' },
 	{ icon: ChartPie, label: 'Relatórios', href: '/relatorios' },
-	{ icon: GraduationCap, label: 'Educação', href: '/educacao' },
+	{ icon: GraduationCap, label: 'Dica de Amigo', href: '/educacao' },
 	{ icon: HelpCircle, label: 'Como usar', href: '/ajuda' },
 ]
 
@@ -143,7 +143,7 @@ export function ContaMasthead({ isAdmin = false }: { isAdmin?: boolean }) {
 							<DropdownMenuItem asChild className="md:hidden">
 								<Link href="/educacao">
 									<GraduationCap className="mr-2 h-4 w-4" />
-									Educação financeira
+									Dica de Amigo
 								</Link>
 							</DropdownMenuItem>
 							<DropdownMenuItem asChild>

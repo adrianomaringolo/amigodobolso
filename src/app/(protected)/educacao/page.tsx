@@ -2,7 +2,7 @@ import { EducationOverview } from '@/components/education/education-overview'
 import { EducationHeader } from '@/components/education/page-header'
 import { getAllSeries } from '@/lib/education/content'
 
-export const metadata = { title: 'Educação financeira' }
+export const metadata = { title: 'Dica de Amigo' }
 
 export default function EducacaoPage() {
 	// Article bodies stay on the server; the overview only needs titles and metadata.
