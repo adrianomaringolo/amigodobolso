@@ -88,7 +88,7 @@ const StepThree = () => (
 			</div>
 			<div className="flex items-center gap-3 border border-border p-2">
 				<Image
-					src="/icons/icon-96x96.png"
+					src="/web-app-manifest-192x192.png"
 					alt=""
 					width={44}
 					height={44}
