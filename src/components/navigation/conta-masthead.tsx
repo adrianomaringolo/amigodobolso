@@ -15,7 +15,16 @@ import {
 	DropdownMenuTrigger,
 	useDialog,
 } from 'buildgrid-ui'
-import { ChartPie, HelpCircle, LayoutGrid, Lock, LogOut, ScrollText, User } from 'lucide-react'
+import {
+	ChartPie,
+	GraduationCap,
+	HelpCircle,
+	LayoutGrid,
+	Lock,
+	LogOut,
+	ScrollText,
+	User,
+} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
@@ -25,6 +34,7 @@ export const NAV_ITEMS = [
 	{ icon: LayoutGrid, label: 'Início', href: '/inicio' },
 	{ icon: ScrollText, label: 'Lançamentos', href: '/lancamentos' },
 	{ icon: ChartPie, label: 'Relatórios', href: '/relatorios' },
+	{ icon: GraduationCap, label: 'Dica de Amigo', href: '/educacao' },
 	{ icon: HelpCircle, label: 'Como usar', href: '/ajuda' },
 ]
 
@@ -59,7 +69,11 @@ export function ContaMasthead({ isAdmin = false }: { isAdmin?: boolean }) {
 	return (
 		<header className="sticky top-0 z-40 bg-primary text-primary-foreground">
 			<div className="mx-auto flex h-14 w-full max-w-5xl items-center gap-4 px-4 md:px-6">
-				<Link href="/inicio" className="flex shrink-0 items-center gap-2.5" aria-label="Amigo do Bolso">
+				<Link
+					href="/inicio"
+					className="flex shrink-0 items-center gap-2.5"
+					aria-label="Amigo do Bolso"
+				>
 					<Image
 						src="/logo-letter-white.png"
 						alt="Amigo do Bolso"
@@ -126,6 +140,12 @@ export function ContaMasthead({ isAdmin = false }: { isAdmin?: boolean }) {
 									</Link>
 								</DropdownMenuItem>
 							)}
+							<DropdownMenuItem asChild className="md:hidden">
+								<Link href="/educacao">
+									<GraduationCap className="mr-2 h-4 w-4" />
+									Dica de Amigo
+								</Link>
+							</DropdownMenuItem>
 							<DropdownMenuItem asChild>
 								<Link href="/perfil">
 									<User className="mr-2 h-4 w-4" />
