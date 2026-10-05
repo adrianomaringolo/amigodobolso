@@ -60,12 +60,12 @@ export const metadata: Metadata = {
 		description: SITE_DESCRIPTION,
 	},
 	other: {
-		'msapplication-TileColor': '#16324f',
+		'msapplication-TileColor': '#09659c',
 	},
 }
 
 export const viewport: Viewport = {
-	themeColor: '#16324f',
+	themeColor: '#09659c',
 	width: 'device-width',
 	initialScale: 1,
 	viewportFit: 'cover',
@@ -91,8 +91,8 @@ amarela, vermelha — the escalation signal every Brazilian already reads on the
 bill. Refuses the fintech dashboard of donut cards and the big-balance hero-metric; the
 reading is the health, not the number.
 
-OWN-WORLD: Warm bill-paper ground (#f7f5ef), institutional deep-blue ink (#16324f), Amigo
-do Bolso orange (#ef7d24) reserved for the one primary action. Bandeira green / amber / red
+OWN-WORLD: Warm bill-paper ground (#f7f5ef), institutional deep-blue ink (#16324f), brand
+blue (#09659c) as primary, Amigo do Bolso orange (#f28e38) reserved for the one primary action. Bandeira green / amber / red
 are strictly semantic, one per category, never decorative. Archivo for official-notice
 labels and headings; Spline Sans Mono for every reading — R$ values, meter counts, the
 consumption histogram. Square corners (radius .25rem), ruled hairlines, tabular figures,

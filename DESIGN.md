@@ -4,9 +4,10 @@ description: A conta de serviço público aplicada ao dinheiro do mês — cada 
 colors:
   bill-paper: "#f7f5ef"
   panel-paper: "#fcfbf7"
-  institutional-blue: "#16324f"
+  brand-primary: "#09659c"
+  ink: "#16324f"
   ink-muted: "#4d5f70"
-  action-orange: "#ef7d24"
+  brand-secondary: "#f28e38"
   hairline: "#d0ccc2"
   field-stroke: "#c1bbae"
   flag-green: "#29704f"
@@ -62,28 +63,28 @@ spacing:
   xl: "40px"
 components:
   button-primary:
-    backgroundColor: "{colors.action-orange}"
+    backgroundColor: "{colors.brand-secondary}"
     textColor: "#ffffff"
     rounded: "{rounded.lg}"
     padding: "12px 16px"
   button-secondary:
-    backgroundColor: "{colors.institutional-blue}"
+    backgroundColor: "{colors.brand-primary}"
     textColor: "{colors.bill-paper}"
     rounded: "{rounded.lg}"
     padding: "10px 16px"
   button-outline:
     backgroundColor: "{colors.panel-paper}"
-    textColor: "{colors.institutional-blue}"
+    textColor: "{colors.ink}"
     rounded: "{rounded.lg}"
     padding: "10px 16px"
   panel:
     backgroundColor: "{colors.panel-paper}"
-    textColor: "{colors.institutional-blue}"
+    textColor: "{colors.ink}"
     rounded: "{rounded.lg}"
     padding: "14px 16px"
   input:
     backgroundColor: "{colors.panel-paper}"
-    textColor: "{colors.institutional-blue}"
+    textColor: "{colors.ink}"
     rounded: "{rounded.lg}"
     padding: "10px 12px"
   flag-chip-red:
@@ -106,8 +107,8 @@ The design deliberately refuses the personal-finance category default: no fintec
 Anti-references (confirmed): the neobank look (saturated purple, glossy rounded cards), the trading-app look (near-black + neon), and the spreadsheet/ledger-grid look. The audience is a salaried middle-income Brazilian with little finance literacy; the surface must feel official and calm, never slick and never intimidating.
 
 **Key Characteristics:**
-- Warm bill-paper ground with a faint diagonal security-tint hatch; institutional-blue ink.
-- One action colour (`Amigo do Bolso` orange), reserved for the single primary action.
+- Warm bill-paper ground with a faint diagonal security-tint hatch; institutional-blue ink; brand-primary (`#09659c`) masthead.
+- One action colour (brand-secondary orange), reserved for the single primary action.
 - The bandeira (green/amber/red) is functional-only and appears one flag per category.
 - Every monetary or measured value is tabular monospace; labels are small-caps official-notice type.
 - Near-square corners, ruled hairlines, perforated (`boleto`-style) dashed edges. Flat by default.
@@ -117,8 +118,9 @@ Anti-references (confirmed): the neobank look (saturated purple, glossy rounded 
 A restrained shell — paper, blue ink, one orange action — with a strictly semantic three-colour flag layer laid on top.
 
 ### Primary
-- **Institutional Blue** (`#16324f`): the ink of the whole system. Masthead fill, all headings and body text, meter target ticks, rules and meter-frame lines, the secondary (`Entrar`) button, income figures.
-- **Amigo do Bolso Orange** (`#ef7d24`): the one action colour. The `+ Lançar` control (fixed bottom bar and the tracker button), the active nav underline, active tab underline, links, focus rings, avatar fallback. Never used as a fill for anything that isn't a primary action or active-state marker.
+- **Brand Primary — Azul Amigo** (`#09659c`, token `--primary`): the brand's fill colour. Masthead, auth pitch panel, the secondary (`Entrar`) button and dialog confirms, meter target ticks, the current-month histogram bar, `text-primary` emphasis. Also the PWA `theme_color`, so the phone status bar matches the masthead.
+- **Ink — Institutional Blue** (`#16324f`, token `--foreground`): the ink of the whole system. All headings and body text, rules and meter-frame lines, income figures. Ink is for *reading*; brand primary is for *surfaces and emphasis*.
+- **Brand Secondary — Laranja Amigo** (`#f28e38`, token `--accent`): the one action colour. The `+ Lançar` control (fixed bottom bar and the tracker button), the active nav underline, active tab underline, links, focus rings, avatar fallback. Never used as a fill for anything that isn't a primary action or active-state marker.
 
 ### Secondary — the bandeira (semantic status only)
 - **Bandeira Verde** (`#29704f`, soft `#dcefe6`): category comfortably under target (< 85% of alvo).
@@ -133,8 +135,16 @@ A restrained shell — paper, blue ink, one orange action — with a strictly se
 - **Field Stroke** (`#c1bbae`): input borders, slightly darker than hairlines.
 - **Tooltip ink** (`--tooltip` ≈ `hsl(209 54% 15%)`, text `--tooltip-foreground` ≈ paper): the one dark surface in the system — a small ink chip. Only the tooltip primitive uses it (buildgrid-ui reads `bg-tooltip` / `text-tooltip-foreground`).
 
+### Brand colour rules
+1. **Two brand colours, fixed roles.** Primary `#09659c` = surfaces and emphasis; Secondary `#f28e38` = action and active state. Never swap them, and never introduce a third brand hue — new needs are met with tints of these two (`/10`, `/20`, `/70`, `/90`).
+2. **Always through tokens.** Use `bg-primary` / `text-primary` / `bg-accent` / `border-accent` / `ring`. Hex values only where CSS variables can't reach (`manifest.ts`, `metadata.themeColor`, `opengraph-image.tsx`), and they must match this file.
+3. **Text on primary** is `primary-foreground` (paper, ~6.3:1 on `#09659c` — passes AA). Dim nav/meta text no lower than `primary-foreground/70`.
+4. **Text on secondary is ink.** White on `#f28e38` is ~2.4:1 and fails WCAG even for large text; ink (`#16324f`) on orange is ~5.4:1. New orange fills use ink text (`accent-foreground` should move to ink — today it is still white, a known debt).
+5. **Orange is not a text colour for reading.** `#f28e38` on paper is ~2.2:1: fine for icons, underlines, focus rings and active markers; links and inline text in orange must be bold *and* paired with an underline or icon.
+6. **Brand never overrides the bandeira.** Green / amber / red keep their meaning; primary and secondary are never used to signal status, and the secondary orange must not sit next to `flag-amber-fill` as if they were the same thing.
+
 ### Named Rules
-**The One Action Rule.** Orange (`#ef7d24`) marks exactly one thing per screen: the primary action, plus the active-state markers that point at navigation. It is never a decorative fill, a heading colour, or a second CTA. On the login screen the submit button stays institutional blue — the "one action" is the in-app `Lançar`, and auth is a different context.
+**The One Action Rule.** Orange (`#f28e38`) marks exactly one thing per screen: the primary action, plus the active-state markers that point at navigation. It is never a decorative fill, a heading colour, or a second CTA. On the login screen the submit button stays brand primary — the "one action" is the in-app `Lançar`, and auth is a different context.
 
 **The Flag-Never-Alone Rule.** A bandeira colour never carries meaning by itself. Every flag ships with its word (`no verde` / `no amarelo` / `no vermelho`) and its percentage, and an inline flag-pennant SVG. Colour is the third signal, not the only one.
 
@@ -167,7 +177,7 @@ The dashboard is the one two-column layout: at `lg` it splits into `[1.4fr_1fr]`
 
 Spacing rhythm: sections separated by `space-y-5` / `space-y-6`; inside a panel, rows are `py-2.5`–`py-3.5`; a heading gets more space above than below. Panels are edge-to-edge bordered blocks, never floating cards with large gaps.
 
-Responsive: mobile shows no top nav (a fixed 5-slot bottom bar carries it, with the orange `Lançar` action raised in the centre); desktop shows the horizontal nav in the masthead and hides the bottom bar. Auth screens are a two-pane split at `md` (institutional-blue pitch panel left, form on paper right), stacked on mobile.
+Responsive: mobile shows no top nav (a fixed 5-slot bottom bar carries it, with the orange `Lançar` action raised in the centre); desktop shows the horizontal nav in the masthead and hides the bottom bar. Auth screens are a two-pane split at `md` (brand-primary pitch panel left, form on paper right), stacked on mobile.
 
 ## Elevation & Depth
 
@@ -194,10 +204,10 @@ Recurring geometry:
 
 ### Buttons
 - **Shape:** near-square (`4px` / `rounded-lg`).
-- **Primary (`+ Lançar`):** `action-orange` fill, white text, uppercase bold `tracking-wide`, `px-4 py-3`. This is the only orange fill in the app. Hover `bg-accent/90`.
-- **Secondary (`Entrar`, dialog confirms):** `institutional-blue` fill, paper text, `size="lg"`.
+- **Primary (`+ Lançar`):** `brand-secondary` fill, white text, uppercase bold `tracking-wide`, `px-4 py-3`. This is the only orange fill in the app. Hover `bg-accent/90`.
+- **Secondary (`Entrar`, dialog confirms):** `brand-primary` fill, paper text, `size="lg"`.
 - **Outline (`Editar`, `Alterar senha`):** `panel-paper` fill, blue text, hairline border.
-- **Focus:** 2px `action-orange` outline, `outline-offset: 2px` — system-wide via `:focus-visible`.
+- **Focus:** 2px `brand-secondary` outline, `outline-offset: 2px` — system-wide via `:focus-visible`.
 
 ### Chips — the bandeira tag
 - **Style:** flag-soft background, flag-colour text, 1px flag-colour border, near-square. Inline flag-pennant SVG + uppercase `chip` word + tabular `%`. Sizes `sm` (0.6875rem) and `md` (0.75rem).
@@ -213,17 +223,17 @@ Recurring geometry:
 
 ### Inputs / Fields
 - **Style:** `panel-paper` fill, 1px `field-stroke` border, `4px` radius, `px-3 py-2.5`. Label above is a `notice-label`.
-- **Focus:** border shifts to `action-orange` + the global 2px focus outline. `accent-color` and `caret-color` are orange system-wide.
+- **Focus:** border shifts to `brand-secondary` + the global 2px focus outline. `accent-color` and `caret-color` are orange system-wide.
 - **Disabled:** muted, from the buildgrid-ui default reading the tokens.
 
 ### Navigation
-- **Masthead (desktop):** `institutional-blue` bar, `logo-letter-white.png` mark, nav links in Archivo 500 0.875rem at `primary-foreground/70`, active link gets an `action-orange` 2px bottom border and full-opacity text. A perforated edge closes the bar.
-- **Bottom bar (mobile):** fixed, `panel-paper`, 5 slots (`Início`, `Lançamentos`, `[+ Lançar]`, `Relatórios`, `Perfil`). The centre `Lançar` is a raised `action-orange` square (`-mt-4`, `shadow-bill-raised`). Active tab: orange icon + label + a 20px orange dash underline.
-- **Tabs (Relatórios, Ajuda):** ruled — a hairline under the list, active trigger gets an `action-orange` 2px underline, no pill/box/shadow. Enforced via the `billTabsList` / `billTabsTrigger` class constants (heavy `!` overrides on the buildgrid-ui defaults).
+- **Masthead:** `brand-primary` (`#09659c`) bar, `logo-letter-white.png` mark, nav links in Archivo 500 0.875rem at `primary-foreground/70`, active link gets an `brand-secondary` 2px bottom border and full-opacity text. A perforated edge closes the bar.
+- **Bottom bar (mobile):** fixed, `panel-paper`, 5 slots (`Início`, `Lançamentos`, `[+ Lançar]`, `Relatórios`, `Perfil`). The centre `Lançar` is a raised `brand-secondary` square (`-mt-4`, `shadow-bill-raised`). Active tab: orange icon + label + a 20px orange dash underline.
+- **Tabs (Relatórios, Ajuda):** ruled — a hairline under the list, active trigger gets an `brand-secondary` 2px underline, no pill/box/shadow. Enforced via the `billTabsList` / `billTabsTrigger` class constants (heavy `!` overrides on the buildgrid-ui defaults).
 
 ### Signature Component — O Medidor
 The category meter row. Left: the icon plate (flag-soft tinted). Body: category name (`notice-label`) + `alvo %` caption; `gasto / alvo` in mono + the bandeira tag; the meter bar; the 6-month `consumo` histogram.
-- **Meter bar (`MedidorBar`):** a `secondary` track with a coloured fill (flag colour). Every category's target sits at a fixed **72% of the track** — one shared scale — marked by a bare 2px `institutional-blue` tick (no text label). Overrun fills toward 100% of the track in solid flag-red.
+- **Meter bar (`MedidorBar`):** a `secondary` track with a coloured fill (flag colour). Every category's target sits at a fixed **72% of the track** — one shared scale — marked by a bare 2px `brand-primary` tick (no text label). Overrun fills toward 100% of the track in solid flag-red.
 - **Consumo histogram (`ConsumoHistograma`):** short bars (~22px max), one per recent month. Past months `bg-primary/20`, current month `bg-primary/70`, any over-target month `bg-flag-red/70`. Labelled `consumo`.
 
 ### Signature Component — A Bandeira Geral
@@ -243,7 +253,7 @@ Free-form labels on an entry. **Display** (`TagList`): read-only `#tag` chips �
 - **Do** keep all six category meters on the one shared scale: target at 72% of the track, always marked by the bare tick.
 - **Do** use the `notice-label` (uppercase, `0.09em`, `ink-muted`) for section titles and field labels.
 - **Do** build sections as edge-to-edge bordered statement panels with a hairline header rule.
-- **Do** reserve `action-orange` (`#ef7d24`) for the single primary action and the active-nav markers.
+- **Do** reserve `brand-secondary` (`#f28e38`) for the single primary action and the active-nav markers.
 - **Do** keep surfaces flat — hover is a `bg-secondary/40` tint, never a shadow or lift.
 
 - **Do** render tags as `#tag` chips (`TagList`) — neutral, never coloured by category.
@@ -251,7 +261,7 @@ Free-form labels on an entry. **Display** (`TagList`): read-only `#tag` chips �
 ### Don't:
 - **Don't** introduce a donut / pie chart, a fintech gradient, or a giant balance number as a screen hero. The bandeira reading is the hero.
 - **Don't** add a third paper tone or a tinted category background behind content.
-- **Don't** use `action-orange` as a decorative fill, a heading colour, or a second CTA on the same screen.
+- **Don't** use `brand-secondary` as a decorative fill, a heading colour, or a second CTA on the same screen.
 - **Don't** set currency or data figures in Archivo, or running prose in the monospace.
 - **Don't** give category meters private scales — the shared 72% target tick is what makes them comparable.
 - **Don't** use `rounded-full` or pill shapes except the avatar; the system is near-square.

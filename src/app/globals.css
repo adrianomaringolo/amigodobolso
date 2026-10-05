@@ -5,7 +5,7 @@
 /*
   Amigo do Bolso — "A Bandeira" world.
   A conta de serviço público: bill-paper ground, institutional blue ink,
-  one orange action, and the verde/amarela/vermelha flag system as the only
+  brand blue (#09659c) as primary, one orange action (#f28e38), and the verde/amarela/vermelha flag system as the only
   other colour. Light only — a utility bill is paper. `.dark` mirrors light
   so a system-level toggle degrades gracefully rather than breaking.
 */
@@ -20,7 +20,7 @@
 		--popover: 42 40% 99%;
 		--popover-foreground: 209 54% 18%;
 
-		--primary: 209 54% 20%; /* #16324f deep institutional blue */
+		--primary: 203 89% 32%; /* #09659c brand primary — masthead, primary fills */
 		--primary-foreground: 40 24% 97%;
 
 		--secondary: 40 20% 90%; /* paper shade */
@@ -29,7 +29,7 @@
 		--muted: 40 17% 90.5%;
 		--muted-foreground: 209 20% 38%; /* tinted from the blue, never neutral gray */
 
-		--accent: 22 86% 54%; /* #ef7d24 Amigo do Bolso orange — the one action colour */
+		--accent: 28 88% 58%; /* #f28e38 brand secondary — the one action colour */
 		--accent-foreground: 0 0% 100%;
 
 		--destructive: 4 66% 45%; /* #be2f26 bandeira vermelha */
@@ -37,7 +37,7 @@
 
 		--border: 40 13% 80%; /* pencil-line on paper */
 		--input: 40 13% 74%;
-		--ring: 22 86% 54%;
+		--ring: 28 88% 58%;
 
 		/* tooltip — buildgrid-ui's Tooltip reads `bg-tooltip` / `text-tooltip-foreground` */
 		--tooltip: 209 54% 15%; /* dark institutional ink chip */
@@ -79,19 +79,19 @@
 		--card-foreground: 209 54% 18%;
 		--popover: 42 40% 99%;
 		--popover-foreground: 209 54% 18%;
-		--primary: 209 54% 20%;
+		--primary: 203 89% 32%;
 		--primary-foreground: 40 24% 97%;
 		--secondary: 40 20% 90%;
 		--secondary-foreground: 209 42% 22%;
 		--muted: 40 17% 90.5%;
 		--muted-foreground: 209 20% 38%;
-		--accent: 22 86% 54%;
+		--accent: 28 88% 58%;
 		--accent-foreground: 0 0% 100%;
 		--destructive: 4 66% 45%;
 		--destructive-foreground: 40 24% 97%;
 		--border: 40 13% 80%;
 		--input: 40 13% 74%;
-		--ring: 22 86% 54%;
+		--ring: 28 88% 58%;
 	}
 }
 
