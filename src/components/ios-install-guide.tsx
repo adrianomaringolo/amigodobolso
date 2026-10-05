@@ -36,6 +36,25 @@ const Ping = ({ className = '' }: { className?: string }) => (
 	</span>
 )
 
+const StepOneChrome = () => (
+	<Frame>
+		<div className="flex items-center gap-2 border-b border-border bg-card px-3 py-2">
+			<div className="flex-1 truncate border border-border bg-muted/60 px-2 py-1 text-[10px] text-muted-foreground">
+				amigodobolso.app
+			</div>
+			<span className="relative flex h-9 w-9 items-center justify-center text-primary">
+				<Ping className="inset-0" />
+				<Share className="relative h-5 w-5" />
+			</span>
+		</div>
+		<div className="space-y-2 p-3">
+			<div className="h-3 w-2/3 bg-border" />
+			<div className="h-2 w-full bg-border/70" />
+			<div className="h-2 w-5/6 bg-border/70" />
+		</div>
+	</Frame>
+)
+
 const StepOne = () => (
 	<Frame>
 		<div className="space-y-2 p-3">
@@ -104,17 +123,19 @@ const StepThree = () => (
 	</Frame>
 )
 
-const STEPS = [
+const buildSteps = (isChrome: boolean) => [
 	{
 		title: 'Toque em Compartilhar',
 		body: (
 			<>
-				Na barra inferior do Safari, toque no ícone{' '}
+				{isChrome
+					? 'No topo, ao lado do endereço, toque no ícone'
+					: 'Na barra inferior do Safari, toque no ícone'}{' '}
 				<Share className="inline h-4 w-4 align-text-bottom" />{' '}
 				<strong>Compartilhar</strong>.
 			</>
 		),
-		illustration: <StepOne />,
+		illustration: isChrome ? <StepOneChrome /> : <StepOne />,
 	},
 	{
 		title: 'Adicionar à Tela de Início',
@@ -143,13 +164,20 @@ interface IOSInstallGuideProps {
 	onOpenChange: (open: boolean) => void
 	/** Start on a given step (0-based). Handy for previews. */
 	initialStep?: number
+	/** Force the Chrome variant (otherwise detected from the user agent). */
+	chrome?: boolean
 }
 
 export function IOSInstallGuide({
 	open,
 	onOpenChange,
 	initialStep = 0,
+	chrome,
 }: IOSInstallGuideProps) {
+	const isChrome =
+		chrome ??
+		(typeof navigator !== 'undefined' && /CriOS|EdgiOS|FxiOS/.test(navigator.userAgent))
+	const STEPS = buildSteps(isChrome)
 	const [step, setStep] = useState(initialStep)
 
 	useEffect(() => {
@@ -165,8 +193,8 @@ export function IOSInstallGuide({
 				<DialogHeader>
 					<DialogTitle>Instalar no iPhone</DialogTitle>
 					<DialogDescription>
-						Use o <strong>Safari</strong> — o iOS só instala apps por ele. Leva uns 10
-						segundos.
+						Funciona no <strong>Safari</strong> e no <strong>Chrome</strong> (iOS 16.4 ou
+						mais novo). Leva uns 10 segundos.
 					</DialogDescription>
 				</DialogHeader>
 
