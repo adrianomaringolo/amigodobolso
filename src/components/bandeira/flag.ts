@@ -1,10 +1,10 @@
 /**
  * Bandeira tarifária — the escalation signal from the electric bill, applied to
  * a budget category. Green while comfortably under target, amber approaching it,
- * red past it. The same three levels the whole country reads on `conta de luz`.
+ * red past it. Modelled on the three levels of the `conta de luz`, with the brand blue in place of green.
  */
 
-export type FlagLevel = 'verde' | 'amarela' | 'vermelha'
+export type FlagLevel = 'azul' | 'amarela' | 'vermelha'
 
 export type Flag = {
 	level: FlagLevel
@@ -12,7 +12,7 @@ export type Flag = {
 	pct: number
 	/** plain-language label, e.g. "dentro do plano" */
 	label: string
-	/** short chip label, e.g. "no verde" */
+	/** short chip label, e.g. "no azul" */
 	chip: string
 }
 
@@ -29,7 +29,7 @@ export function flagFor(used: number, target: number): Flag {
 	if (pct >= AMBER_AT) {
 		return { level: 'amarela', pct, label: 'chegando no limite', chip: 'no amarelo' }
 	}
-	return { level: 'verde', pct, label: 'dentro do plano', chip: 'no verde' }
+	return { level: 'azul', pct, label: 'dentro do plano', chip: 'no azul' }
 }
 
 /** The month as a whole: red if any category is red, amber if any is amber. */
@@ -50,19 +50,19 @@ export function overallFlag(flags: Flag[]): Flag {
 			chip: 'no amarelo',
 		}
 	}
-	return { level: 'verde', pct: 0, label: 'Tudo dentro do plano do mês', chip: 'no verde' }
+	return { level: 'azul', pct: 0, label: 'Tudo dentro do plano do mês', chip: 'no azul' }
 }
 
 export const FLAG_STYLES: Record<
 	FlagLevel,
 	{ text: string; soft: string; fill: string; border: string; dot: string }
 > = {
-	verde: {
-		text: 'text-flag-green',
-		soft: 'bg-flag-green-soft',
-		fill: 'bg-flag-green',
-		border: 'border-flag-green',
-		dot: 'bg-flag-green',
+	azul: {
+		text: 'text-flag-blue',
+		soft: 'bg-flag-blue-soft',
+		fill: 'bg-flag-blue',
+		border: 'border-flag-blue',
+		dot: 'bg-flag-blue',
 	},
 	amarela: {
 		text: 'text-flag-amber',

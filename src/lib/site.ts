@@ -7,6 +7,6 @@ export const SITE_URL =
 export const SITE_NAME = 'Amigo do Bolso'
 
 export const SITE_DESCRIPTION =
-	'A conta do seu mês. Cada categoria de gasto hasteia uma bandeira — verde, amarela ou vermelha — e você vê na hora se passou do plano. Sem planilha.'
+	'A conta do seu mês. Cada categoria de gasto hasteia uma bandeira — azul, amarela ou vermelha — e você vê na hora se passou do plano. Sem planilha.'
 
 export const SITE_TAGLINE = 'A conta do seu mês, em bandeiras'

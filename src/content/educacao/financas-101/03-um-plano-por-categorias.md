@@ -24,7 +24,7 @@ Em vez de olhar a renda como um bolo único, você a divide em fatias com um alv
 
 Cada categoria hasteia uma bandeira conforme chega perto do alvo:
 
-- **Verde:** você está dentro do plano.
+- **Azul:** você está dentro do plano.
 - **Amarela:** atenção, perto do limite.
 - **Vermelha:** passou do alvo.
 

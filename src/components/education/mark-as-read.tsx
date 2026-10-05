@@ -30,7 +30,7 @@ export function MarkAsRead({ slug }: { slug: string }) {
 			className={cn(
 				'flex min-h-11 items-center justify-center gap-2 px-4 py-2 text-sm font-semibold transition-colors disabled:opacity-60',
 				isRead
-					? 'border border-flag-green bg-flag-green-soft text-flag-green'
+					? 'border border-flag-blue bg-flag-blue-soft text-flag-blue'
 					: 'bg-accent text-accent-foreground hover:bg-accent/90',
 			)}
 		>

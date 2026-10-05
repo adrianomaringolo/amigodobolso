@@ -1,6 +1,6 @@
 ---
 name: Amigo do Bolso
-description: A conta de serviço público aplicada ao dinheiro do mês — cada categoria hasteia uma bandeira verde, amarela ou vermelha.
+description: A conta de serviço público aplicada ao dinheiro do mês — cada categoria hasteia uma bandeira azul, amarela ou vermelha.
 colors:
   bill-paper: "#f7f5ef"
   panel-paper: "#fcfbf7"
@@ -10,8 +10,8 @@ colors:
   brand-secondary: "#f28e38"
   hairline: "#d0ccc2"
   field-stroke: "#c1bbae"
-  flag-green: "#29704f"
-  flag-green-soft: "#dcefe6"
+  flag-blue: "#09659c"
+  flag-blue-soft: "#deedf7"
   flag-amber: "#9a5f13"
   flag-amber-fill: "#f0a017"
   flag-amber-soft: "#f6ead4"
@@ -100,7 +100,7 @@ components:
 
 **Creative North Star: "A conta de luz do seu mês"**
 
-Amigo do Bolso is built to look and read like a Brazilian utility bill — a `conta de serviço público`. The ground is recycled bill paper, the ink is an institutional deep blue, the numbers are set in a tabular monospace like a meter reading, and every section is a labeled, ruled field. The one loud colour in the system is not a brand colour — it is the `bandeira tarifária`: the verde / amarela / vermelha escalation flag that every Brazilian already reads on the back of the electric bill. Each budget category flies one of those flags against its target, and the month as a whole flies one too.
+Amigo do Bolso is built to look and read like a Brazilian utility bill — a `conta de serviço público`. The ground is recycled bill paper, the ink is an institutional deep blue, the numbers are set in a tabular monospace like a meter reading, and every section is a labeled, ruled field. The loudest colour in the system is the `bandeira tarifária`: an azul / amarela / vermelha escalation flag modelled on the one every Brazilian reads on the back of the electric bill. The real bill's green step is deliberately replaced by the brand primary blue — "no azul" means *in the plan*, so the calm state of every category speaks in the brand's own colour. Each budget category flies one of those flags against its target, and the month as a whole flies one too.
 
 The design deliberately refuses the personal-finance category default: no fintech gradient, no donut-chart dashboard, no giant balance number as the hero. The reading that matters is *"estou dentro do plano?"* — a flag and a bar against a shared tick — and the raw reais are always secondary to it. Energy comes from the flag system and the density of a real statement, never from decoration.
 
@@ -109,7 +109,7 @@ Anti-references (confirmed): the neobank look (saturated purple, glossy rounded 
 **Key Characteristics:**
 - Warm bill-paper ground with a faint diagonal security-tint hatch; institutional-blue ink; brand-primary (`#09659c`) masthead.
 - One action colour (brand-secondary orange), reserved for the single primary action.
-- The bandeira (green/amber/red) is functional-only and appears one flag per category.
+- The bandeira (blue/amber/red) is functional-only and appears one flag per category.
 - Every monetary or measured value is tabular monospace; labels are small-caps official-notice type.
 - Near-square corners, ruled hairlines, perforated (`boleto`-style) dashed edges. Flat by default.
 
@@ -123,7 +123,7 @@ A restrained shell — paper, blue ink, one orange action — with a strictly se
 - **Brand Secondary — Laranja Amigo** (`#f28e38`, token `--accent`): the one action colour. The `+ Lançar` control (fixed bottom bar and the tracker button), the active nav underline, active tab underline, links, focus rings, avatar fallback. Never used as a fill for anything that isn't a primary action or active-state marker.
 
 ### Secondary — the bandeira (semantic status only)
-- **Bandeira Verde** (`#29704f`, soft `#dcefe6`): category comfortably under target (< 85% of alvo).
+- **Bandeira Azul** (`#09659c` = brand primary, soft `#deedf7`, token `--flag-blue`): category comfortably under target (< 85% of alvo). Also the positive-money colour (`Entradas`, `Receitas`, `sobra` positive) and the "done" state (article read, series complete).
 - **Bandeira Amarela** (text `#9a5f13`, fill `#f0a017`, soft `#f6ead4`): category approaching target (85–100%).
 - **Bandeira Vermelha** (`#be2f26`, soft `#f6e2e0`): category over target (> 100%). Also the destructive colour and the negative-money colour (`expense`, `sobra` negative).
 
@@ -141,12 +141,12 @@ A restrained shell — paper, blue ink, one orange action — with a strictly se
 3. **Text on primary** is `primary-foreground` (paper, ~6.3:1 on `#09659c` — passes AA). Dim nav/meta text no lower than `primary-foreground/70`.
 4. **Text on secondary is ink.** White on `#f28e38` is ~2.4:1 and fails WCAG even for large text; ink (`#16324f`) on orange is ~5.4:1. New orange fills use ink text (`accent-foreground` should move to ink — today it is still white, a known debt).
 5. **Orange is not a text colour for reading.** `#f28e38` on paper is ~2.2:1: fine for icons, underlines, focus rings and active markers; links and inline text in orange must be bold *and* paired with an underline or icon.
-6. **Brand never overrides the bandeira.** Green / amber / red keep their meaning; primary and secondary are never used to signal status, and the secondary orange must not sit next to `flag-amber-fill` as if they were the same thing.
+6. **The blue flag *is* the primary.** Bandeira azul shares `#09659c` with the brand primary on purpose — but it always arrives as a flag (pennant + `no azul` + %), never as a bare blue fill, so a primary surface is never mistaken for a status. Amber and red keep their meaning; the secondary orange is never used to signal status and must not sit next to `flag-amber-fill` as if they were the same thing. Never draw a flag pennant directly on a `bg-primary` surface — put it inside its soft chip (`BandeiraTag`).
 
 ### Named Rules
 **The One Action Rule.** Orange (`#f28e38`) marks exactly one thing per screen: the primary action, plus the active-state markers that point at navigation. It is never a decorative fill, a heading colour, or a second CTA. On the login screen the submit button stays brand primary — the "one action" is the in-app `Lançar`, and auth is a different context.
 
-**The Flag-Never-Alone Rule.** A bandeira colour never carries meaning by itself. Every flag ships with its word (`no verde` / `no amarelo` / `no vermelho`) and its percentage, and an inline flag-pennant SVG. Colour is the third signal, not the only one.
+**The Flag-Never-Alone Rule.** A bandeira colour never carries meaning by itself. Every flag ships with its word (`no azul` / `no amarelo` / `no vermelho`) and its percentage, and an inline flag-pennant SVG. Colour is the third signal, not the only one.
 
 **The Two Grounds Rule.** Only two paper values exist: `bill-paper` for the page, `panel-paper` for anything raised. No third surface tone, no tinted category backgrounds behind content (soft flag tints are allowed only inside a chip or a flag column).
 

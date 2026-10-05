@@ -21,7 +21,7 @@ export const MonthSummary = ({ transactions }: { transactions: FinancialEntry[] 
 	}: {
 		label: string
 		value: number
-		tone?: 'foreground' | 'green' | 'red'
+		tone?: 'foreground' | 'blue' | 'red'
 		strong?: boolean
 		border?: boolean
 	}) => (
@@ -44,7 +44,7 @@ export const MonthSummary = ({ transactions }: { transactions: FinancialEntry[] 
 				className={cn(
 					'tabular text-sm',
 					strong ? 'text-base font-bold' : 'font-semibold',
-					tone === 'green' && 'text-flag-green',
+					tone === 'blue' && 'text-flag-blue',
 					tone === 'red' && 'text-flag-red',
 					tone === 'foreground' && 'text-foreground',
 				)}
@@ -56,12 +56,12 @@ export const MonthSummary = ({ transactions }: { transactions: FinancialEntry[] 
 
 	return (
 		<div className="divide-y divide-border/60">
-			<Row label="Entradas" value={income} tone="green" />
+			<Row label="Entradas" value={income} tone="blue" />
 			<Row label="Saídas" value={-expenses} tone="red" />
 			<Row
 				label="Sobrou no mês"
 				value={total}
-				tone={total >= 0 ? 'green' : 'red'}
+				tone={total >= 0 ? 'blue' : 'red'}
 				strong
 				border
 			/>

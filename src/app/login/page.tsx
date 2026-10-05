@@ -64,8 +64,8 @@ export default function Login() {
 							Cada categoria hasteia uma bandeira. Você vê na hora se passou do plano.
 						</h2>
 						<p className="max-w-md text-sm text-primary-foreground/75">
-							Verde, amarela, vermelha — o mesmo sinal que o Brasil inteiro entende da
-							conta de luz, agora aplicado ao seu dinheiro. Sem planilha.
+							Azul, amarela, vermelha — inspirado na bandeira da conta de luz, agora
+							aplicado ao seu dinheiro. Sem planilha.
 						</p>
 
 						<div className="mt-2 border border-white/15 bg-white/[0.06] p-4">

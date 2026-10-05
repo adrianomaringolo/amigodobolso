@@ -32,10 +32,10 @@ export const AuthShell = ({
 			<div className="space-y-3">
 				<p className="notice-label !text-primary-foreground/60">A conta do seu mês</p>
 				<p className="text-lg font-bold leading-snug">
-					Cada categoria hasteia uma bandeira — verde, amarela ou vermelha.
+					Cada categoria hasteia uma bandeira — azul, amarela ou vermelha.
 				</p>
 				<p className="text-sm text-primary-foreground/70">
-					O mesmo sinal que você já entende da conta de luz, agora para o seu dinheiro.
+					Inspirado na bandeira da conta de luz, agora para o seu dinheiro.
 				</p>
 			</div>
 			<p className="notice-label !text-primary-foreground/50">

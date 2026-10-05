@@ -57,7 +57,7 @@ export default function Help() {
 							{flagSamples.map((s) => {
 								const flag =
 									s.used <= 84
-										? { level: 'verde' as const, pct: s.used, label: '', chip: 'no verde' }
+										? { level: 'azul' as const, pct: s.used, label: '', chip: 'no azul' }
 										: s.used <= 100
 											? {
 													level: 'amarela' as const,

@@ -56,7 +56,7 @@ export function BandeiraGeral({
 					<Reading
 						label="sobra"
 						value={left}
-						tone={left >= 0 ? 'green' : 'red'}
+						tone={left >= 0 ? 'blue' : 'red'}
 					/>
 				</div>
 			</div>
@@ -71,7 +71,7 @@ function Reading({
 }: {
 	label: string
 	value: number
-	tone?: 'green' | 'red'
+	tone?: 'blue' | 'red'
 }) {
 	return (
 		<span data-reading className="tabular text-muted-foreground">
@@ -79,7 +79,7 @@ function Reading({
 			<span
 				className={cn(
 					'font-bold',
-					tone === 'green' && 'text-flag-green',
+					tone === 'blue' && 'text-flag-blue',
 					tone === 'red' && 'text-flag-red',
 					!tone && 'text-foreground',
 				)}

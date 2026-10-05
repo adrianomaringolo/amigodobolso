@@ -4,7 +4,7 @@ import { FLAG_STYLES, type Flag } from './flag'
 /**
  * The meter bar. One shared scale for every category: 0 at the left, the target
  * sits at a fixed 72% of the track so there is always headroom to show an
- * overrun, and the fill runs green/amber/red under the target tick.
+ * overrun, and the fill runs blue/amber/red under the target tick.
  */
 
 const TARGET_AT = 72 // % of the track width where every category's target line sits

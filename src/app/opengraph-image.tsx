@@ -6,7 +6,7 @@ export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
 const FLAGS: { label: string; fill: string; text: string; soft: string }[] = [
-	{ label: 'NO VERDE', fill: '#29704f', text: '#29704f', soft: '#dcefe6' },
+	{ label: 'NO AZUL', fill: '#09659c', text: '#09659c', soft: '#deedf7' },
 	{ label: 'NO AMARELO', fill: '#f0a017', text: '#9a5f13', soft: '#f6ead4' },
 	{ label: 'NO VERMELHO', fill: '#be2f26', text: '#be2f26', soft: '#f6e2e0' },
 ]
@@ -109,7 +109,7 @@ export default function OpengraphImage() {
 							maxWidth: 860,
 						}}
 					>
-						Cada categoria de gasto hasteia uma bandeira — verde, amarela ou vermelha.
+						Cada categoria de gasto hasteia uma bandeira — azul, amarela ou vermelha.
 						Você vê na hora se passou do plano.
 					</div>
 

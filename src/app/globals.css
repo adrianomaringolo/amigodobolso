@@ -5,7 +5,7 @@
 /*
   Amigo do Bolso — "A Bandeira" world.
   A conta de serviço público: bill-paper ground, institutional blue ink,
-  brand blue (#09659c) as primary, one orange action (#f28e38), and the verde/amarela/vermelha flag system as the only
+  brand blue (#09659c) as primary, one orange action (#f28e38), and the azul/amarela/vermelha flag system as the only
   other colour. Light only — a utility bill is paper. `.dark` mirrors light
   so a system-level toggle degrades gracefully rather than breaking.
 */
@@ -44,8 +44,8 @@
 		--tooltip-foreground: 40 24% 96%;
 
 		/* Bandeira tarifária — semantic status, one per category, never decoration */
-		--flag-green: 152 46% 30%; /* #29704f */
-		--flag-green-soft: 152 34% 90%;
+		--flag-blue: 203 89% 32%; /* #09659c — brand primary */
+		--flag-blue-soft: 203 60% 92%; /* #deedf7 */
 		--flag-amber: 33 82% 33%; /* #9a5f13 — text-safe amber */
 		--flag-amber-fill: 38 88% 50%; /* #f09f17 */
 		--flag-amber-soft: 40 78% 89%;
@@ -58,7 +58,7 @@
 
 		/* charts — the bill palette, in reading order */
 		--chart-1: 209 54% 30%;
-		--chart-2: 152 46% 33%;
+		--chart-2: 203 89% 32%; /* brand primary */
 		--chart-3: 38 82% 45%;
 		--chart-4: 4 62% 47%;
 		--chart-5: 209 22% 52%;

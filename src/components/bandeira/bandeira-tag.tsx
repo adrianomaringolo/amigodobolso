@@ -4,7 +4,7 @@ import { FlagIcon } from './flag-icon'
 
 /**
  * The flag chip. Colour never carries the meaning alone: the little hoisted
- * flag plus the word ("no verde / amarelo / vermelho") are always there.
+ * flag plus the word ("no azul / amarelo / vermelho") are always there.
  */
 export function BandeiraTag({
 	flag,

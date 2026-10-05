@@ -50,8 +50,8 @@ const config: Config = {
 					foreground: 'hsl(var(--tooltip-foreground))',
 				},
 				flag: {
-					green: 'hsl(var(--flag-green))',
-					'green-soft': 'hsl(var(--flag-green-soft))',
+					blue: 'hsl(var(--flag-blue))',
+					'blue-soft': 'hsl(var(--flag-blue-soft))',
 					amber: 'hsl(var(--flag-amber))',
 					'amber-fill': 'hsl(var(--flag-amber-fill))',
 					'amber-soft': 'hsl(var(--flag-amber-soft))',

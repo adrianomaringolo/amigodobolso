@@ -78,7 +78,7 @@ export const TransactionItem = (props: TransactionItemProps) => {
 					onClick={handleComplete}
 					className={cn(
 						'shrink-0 rounded-sm p-1 transition-colors',
-						isCompleted ? 'text-flag-green' : 'text-muted-foreground hover:text-foreground',
+						isCompleted ? 'text-flag-blue' : 'text-muted-foreground hover:text-foreground',
 					)}
 					aria-label={isCompleted ? 'Efetivado' : 'Marcar como pago'}
 				>

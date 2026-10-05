@@ -41,7 +41,7 @@ export const TransactionTypes = {
 		type: 'expanses',
 		label: 'Tranquilidade financeira',
 		max: 10,
-		color: 'hsl(152 46% 33%)',
+		color: 'hsl(203 89% 32%)',
 		icon: (className?: string) => <PiggyBank className={iconClass(className)} />,
 		help: 'Nesta categoria o propósito é garantir a Tranquilidade Financeira no futuro. É como investir em si próprio. Dica do método Dolfyn: encare esta categoria como sendo uma OBRIGAÇÃO MENSAL.',
 	},

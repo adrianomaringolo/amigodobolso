@@ -22,13 +22,13 @@ export const IncomeExpensesTotal = (props: IncomeExpensesTotalProps) => {
 		label: string
 		value: number
 		icon: typeof Equal
-		tone: 'green' | 'red' | 'foreground'
+		tone: 'blue' | 'red' | 'foreground'
 	}) => (
 		<div className="flex items-center gap-3 px-4 py-3">
 			<span
 				className={cn(
 					'flex h-9 w-9 shrink-0 items-center justify-center border',
-					tone === 'green' && 'border-flag-green text-flag-green',
+					tone === 'blue' && 'border-flag-blue text-flag-blue',
 					tone === 'red' && 'border-flag-red text-flag-red',
 					tone === 'foreground' && 'border-border text-foreground',
 				)}
@@ -41,7 +41,7 @@ export const IncomeExpensesTotal = (props: IncomeExpensesTotalProps) => {
 					data-reading
 					className={cn(
 						'tabular text-lg font-bold',
-						tone === 'green' && 'text-flag-green',
+						tone === 'blue' && 'text-flag-blue',
 						tone === 'red' && 'text-flag-red',
 						tone === 'foreground' && 'text-foreground',
 					)}
@@ -54,13 +54,13 @@ export const IncomeExpensesTotal = (props: IncomeExpensesTotalProps) => {
 
 	return (
 		<div className="grid divide-y divide-border border border-border bg-card md:grid-cols-3 md:divide-x md:divide-y-0">
-			<Cell label="Receitas" value={income} icon={ArrowUpRight} tone="green" />
+			<Cell label="Receitas" value={income} icon={ArrowUpRight} tone="blue" />
 			<Cell label="Despesas" value={Math.abs(expenses)} icon={ArrowDownRight} tone="red" />
 			<Cell
 				label="Balanço"
 				value={total}
 				icon={Equal}
-				tone={total >= 0 ? 'green' : 'red'}
+				tone={total >= 0 ? 'blue' : 'red'}
 			/>
 		</div>
 	)

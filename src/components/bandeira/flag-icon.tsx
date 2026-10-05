@@ -4,7 +4,7 @@ import { FLAG_STYLES, type FlagLevel } from './flag'
 // Literal values (mirrors the --flag-* tokens in globals.css) so the SVG
 // paints correctly even outside a CSS-variable context.
 const FILL: Record<FlagLevel, string> = {
-	verde: '#29704f',
+	azul: '#09659c',
 	amarela: '#f0a017',
 	vermelha: '#be2f26',
 }

@@ -70,7 +70,7 @@ export function SeriesCard({
 									className={cn(
 										'flex h-6 w-6 shrink-0 items-center justify-center text-xs font-bold',
 										isRead
-											? 'bg-flag-green text-primary-foreground'
+											? 'bg-flag-blue text-primary-foreground'
 											: 'border border-border text-muted-foreground',
 									)}
 								>

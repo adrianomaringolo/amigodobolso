@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils'
 
-/** Thin ruled progress bar; turns flag-green once the series is finished. */
+/** Thin ruled progress bar; turns flag-blue once the series is finished. */
 export function ProgressBar({
 	percent,
 	className,
@@ -19,7 +19,7 @@ export function ProgressBar({
 			<div
 				className={cn(
 					'h-full transition-[width] duration-500 ease-out',
-					percent === 100 ? 'bg-flag-green' : 'bg-accent',
+					percent === 100 ? 'bg-flag-blue' : 'bg-accent',
 				)}
 				style={{ width: `${percent}%` }}
 			/>

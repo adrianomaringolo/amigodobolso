@@ -86,13 +86,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 						__html: `
 DIRECTION CONTRACT · seed 74b9605f · direction round · mode operate · card model-pick (IMPECCABLE'S PICK)
 
-THESIS: A conta de luz do seu mês. Every category flies a bandeira tarifária — verde,
+THESIS: A conta de luz do seu mês. Every category flies a bandeira tarifária — azul,
 amarela, vermelha — the escalation signal every Brazilian already reads on the electric
 bill. Refuses the fintech dashboard of donut cards and the big-balance hero-metric; the
 reading is the health, not the number.
 
 OWN-WORLD: Warm bill-paper ground (#f7f5ef), institutional deep-blue ink (#16324f), brand
-blue (#09659c) as primary, Amigo do Bolso orange (#f28e38) reserved for the one primary action. Bandeira green / amber / red
+blue (#09659c) as primary, Amigo do Bolso orange (#f28e38) reserved for the one primary action. Bandeira blue / amber / red
 are strictly semantic, one per category, never decorative. Archivo for official-notice
 labels and headings; Spline Sans Mono for every reading — R$ values, meter counts, the
 consumption histogram. Square corners (radius .25rem), ruled hairlines, tabular figures,
