@@ -43,7 +43,7 @@ export const TransactionTypes = {
 		max: 10,
 		color: 'hsl(152 46% 33%)',
 		icon: (className?: string) => <PiggyBank className={iconClass(className)} />,
-		help: 'Nesta categoria o propósito é garantir a Tranquilidade Financeira no futuro. É como investir em si próprio. Dica da No Final das Contas: encare esta categoria como sendo uma OBRIGAÇÃO MENSAL.',
+		help: 'Nesta categoria o propósito é garantir a Tranquilidade Financeira no futuro. É como investir em si próprio. Dica do método Dolfyn: encare esta categoria como sendo uma OBRIGAÇÃO MENSAL.',
 	},
 
 	charity: {

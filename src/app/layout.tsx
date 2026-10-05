@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 		'finanças pessoais',
 		'orçamento',
 		'controle de gastos',
-		'No Final das Contas',
+		'método Dolfyn',
 		'planejamento financeiro',
 		'app de finanças',
 	],

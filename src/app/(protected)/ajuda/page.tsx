@@ -85,7 +85,7 @@ export default function Help() {
 					</Painel>
 					<Painel title="Por que percentuais da renda?">
 						<p className="text-sm text-muted-foreground">
-							O método <strong className="text-foreground">No Final das Contas</strong>{' '}
+							O método <strong className="text-foreground">Dolfyn</strong>{' '}
 							divide toda a sua renda em seis categorias com um alvo em porcentagem. Assim
 							o plano se ajusta sozinho quando sua renda muda — você acompanha
 							proporções, não valores fixos.

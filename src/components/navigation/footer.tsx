@@ -8,8 +8,15 @@ export function FooterComponent() {
 				<p className="tabular">
 					© {new Date().getFullYear()} Amigo do Bolso ·{' '}
 					<span className="whitespace-nowrap">
-						método em parceria com{' '}
-						<span className="font-semibold text-foreground">No Final das Contas</span>
+						método{' '}
+						<a
+							href="https://dolfyn.com.br/"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="font-semibold text-foreground hover:underline"
+						>
+							Dolfyn
+						</a>
 					</span>
 				</p>
 				<nav className="flex gap-4">

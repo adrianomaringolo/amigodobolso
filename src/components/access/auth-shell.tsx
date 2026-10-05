@@ -39,7 +39,7 @@ export const AuthShell = ({
 				</p>
 			</div>
 			<p className="notice-label !text-primary-foreground/50">
-				método em parceria com No Final das Contas
+				método Dolfyn
 			</p>
 		</aside>
 

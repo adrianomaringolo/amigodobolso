@@ -150,10 +150,8 @@ export default function OpengraphImage() {
 						color: '#6a7683',
 					}}
 				>
-					método em parceria com{' '}
-					<span style={{ color: '#16324f', fontWeight: 700, marginLeft: 8 }}>
-						No Final das Contas
-					</span>
+					método
+					<span style={{ color: '#16324f', fontWeight: 700, marginLeft: 8 }}>Dolfyn</span>
 				</div>
 			</div>
 		),

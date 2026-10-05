@@ -89,7 +89,7 @@ export default function Login() {
 					</div>
 
 					<p className="notice-label !text-primary-foreground/45">
-						método em parceria com No Final das Contas
+						método Dolfyn
 					</p>
 				</aside>
 
