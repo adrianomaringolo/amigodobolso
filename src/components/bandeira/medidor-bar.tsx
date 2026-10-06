@@ -27,6 +27,7 @@ export function MedidorBar({
 		<div className={cn('relative w-full', className)}>
 			<div className={cn('w-full bg-secondary', height)}>
 				<div
+					data-fill
 					className={cn('h-full transition-[width] duration-500 ease-out', s.fill)}
 					style={{ width: `${fill}%` }}
 				/>

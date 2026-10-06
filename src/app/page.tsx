@@ -1,21 +1,12 @@
-'use client'
+import { createClient } from '@/lib/supabase/server'
+import { redirect } from 'next/navigation'
 
-import { useUser } from '@/lib/hooks/use-user'
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+/** The root is a router: signed-in users go to their month, visitors to the product page. */
+export default async function Home() {
+	const supabase = await createClient()
+	const {
+		data: { user },
+	} = await supabase.auth.getUser()
 
-export default function Home() {
-	const router = useRouter()
-	const { session, loading } = useUser()
-
-	useEffect(() => {
-		if (loading) return
-		router.replace(session ? '/inicio' : '/login')
-	}, [session, loading, router])
-
-	return (
-		<div className="flex min-h-dvh items-center justify-center bg-background">
-			<p className="notice-label animate-pulse">Amigo do Bolso</p>
-		</div>
-	)
+	redirect(user ? '/inicio' : '/produto')
 }

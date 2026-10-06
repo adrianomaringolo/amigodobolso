@@ -162,6 +162,7 @@ A restrained shell — paper, blue ink, one orange action — with a strictly se
 - **Title** (Archivo 700, 1.125rem): the month bandeira sentence (`Alguma categoria passou do plano`), dialog titles.
 - **Body** (Archivo 400, 0.875rem, 1.55): explanatory prose (Ajuda, help text, form descriptions). Keep help prose to ~65–75ch.
 - **Label** — the "notice-label" (Archivo 600, 0.6875rem, `letter-spacing: 0.09em`, uppercase, `ink-muted`): the recurring device of the whole system. Panel headers (`OS SEIS MEDIDORES`), field labels (`E-MAIL`, `MÊS DE REFERÊNCIA`), category names inside a medidor, small captions (`gasto / alvo do mês`). Used with `!normal-case !tracking-normal` overrides when it needs to read as a plain caption rather than a stamped label.
+- **Display — landing only** (Archivo 800, `-0.035em`, `leading-[0.98]`): the `/produto` hero question at `2.75rem` → `3.75rem` (sm) → `4.75rem` (lg), max `13ch`. Landing section headings step down to Archivo 800 at `1.875rem` → `2.5rem` (md), the closing stub to `2.75rem`. The app itself never uses display sizes; its ceiling stays the 1.25rem headline.
 - **Reading** (Spline Sans Mono 500, tabular-nums): every `R$` value, every `gasto / alvo` pair, histogram month labels, running day balances, the `%` inside a flag chip. Applied via `.tabular` / `[data-reading]`.
 
 ### Named Rules
@@ -185,7 +186,7 @@ Flat by default. This is paper — depth is conveyed by ruled hairlines, the two
 
 ### Shadow Vocabulary
 - **`shadow-bill`** (`0 1px 0 0 hsl(hairline), 0 8px 24px -16px hsl(209 40% 20% / 0.28)`): the only ambient shadow. A hairline seat plus a very soft, far-offset drop — a statement lying on a desk. Applied to statement panels and the month bandeira.
-- **`shadow-bill-raised`** (`0 1px 0 0 hsl(hairline), 0 18px 40px -20px hsl(209 40% 20% / 0.35)`): the fixed bottom-bar `Lançar` button only.
+- **`shadow-bill-raised`** (`0 1px 0 0 hsl(hairline), 0 18px 40px -20px hsl(209 40% 20% / 0.35)`): the fixed bottom-bar `Lançar` button, and one landing exception: the `/produto` hero bill sheet, which hangs out of the blue field onto the paper and needs the deeper seat to read as a sheet lying across two surfaces.
 
 ### Named Rules
 **The Paper Rule.** Surfaces do not lift on hover. Interactive rows respond with a `bg-secondary/40` tint and, where present, a 2px translate on a chevron — never a shadow change, never a scale.
@@ -244,6 +245,15 @@ A statement panel titled `FILTRAR` above the Lançamentos ledger. Search input w
 
 ### Signature Component — Tags
 Free-form labels on an entry. **Display** (`TagList`): read-only `#tag` chips — `border-border`, `bg-secondary`, `text-muted-foreground`, near-square, `0.625–0.6875rem`. **Entry** (`TagField`): a bordered field (orange focus) holding removable chips + a text input, with a `bg-popover` suggestion dropdown fed by the `user_tags` view (the user's existing tags, most-used first). Type to filter; Enter / click adds an existing tag or a new one (`Criar «…»`), Backspace on empty removes the last. Tags are normalised to trimmed lowercase, max 32 chars.
+
+### Surface — Landing `/produto`
+The public product page (visitors hitting `/` without a session are redirected here by the middleware). Same world, Persuade register:
+- **Hero:** a full-width `brand-primary` field holding the masthead and the question "Pra onde foi o seu dinheiro este mês?" at display scale, the orange CTA (`Criar minha conta grátis` → `/register`, ink text on orange) and a `Já tenho conta` link. Beside it, a sample bill sheet (`ContaExemplo`: `BandeiraGeral` + three `Medidor` rows) overhangs the blue field onto the paper (`-mb-40`/`-mb-48`/`-mb-36`; the next section pads `pt-52`/`pt-60`/`pt-48` to clear it). The sheet carries a red rubber-stamp `EXEMPLO` straddling its top edge and a `dados fictícios` caption: every sample figure is labelled synthetic.
+- **Motion:** the sample meters read in once on load (`.meter-reveal`: `scaleX` from 0, 1.1s expo-out, staggered 0.35/0.5/0.65s). The rendered width is the default; reduced motion skips it.
+- **Signature interaction — `Experimente`:** the three-flag legend (azul ≤ 84%, amarela 85–100%, vermelha > 100%) beside a live Lazer meter driven by a range slider (`.leitura-range`: 4px ruled track, square ink thumb, orange focus ring). The active legend row takes its flag-soft tint.
+- **Método Dolfyn — `Metodo`:** an income field (mono, ruled underline, orange on focus) recomputes the six categories in reais; a split bar shows the 55/10/5/10/10/10 shares in brand-primary tints (identity, never flag colours).
+- **Close:** a scissors-marked perforated tear line above a boleto-style stub (`Para / Valor R$ 0,00 / Vencimento`) with the CTA repeated.
+- No testimonials, user counts or claims that are not true in the product; sample data stays stamped.
 
 ## Do's and Don'ts
 

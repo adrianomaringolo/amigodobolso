@@ -19,7 +19,10 @@ export function FooterComponent() {
 						</a>
 					</span>
 				</p>
-				<nav className="flex gap-4">
+				<nav className="flex flex-wrap gap-x-4 gap-y-2">
+					<Link href="/produto" className="hover:text-foreground hover:underline">
+						Sobre o app
+					</Link>
 					<Link href="/termos-de-uso" className="hover:text-foreground hover:underline">
 						Termos de uso
 					</Link>

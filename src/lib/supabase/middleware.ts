@@ -47,6 +47,13 @@ export async function updateSession(request: NextRequest) {
 		return NextResponse.redirect(url)
 	}
 
+	// Visitors landing on the root see the product page, not the login wall
+	if (!user && request.nextUrl.pathname === '/') {
+		const url = request.nextUrl.clone()
+		url.pathname = '/produto'
+		return NextResponse.redirect(url)
+	}
+
 	// Redirect unauthenticated users to sign-in page
 	if (
 		!user &&
