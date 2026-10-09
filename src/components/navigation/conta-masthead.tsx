@@ -84,7 +84,7 @@ export function ContaMasthead({ isAdmin = false }: { isAdmin?: boolean }) {
 					/>
 				</Link>
 
-				<nav className="ml-2 hidden items-center md:flex">
+				<nav className="ml-2 hidden items-center lg:flex">
 					{NAV_ITEMS.map(({ icon: Icon, label, href }) => {
 						const active = pathname === href || pathname.startsWith(href + '/')
 						return (
@@ -107,9 +107,7 @@ export function ContaMasthead({ isAdmin = false }: { isAdmin?: boolean }) {
 				</nav>
 
 				<div className="ml-auto flex shrink-0 items-center gap-1">
-					<div className="hidden sm:block">
-						<InstallPWAButton />
-					</div>
+					<InstallPWAButton />
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
 							<button
