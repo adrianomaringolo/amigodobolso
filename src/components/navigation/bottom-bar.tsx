@@ -1,7 +1,7 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import { ChartPie, LayoutGrid, Plus, ScrollText, User } from 'lucide-react'
+import { ChartPie, GraduationCap, LayoutGrid, Plus, ScrollText } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -9,7 +9,7 @@ const TABS = [
 	{ icon: LayoutGrid, label: 'Início', href: '/inicio' },
 	{ icon: ScrollText, label: 'Lançamentos', href: '/lancamentos' },
 	{ icon: ChartPie, label: 'Relatórios', href: '/relatorios' },
-	{ icon: User, label: 'Perfil', href: '/perfil' },
+	{ icon: GraduationCap, label: 'Dica de Amigo', href: '/educacao' },
 ]
 
 /** Fixed bottom bar for phones — the daily add-entry loop always one thumb away. */
@@ -23,7 +23,10 @@ export function BottomBar() {
 			style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
 			aria-label="Navegação"
 		>
-			<div className="edge-perf edge-perf-top absolute inset-x-0 top-0 h-px" aria-hidden />
+			<div
+				className="edge-perf edge-perf-top absolute inset-x-0 top-0 h-px"
+				aria-hidden
+			/>
 			<div className="mx-auto grid max-w-md grid-cols-5 items-end px-1">
 				{TABS.slice(0, 2).map((t) => (
 					<TabLink key={t.href} {...t} active={isActive(t.href)} />
@@ -35,7 +38,9 @@ export function BottomBar() {
 					aria-label="Lançar"
 				>
 					<Plus className="h-6 w-6" strokeWidth={2.5} />
-					<span className="text-[0.5625rem] font-bold uppercase tracking-wide">Lançar</span>
+					<span className="text-[0.5625rem] font-bold uppercase tracking-wide">
+						Lançar
+					</span>
 				</Link>
 
 				{TABS.slice(2).map((t) => (
