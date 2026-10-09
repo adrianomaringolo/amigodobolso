@@ -26,7 +26,7 @@ const InstallPWAButton = () => {
 			className="flex items-center gap-2 border border-white/25 bg-white/10 px-2.5 py-1.5 text-xs font-semibold text-primary-foreground transition-colors hover:bg-white/20"
 		>
 			<Download className="h-4 w-4" strokeWidth={2} />
-			Instalar app
+			<span className="max-[359px]:sr-only">Instalar app</span>
 		</button>
 	)
 

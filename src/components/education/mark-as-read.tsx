@@ -5,8 +5,8 @@ import {
 	useArticleReads,
 	useToggleArticleRead,
 } from '@/services/education/useArticleReads'
+import { toast } from 'buildgrid-ui'
 import { Check, Loader2 } from 'lucide-react'
-import { toast } from 'sonner'
 
 export function MarkAsRead({ slug }: { slug: string }) {
 	const { readSlugs, isLoading } = useArticleReads()
