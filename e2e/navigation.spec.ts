@@ -8,7 +8,7 @@ test.describe('Navegação até "Dica de Amigo"', () => {
 		test.skip(!isMobile, 'barra inferior só existe no mobile')
 		await page.goto('/ajuda')
 
-		const bar = page.getByRole('navigation', { name: 'Navegação' })
+		const bar = page.getByRole('navigation', { name: 'Navegação', exact: true })
 		await expect(bar.getByRole('link', { name: 'Dica de Amigo' })).toBeVisible()
 		// Perfil saiu da barra (continua no menu do avatar)
 		await expect(bar.getByRole('link', { name: 'Perfil' })).toHaveCount(0)
@@ -28,7 +28,7 @@ test.describe('Navegação até "Dica de Amigo"', () => {
 		test.skip(!isMobile, 'barra inferior só existe no mobile')
 		await page.goto('/educacao')
 
-		const bar = page.getByRole('navigation', { name: 'Navegação' })
+		const bar = page.getByRole('navigation', { name: 'Navegação', exact: true })
 		await expect(bar).toBeVisible()
 		const overflow = await page.evaluate(
 			() => document.documentElement.scrollWidth > document.documentElement.clientWidth,
@@ -43,6 +43,36 @@ test.describe('Navegação até "Dica de Amigo"', () => {
 			expect(box.x + box.width).toBeLessThanOrEqual(viewport.width)
 		}
 	})
+
+	for (const route of [
+		'/lancamentos',
+		'/educacao',
+		'/educacao/financas-101/03-um-plano-por-categorias',
+	]) {
+		test(`mobile: a barra inferior não cobre o fim da página (${route})`, async ({
+			page,
+			isMobile,
+		}) => {
+			test.skip(!isMobile, 'barra inferior só existe no mobile')
+			await page.goto(route)
+
+			const bar = page.getByRole('navigation', { name: 'Navegação', exact: true })
+			const footer = page.getByRole('contentinfo')
+			await expect(footer).toBeVisible()
+
+			await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight))
+			const footerBox = (await footer.boundingBox())!
+			const barBox = (await bar.boundingBox())!
+
+			// o rodapé inteiro (incluindo os links) tem que ficar acima da barra fixa
+			expect(footerBox.y + footerBox.height).toBeLessThanOrEqual(barBox.y + 1)
+			await expect(
+				page.getByRole('link', { name: 'Política de privacidade' }),
+			).toBeInViewport({
+				ratio: 1,
+			})
+		})
+	}
 
 	test('mobile: o perfil continua acessível pelo menu do avatar', async ({
 		page,
