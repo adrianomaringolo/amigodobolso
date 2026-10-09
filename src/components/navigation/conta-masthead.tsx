@@ -140,12 +140,6 @@ export function ContaMasthead({ isAdmin = false }: { isAdmin?: boolean }) {
 									</Link>
 								</DropdownMenuItem>
 							)}
-							<DropdownMenuItem asChild className="md:hidden">
-								<Link href="/educacao">
-									<GraduationCap className="mr-2 h-4 w-4" />
-									Dica de Amigo
-								</Link>
-							</DropdownMenuItem>
 							<DropdownMenuItem asChild>
 								<Link href="/perfil">
 									<User className="mr-2 h-4 w-4" />
