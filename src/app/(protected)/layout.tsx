@@ -80,9 +80,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	}
 
 	return (
-		<div className="flex min-h-dvh flex-col bg-background">
+		<div className="flex min-h-dvh flex-col bg-background pb-[calc(5rem+env(safe-area-inset-bottom))] lg:pb-0">
 			<ContaMasthead />
-			<main className="mx-auto w-full max-w-5xl flex-1 px-4 pb-28 pt-6 md:px-6 md:pt-8 lg:pb-14">
+			<main className="mx-auto w-full max-w-5xl flex-1 px-4 pb-8 pt-6 md:px-6 md:pt-8 lg:pb-14">
 				{children}
 			</main>
 			<FooterComponent />
