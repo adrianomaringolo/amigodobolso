@@ -52,3 +52,8 @@ next-env.d.ts
 /public/sw.js
 /public/swe-worker-*.js
 /public/fallback-*.js
+
+# playwright
+/test-results/
+/playwright-report/
+/blob-report/

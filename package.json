@@ -9,6 +9,8 @@
 		"start": "next start",
 		"lint": "next lint",
 		"format": "pretty-quick && npm run lint",
+		"test:e2e": "playwright test",
+		"test:e2e:ios": "E2E_WEBKIT=1 playwright test --project=mobile-safari",
 		"prepare": "husky"
 	},
 	"dependencies": {
@@ -41,6 +43,7 @@
 		"@ducanh2912/next-pwa": "^10.2.9",
 		"@eslint/eslintrc": "^3.3.7",
 		"@eslint/js": "^9.21.0",
+		"@playwright/test": "1.56.1",
 		"@tanstack/react-query-devtools": "^5.102.8",
 		"@types/node": "^24.7.0",
 		"@types/react": "^19.2.18",
