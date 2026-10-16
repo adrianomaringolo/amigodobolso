@@ -1,5 +1,5 @@
 ---
-title: "Um plano em vez de planilha"
+title: "Um plano ao invés de planilha"
 description: "Dividir a renda em categorias com alvo transforma números soltos em direção."
 series: "financas-101"
 seriesOrder: 3
@@ -13,12 +13,12 @@ Em vez de olhar a renda como um bolo único, você a divide em fatias com um alv
 
 | Categoria | Alvo da renda |
 |---|---|
-| Necessidades essenciais | 55% |
-| Tranquilidade financeira | 10% |
-| Fazer pelo outro | 5% |
-| Lazer | 10% |
-| Compras de longo prazo | 10% |
-| Desenvolvimento pessoal | 10% |
+| Necessidades Essenciais | 55% |
+| Tranquilidade Financeira | 10% |
+| Fazer Pelo Outro | 5% |
+| Diversão | 10% |
+| Compras de Longo Prazo | 10% |
+| Desenvolvimento Pessoal | 10% |
 
 ## Como ler a bandeira
 

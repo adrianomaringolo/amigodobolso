@@ -8,15 +8,15 @@ const LAST = `${SERIES}/05-juros-e-dividas`
 const stat = (page: import('@playwright/test').Page, label: string) =>
 	page.locator('dt', { hasText: label }).locator('xpath=following-sibling::dd[1]')
 
-test.describe('Dica de Amigo — visão geral', () => {
+test.describe('Dica do Amigo — visão geral', () => {
 	test('lista a série com os 5 artigos e estatísticas zeradas', async ({ page }) => {
 		await page.goto('/educacao')
 
 		await expect(
-			page.getByRole('heading', { name: 'Dica de Amigo', level: 1 }),
+			page.getByRole('heading', { name: 'Dica do Amigo', level: 1 }),
 		).toBeVisible()
 		await expect(
-			page.getByRole('heading', { name: 'Educação Financeira 101' }),
+			page.getByRole('heading', { name: 'Comportamento Financeiro' }),
 		).toBeVisible()
 		await expect(page.getByText('0 de 5 artigos lidos · 0%')).toBeVisible()
 		await expect(page.locator('ol a[href^="/educacao/financas-101/"]')).toHaveCount(5)
@@ -78,11 +78,11 @@ test.describe('Dica de Amigo — visão geral', () => {
 	})
 })
 
-test.describe('Dica de Amigo — série e artigo', () => {
+test.describe('Dica do Amigo — série e artigo', () => {
 	test('abre a série pelo card e depois um artigo', async ({ page }) => {
 		await page.goto('/educacao')
 		await page
-			.getByRole('link', { name: /Educação Financeira 101/ })
+			.getByRole('link', { name: /Comportamento Financeiro/ })
 			.first()
 			.click()
 
@@ -103,7 +103,7 @@ test.describe('Dica de Amigo — série e artigo', () => {
 
 		await expect(page.getByRole('table')).toBeVisible()
 		await expect(
-			page.getByRole('cell', { name: 'Necessidades essenciais' }),
+			page.getByRole('cell', { name: 'Necessidades Essenciais' }),
 		).toBeVisible()
 		await expect(page.getByRole('cell', { name: '55%' })).toBeVisible()
 		await expect(page.locator('blockquote')).toContainText('Na prática')
@@ -131,7 +131,7 @@ test.describe('Dica de Amigo — série e artigo', () => {
 
 		await page.goto('/educacao/serie-que-nao-existe')
 		await expect(notFound).toBeVisible()
-		await expect(page.getByRole('heading', { name: 'Dica de Amigo' })).toHaveCount(0)
+		await expect(page.getByRole('heading', { name: 'Dica do Amigo' })).toHaveCount(0)
 
 		await page.goto(`/educacao/${SERIES}/artigo-que-nao-existe`)
 		await expect(notFound).toBeVisible()
@@ -139,7 +139,7 @@ test.describe('Dica de Amigo — série e artigo', () => {
 	})
 })
 
-test.describe('Dica de Amigo — marcar como lido', () => {
+test.describe('Dica do Amigo — marcar como lido', () => {
 	test('marca, persiste, aparece na visão geral e pode ser desmarcado', async ({
 		page,
 		supabase,

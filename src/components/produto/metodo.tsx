@@ -93,10 +93,20 @@ export function Metodo() {
 				))}
 			</div>
 
-			<ul className="grid px-5 pb-2 pt-3 md:grid-cols-2 md:gap-x-10 md:px-7">
+			{/* columns fill top to bottom: NE, TF, FPO | DIV, CLP, DP */}
+			<ul className="grid px-5 pb-2 pt-3 md:grid-flow-col md:grid-cols-2 md:grid-rows-3 md:gap-x-10 md:px-7">
 				{CATEGORIAS.map(([key, def], i) => (
-					<li key={key} className="flex items-start gap-3 border-b border-border py-3.5 md:[&:nth-last-child(-n+2)]:border-b-0 [&:last-child]:border-b-0">
-						<span className={cn('mt-1 h-3 w-3 shrink-0', TONS[i])} aria-hidden />
+					<li key={key} className="flex items-start gap-3 border-b border-border py-3.5 md:[&:nth-child(3n)]:border-b-0 [&:last-child]:border-b-0">
+						{/* numbered in the method order, in the same tone as its slice of the bar */}
+						<span
+							className={cn(
+								'tabular mt-px flex h-5 w-5 shrink-0 items-center justify-center text-[0.6875rem] font-bold',
+								TONS[i],
+								i === 0 ? 'text-primary-foreground' : 'text-foreground',
+							)}
+						>
+							{i + 1}
+						</span>
 						<div className="min-w-0 flex-1">
 							<div className="flex items-baseline justify-between gap-3">
 								<span className="text-sm font-bold text-foreground">{def.label}</span>

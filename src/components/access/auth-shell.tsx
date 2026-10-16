@@ -24,9 +24,9 @@ export const AuthShell = ({
 				<Image
 					src="/logo-letter-white.png"
 					alt="Amigo do Bolso"
-					width={500}
-					height={101}
-					className="h-9 w-auto"
+					width={529}
+					height={128}
+					className="h-[2.875rem] w-auto"
 				/>
 			</Link>
 			<div className="space-y-3">

@@ -1,11 +1,10 @@
 'use client'
 
 import { createClient } from '@/lib/supabase/client'
-import { Button } from 'buildgrid-ui'
+import { Button, toast } from 'buildgrid-ui'
 import { Loader } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { useState } from 'react'
-import { toast } from 'sonner'
 
 export const GoogleLoginButton = () => {
 	const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false)

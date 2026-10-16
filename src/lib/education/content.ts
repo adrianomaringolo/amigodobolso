@@ -9,7 +9,7 @@ const CONTENT_DIR = path.join(process.cwd(), 'src/content/educacao')
 const WORDS_PER_MINUTE = 200
 
 /** Minimal `key: "value"` frontmatter parser — enough for our flat article headers. */
-function parseFrontmatter(raw: string) {
+export function parseFrontmatter(raw: string) {
 	const match = raw.match(/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/)
 	if (!match) return { data: {} as Record<string, string>, content: raw.trim() }
 

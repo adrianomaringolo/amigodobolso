@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Amigo do Bolso — Apresentação Comercial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Spline+Sans+Mono:wght@500;600&display=swap">
+<!--
+  Fonte da apresentação comercial. Para regerar o PDF:
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --no-pdf-header-footer \
+    --virtual-time-budget=10000 --print-to-pdf=docs/apresentacao/apresentacao-comercial.pdf \
+    docs/apresentacao/apresentacao-comercial.html
+-->
+<style>
+  @page { size: 1920px 1080px; margin: 0 }
+  * { margin: 0; padding: 0; box-sizing: border-box }
+  html, body { background: #f7f5ef }
+  body { font-family: 'Archivo', Arial, sans-serif; color: #16324f; -webkit-print-color-adjust: exact; print-color-adjust: exact }
+  section { width: 1920px; height: 1080px; position: relative; overflow: hidden; page-break-after: always; break-after: page }
+  section:last-child { page-break-after: auto; break-after: auto }
+  .mono { font-family: 'Spline Sans Mono', ui-monospace, monospace; font-variant-numeric: tabular-nums }
+  .eyebrow { font-size: 24px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: #09659c }
+  .title { font-size: 80px; font-weight: 800; line-height: 1.1; letter-spacing: -2px }
+  .lead { font-size: 32px; line-height: 1.45; color: #4d5f70 }
+  .footer { position: absolute; left: 128px; right: 128px; bottom: 64px; font-size: 24px; color: #4d5f70; display: flex; justify-content: space-between }
+  .card { display: flex; flex-direction: column; gap: 16px; background: #fcfbf7; padding: 40px; border: 2px solid #d0ccc2; border-radius: 4px }
+  .card h3 { font-size: 36px; font-weight: 700 }
+  .card p { font-size: 28px; line-height: 1.45; color: #4d5f70 }
+  .row { display: flex; justify-content: space-between; align-items: baseline }
+</style>
+</head>
+<body>
+
+<!-- 1 · Capa -->
+<section style="background:#09659c;color:#f7f5ef;padding:128px;display:grid;grid-template-columns:1fr 640px;gap:96px;align-items:center">
+  <div style="display:flex;flex-direction:column;gap:48px">
+    <img src="../../public/logo-letter-white.png" alt="Amigo do Bolso" style="width:446px;height:108px;object-fit:contain;object-position:left">
+    <h1 style="font-size:104px;font-weight:800;line-height:1.05;letter-spacing:-3px">Para onde vai seu dinheiro todo mês?</h1>
+    <p style="font-size:36px;line-height:1.4;color:#deedf7">Como na conta de luz: cada categoria tem uma bandeira azul, amarela ou vermelha. Você vê na hora se está gastando mais do que pode. Sem planilha, sem complicação.</p>
+    <p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#f28e38">Apresentação comercial · 2026</p>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:28px;background:#fcfbf7;color:#16324f;padding:48px;border-radius:4px;border-bottom:6px dashed #d0ccc2;box-shadow:14px 14px 0 rgba(6,45,75,0.45)">
+    <div class="row" style="align-items:center">
+      <p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#4d5f70">Conta de outubro</p>
+      <p style="font-size:22px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#9a5f13;background:#f6ead4;border:2px solid #f0a017;padding:4px 14px;transform:rotate(-4deg)">Exemplo</p>
+    </div>
+    <hr style="border:none;border-top:2px solid #d0ccc2">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="row"><p style="font-size:28px;font-weight:600">Necessidades Essenciais</p><p class="mono" style="font-size:28px">72%</p></div>
+      <div style="height:16px;background:#deedf7"><div style="width:72%;height:16px;background:#09659c"></div></div>
+      <p style="font-size:24px;color:#09659c;font-weight:600">● no azul — dentro do plano</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="row"><p style="font-size:28px;font-weight:600">Diversão</p><p class="mono" style="font-size:28px">91%</p></div>
+      <div style="height:16px;background:#f6ead4"><div style="width:91%;height:16px;background:#f0a017"></div></div>
+      <p style="font-size:24px;color:#9a5f13;font-weight:600">● no amarelo — chegando no limite</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="row"><p style="font-size:28px;font-weight:600">Compras de Longo Prazo</p><p class="mono" style="font-size:28px">108%</p></div>
+      <div style="height:16px;background:#f6e2e0"><div style="width:100%;height:16px;background:#be2f26"></div></div>
+      <p style="font-size:24px;color:#be2f26;font-weight:600">● no vermelho — passou do plano</p>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · Problema -->
+<section style="background:#f7f5ef;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <p class="eyebrow">O problema</p>
+    <h2 class="title">“Não sei pra onde vai o meu dinheiro.”</h2>
+    <p class="lead" style="max-width:1300px">O salário cai, as contas saem e, no fim do mês, sobra pouco ou nada — sem que dê para dizer por quê.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px">
+    <div class="card" style="border-top:8px solid #09659c">
+      <h3>Quem é</h3>
+      <p>Adulto assalariado, de renda média, com pouca familiaridade com finanças pessoais.</p>
+    </div>
+    <div class="card" style="border-top:8px solid #f0a017">
+      <h3>O que já tentou</h3>
+      <p>A planilha. Começou animado, cansou de montar categorias e fórmulas, e desistiu.</p>
+    </div>
+    <div class="card" style="border-top:8px solid #be2f26">
+      <h3>O que quer</h3>
+      <p>Sensação de controle sem precisar entender de contabilidade — e direto do celular.</p>
+    </div>
+  </div>
+  <div class="footer"><span>Amigo do Bolso</span><span class="mono">02</span></div>
+</section>
+
+<!-- 3 · Bandeiras -->
+<section style="background:#f7f5ef;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <p class="eyebrow">A solução</p>
+    <h2 class="title">Três bandeiras. Simples e direto.</h2>
+    <p class="lead" style="max-width:1400px">Cada categoria, uma bandeira, que vai mudando conforme você gasta. Assim, fica fácil ver onde precisa ajustar, para seguir com tranquilidade financeira.</p>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px">
+    <div style="display:flex;flex-direction:column;gap:20px;background:#deedf7;padding:44px;border-left:12px solid #09659c">
+      <p class="eyebrow">No azul</p>
+      <p class="mono" style="font-size:72px;font-weight:600;color:#09659c;line-height:1.1">&lt; 85%</p>
+      <p style="font-size:28px;line-height:1.45">Dentro do plano. Pode seguir tranquilo.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px;background:#f6ead4;padding:44px;border-left:12px solid #f0a017">
+      <p class="eyebrow" style="color:#9a5f13">No amarelo</p>
+      <p class="mono" style="font-size:72px;font-weight:600;color:#9a5f13;line-height:1.1">85–100%</p>
+      <p style="font-size:28px;line-height:1.45">Chegando no limite. Hora de segurar.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px;background:#f6e2e0;padding:44px;border-left:12px solid #be2f26">
+      <p class="eyebrow" style="color:#be2f26">No vermelho</p>
+      <p class="mono" style="font-size:72px;font-weight:600;color:#be2f26;line-height:1.1">&gt; 100%</p>
+      <p style="font-size:28px;line-height:1.45">Gastou mais do que devia. Você fica sabendo na hora, não no fim do mês.</p>
+    </div>
+  </div>
+  <div class="footer"><span>Percentual = quanto da meta da categoria já foi gasto no mês</span><span class="mono">03</span></div>
+</section>
+
+<!-- 4 · Método -->
+<section style="background:#fcfbf7;padding:128px 128px 160px;display:grid;grid-template-columns:640px 1fr;gap:96px;align-items:center">
+  <div style="display:flex;flex-direction:column;gap:28px">
+    <p class="eyebrow">O método</p>
+    <h2 class="title" style="font-size:72px">Um plano pronto, não uma planilha.</h2>
+    <p style="font-size:30px;line-height:1.5;color:#4d5f70">Seguimos a metodologia <b>Dolfyn</b>, licenciada: a renda é dividida em seis categorias, cada uma com um alvo em porcentagem.</p>
+    <p style="font-size:30px;line-height:1.5;color:#4d5f70">Quando a renda muda, o plano se ajusta sozinho. Ninguém precisa inventar categoria nem decidir valor: é só lançar e o Amigo do Bolso faz o resto.</p>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:26px">
+    <div style="display:flex;flex-direction:column;gap:8px"><div class="row"><p style="font-size:28px;font-weight:600;display:flex;align-items:center;gap:16px"><span class="mono" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;font-size:22px;font-weight:600;background:#09659c;color:#f7f5ef">1</span>Necessidades Essenciais</p><p class="mono" style="font-size:28px;color:#09659c">55%</p></div><div style="height:20px;background:#e9e6dd"><div style="width:55%;height:20px;background:#09659c"></div></div></div>
+    <div style="display:flex;flex-direction:column;gap:8px"><div class="row"><p style="font-size:28px;font-weight:600;display:flex;align-items:center;gap:16px"><span class="mono" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;font-size:22px;font-weight:600;background:#09659c;color:#f7f5ef">2</span>Tranquilidade Financeira</p><p class="mono" style="font-size:28px;color:#09659c">10%</p></div><div style="height:20px;background:#e9e6dd"><div style="width:10%;height:20px;background:#09659c"></div></div></div>
+    <div style="display:flex;flex-direction:column;gap:8px"><div class="row"><p style="font-size:28px;font-weight:600;display:flex;align-items:center;gap:16px"><span class="mono" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;font-size:22px;font-weight:600;background:#09659c;color:#f7f5ef">3</span>Fazer Pelo Outro</p><p class="mono" style="font-size:28px;color:#09659c">5%</p></div><div style="height:20px;background:#e9e6dd"><div style="width:5%;height:20px;background:#09659c"></div></div></div>
+    <div style="display:flex;flex-direction:column;gap:8px"><div class="row"><p style="font-size:28px;font-weight:600;display:flex;align-items:center;gap:16px"><span class="mono" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;font-size:22px;font-weight:600;background:#09659c;color:#f7f5ef">4</span>Diversão</p><p class="mono" style="font-size:28px;color:#09659c">10%</p></div><div style="height:20px;background:#e9e6dd"><div style="width:10%;height:20px;background:#09659c"></div></div></div>
+    <div style="display:flex;flex-direction:column;gap:8px"><div class="row"><p style="font-size:28px;font-weight:600;display:flex;align-items:center;gap:16px"><span class="mono" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;font-size:22px;font-weight:600;background:#09659c;color:#f7f5ef">5</span>Compras de Longo Prazo</p><p class="mono" style="font-size:28px;color:#09659c">10%</p></div><div style="height:20px;background:#e9e6dd"><div style="width:10%;height:20px;background:#09659c"></div></div></div>
+    <div style="display:flex;flex-direction:column;gap:8px"><div class="row"><p style="font-size:28px;font-weight:600;display:flex;align-items:center;gap:16px"><span class="mono" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;font-size:22px;font-weight:600;background:#09659c;color:#f7f5ef">6</span>Desenvolvimento Pessoal</p><p class="mono" style="font-size:28px;color:#09659c">10%</p></div><div style="height:20px;background:#e9e6dd"><div style="width:10%;height:20px;background:#09659c"></div></div></div>
+  </div>
+  <div class="footer"><span>Alvos em % da renda mensal, definidos pelo método Dolfyn</span><span class="mono">04</span></div>
+</section>
+
+<!-- 5 · Como funciona -->
+<section style="background:#f7f5ef;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <p class="eyebrow">Como funciona</p>
+    <h2 class="title">Você lança. O Amigo faz o resto.</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px">
+    <div class="card" style="gap:20px;padding:48px">
+      <p class="mono" style="font-size:72px;font-weight:600;color:#09659c;line-height:1">01</p>
+      <h3>Informe a renda</h3>
+      <p>O plano do mês se divide sozinho nas seis partes do método.</p>
+    </div>
+    <div class="card" style="gap:20px;padding:48px">
+      <p class="mono" style="font-size:72px;font-weight:600;color:#09659c;line-height:1">02</p>
+      <h3>Lance o dia a dia</h3>
+      <p>Valor, descrição, categoria e data. Pago ou pendente, com parcelas quando houver.</p>
+    </div>
+    <div class="card" style="gap:20px;padding:48px">
+      <p class="mono" style="font-size:72px;font-weight:600;color:#09659c;line-height:1">03</p>
+      <h3>Leia a bandeira</h3>
+      <p>Cada categoria compara o gasto com o alvo — e o mês inteiro ganha uma bandeira geral.</p>
+    </div>
+  </div>
+  <p class="lead" style="max-width:1500px">Tudo acontece dentro do mês escolhido. Trocar de mês é um toque, e a pergunta da tela é sempre a mesma: <b style="color:#16324f">“estou dentro do plano?”</b></p>
+  <div class="footer"><span>Amigo do Bolso</span><span class="mono">05</span></div>
+</section>
+
+<!-- 6 · Recursos -->
+<section style="background:#fcfbf7;padding:128px 128px 160px;display:flex;flex-direction:column;justify-content:space-between">
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <p class="eyebrow">O produto</p>
+    <h2 class="title">Tudo o que o mês precisa, sem excesso.</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px">
+    <div class="card" style="background:#f7f5ef;border-left:8px solid #09659c;padding:36px">
+      <h3 style="font-size:32px">Lançamentos do dia a dia</h3>
+      <p style="font-size:26px">Agrupados por dia, com parcelas, observações e etiquetas. Busca e filtros acham tudo em segundos.</p>
+    </div>
+    <div class="card" style="background:#f7f5ef;border-left:8px solid #09659c;padding:36px">
+      <h3 style="font-size:32px">Pago ou pendente</h3>
+      <p style="font-size:26px">Um toque marca como paga; um aviso confirma e permite desfazer. As pendentes já contam no plano.</p>
+    </div>
+    <div class="card" style="background:#f7f5ef;border-left:8px solid #09659c;padding:36px">
+      <h3 style="font-size:32px">Relatórios que comparam</h3>
+      <p style="font-size:26px">O plano ideal ao lado do seu mês, um medidor por categoria e quanto ainda cabe em cada uma.</p>
+    </div>
+    <div class="card" style="background:#f7f5ef;border-left:8px solid #09659c;padding:36px">
+      <h3 style="font-size:32px">Mapa e visão anual</h3>
+      <p style="font-size:26px">A bandeira de cada categoria com os últimos 6 meses, e receitas × despesas mês a mês no ano.</p>
+    </div>
+    <div class="card" style="background:#f7f5ef;border-left:8px solid #09659c;padding:36px">
+      <h3 style="font-size:32px">Dica do Amigo</h3>
+      <p style="font-size:26px">Conteúdos de comportamento financeiro, direto ao ponto: reserva de segurança, juros, dívidas e mais.</p>
+    </div>
+    <div class="card" style="background:#f7f5ef;border-left:8px solid #09659c;padding:36px">
+      <h3 style="font-size:32px">Tutoriais e celular</h3>
+      <p style="font-size:26px">Passo a passo com imagens dentro do app. Instala na tela inicial, sem loja; entra com e-mail ou Google.</p>
+    </div>
+  </div>
+  <div class="footer"><span>Amigo do Bolso</span><span class="mono">06</span></div>
+</section>
+
+<!-- 7 · O app por dentro -->
+<section style="background:#f7f5ef;padding:96px 128px 160px;display:flex;flex-direction:column;gap:48px">
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <p class="eyebrow">O app por dentro</p>
+    <h2 class="title" style="font-size:64px">Pensado para o celular, do primeiro toque.</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;justify-items:center">
+    <figure style="display:flex;flex-direction:column;align-items:center;gap:20px">
+      <img src="../../public/tutoriais/lancar-receita-ou-despesa/01-lista-do-mes.png" alt="Lançamentos do mês" style="width:300px;height:649px;object-fit:cover;object-position:top;border:10px solid #16324f;border-radius:36px">
+      <figcaption style="font-size:26px;font-weight:600">Lançamentos do mês</figcaption>
+    </figure>
+    <figure style="display:flex;flex-direction:column;align-items:center;gap:20px">
+      <img src="../../public/tutoriais/pago-pendente-e-parcelas/02-aviso-marcada-como-paga.png" alt="Pago, com desfazer" style="width:300px;height:649px;object-fit:cover;object-position:top;border:10px solid #16324f;border-radius:36px">
+      <figcaption style="font-size:26px;font-weight:600">Pago, com desfazer</figcaption>
+    </figure>
+    <figure style="display:flex;flex-direction:column;align-items:center;gap:20px">
+      <img src="../../public/tutoriais/entender-os-relatorios/04-medidores.png" alt="Um medidor por categoria" style="width:300px;height:649px;object-fit:cover;object-position:top;border:10px solid #16324f;border-radius:36px">
+      <figcaption style="font-size:26px;font-weight:600">Um medidor por categoria</figcaption>
+    </figure>
+    <figure style="display:flex;flex-direction:column;align-items:center;gap:20px">
+      <img src="../../public/tutoriais/entender-os-relatorios/06-mapa-de-categorias.png" alt="Mapa de categorias" style="width:300px;height:649px;object-fit:cover;object-position:top;border:10px solid #16324f;border-radius:36px">
+      <figcaption style="font-size:26px;font-weight:600">Mapa de categorias</figcaption>
+    </figure>
+  </div>
+  <div class="footer"><span>Telas reais do app, com dados fictícios</span><span class="mono">07</span></div>
+</section>
+
+<!-- 8 · Diferenciais -->
+<section style="background:#f7f5ef;padding:128px 128px 160px;display:grid;grid-template-columns:1fr 600px;gap:96px">
+  <div style="display:flex;flex-direction:column;gap:40px;justify-content:space-between">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p class="eyebrow">Por que o Amigo do Bolso</p>
+      <h2 class="title" style="font-size:72px">Um amigo que entende de dinheiro.</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <div style="display:flex;flex-direction:column;gap:6px;padding-bottom:24px;border-bottom:2px solid #d0ccc2">
+        <h3 style="font-size:34px;font-weight:700">Plano antes de planilha</h3>
+        <p style="font-size:28px;line-height:1.45;color:#4d5f70">O usuário é guiado por um método, não convidado a fazer contabilidade.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;padding-bottom:24px;border-bottom:2px solid #d0ccc2">
+        <h3 style="font-size:34px;font-weight:700">O sinal vem antes dos números</h3>
+        <p style="font-size:28px;line-height:1.45;color:#4d5f70">A bandeira responde em segundos; os reais ficam em segundo plano.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <h3 style="font-size:34px;font-weight:700">Linguagem de amigo</h3>
+        <p style="font-size:28px;line-height:1.45;color:#4d5f70">Português simples e acolhedor. Explica, nunca dá bronca.</p>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:28px;background:#16324f;color:#f7f5ef;padding:56px;border-radius:4px;align-self:start">
+    <p class="eyebrow" style="color:#f28e38">Onde estamos</p>
+    <p style="font-size:44px;font-weight:700;line-height:1.2">MVP completo, no ar e gratuito.</p>
+    <p style="font-size:28px;line-height:1.5;color:#c9d6e2">Lançamentos, relatórios com medidores, bandeiras, tutoriais e educação financeira funcionando de ponta a ponta. Agora, em validação com usuários reais.</p>
+    <hr style="border:none;border-top:2px dashed #4d6a87">
+    <p style="font-size:28px;line-height:1.5;color:#c9d6e2">Método licenciado da <b style="color:#f7f5ef">Dolfyn</b>.</p>
+  </div>
+  <div class="footer"><span>Amigo do Bolso</span><span class="mono">08</span></div>
+</section>
+
+<!-- 9 · Contato -->
+<section style="background:#09659c;color:#f7f5ef;padding:128px;display:flex;flex-direction:column;justify-content:space-between">
+  <img src="../../public/logo-letter-white.png" alt="Amigo do Bolso" style="width:382px;height:92px;object-fit:contain;object-position:left">
+  <div style="display:flex;flex-direction:column;gap:40px">
+    <h2 style="font-size:112px;font-weight:800;line-height:1.05;letter-spacing:-3px;max-width:1500px">Descubra para onde vai seu dinheiro.</h2>
+    <p style="font-size:36px;line-height:1.4;color:#deedf7;max-width:1300px">Vamos conversar sobre parcerias, distribuição e os próximos passos do Amigo do Bolso.</p>
+  </div>
+  <div style="display:flex;gap:64px;align-items:flex-end;padding-top:40px;border-top:4px dashed rgba(247,245,239,0.45)">
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#f28e38">Acesse</p>
+      <p class="mono" style="font-size:36px">amigodobolso.vercel.app</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <p style="font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#f28e38">Contato</p>
+      <p class="mono" style="font-size:36px">[seu e-mail de contato]</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

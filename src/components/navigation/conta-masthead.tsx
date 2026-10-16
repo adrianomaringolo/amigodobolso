@@ -34,8 +34,7 @@ export const NAV_ITEMS = [
 	{ icon: LayoutGrid, label: 'Início', href: '/inicio' },
 	{ icon: ScrollText, label: 'Lançamentos', href: '/lancamentos' },
 	{ icon: ChartPie, label: 'Relatórios', href: '/relatorios' },
-	{ icon: GraduationCap, label: 'Dica de Amigo', href: '/educacao' },
-	{ icon: HelpCircle, label: 'Como usar', href: '/ajuda' },
+	{ icon: GraduationCap, label: 'Dica do Amigo', href: '/educacao' },
 ]
 
 export function ContaMasthead({ isAdmin = false }: { isAdmin?: boolean }) {
@@ -68,7 +67,7 @@ export function ContaMasthead({ isAdmin = false }: { isAdmin?: boolean }) {
 
 	return (
 		<header className="sticky top-0 z-40 bg-primary text-primary-foreground">
-			<div className="mx-auto flex h-14 w-full max-w-5xl items-center gap-4 px-4 md:px-6">
+			<div className="mx-auto flex h-[4.25rem] w-full max-w-5xl items-center gap-4 px-4 md:px-6">
 				<Link
 					href="/inicio"
 					className="flex shrink-0 items-center gap-2.5"
@@ -77,14 +76,14 @@ export function ContaMasthead({ isAdmin = false }: { isAdmin?: boolean }) {
 					<Image
 						src="/logo-letter-white.png"
 						alt="Amigo do Bolso"
-						width={500}
-						height={101}
-						className="h-7 w-auto"
+						width={529}
+						height={128}
+						className="h-[2.875rem] w-auto lg:h-[3.125rem]"
 						priority
 					/>
 				</Link>
 
-				<nav className="ml-2 hidden items-center lg:flex">
+				<nav className="ml-2 hidden self-stretch lg:flex">
 					{NAV_ITEMS.map(({ icon: Icon, label, href }) => {
 						const active = pathname === href || pathname.startsWith(href + '/')
 						return (
@@ -93,7 +92,7 @@ export function ContaMasthead({ isAdmin = false }: { isAdmin?: boolean }) {
 								href={href}
 								aria-current={active ? 'page' : undefined}
 								className={cn(
-									'flex items-center gap-2 whitespace-nowrap border-b-2 px-3 py-[1.05rem] text-sm font-medium transition-colors',
+									'flex items-center gap-2 whitespace-nowrap border-b-2 px-3 text-sm font-medium transition-colors',
 									active
 										? 'border-accent text-primary-foreground'
 										: 'border-transparent text-primary-foreground/70 hover:text-primary-foreground',
@@ -108,6 +107,21 @@ export function ContaMasthead({ isAdmin = false }: { isAdmin?: boolean }) {
 
 				<div className="ml-auto flex shrink-0 items-center gap-1">
 					<InstallPWAButton />
+					{/* "Como usar" lives as an icon beside the avatar — reachable on every screen size */}
+					<Link
+						href="/ajuda"
+						aria-label="Como usar"
+						title="Como usar"
+						aria-current={pathname.startsWith('/ajuda') ? 'page' : undefined}
+						className={cn(
+							'flex h-10 w-10 items-center justify-center rounded-sm outline-none transition-colors hover:bg-white/10 focus-visible:bg-white/10',
+							pathname.startsWith('/ajuda')
+								? 'text-primary-foreground'
+								: 'text-primary-foreground/75 hover:text-primary-foreground',
+						)}
+					>
+						<HelpCircle className="h-6 w-6" strokeWidth={2} />
+					</Link>
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
 							<button

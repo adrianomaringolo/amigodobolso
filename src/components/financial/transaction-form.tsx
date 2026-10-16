@@ -20,9 +20,8 @@ import { parseLocalDate, toISODate, todayISODate } from '@/lib/utils/date'
 import { useAddEntry } from '@/services/entries/useAddEntry'
 import { useGetTags } from '@/services/entries/useGetTags'
 import { useUpdateEntry } from '@/services/entries/useUpdateEntry'
-import { Switch, ToggleGroup, ToggleGroupItem } from 'buildgrid-ui'
+import { Switch, ToggleGroup, ToggleGroupItem, toast } from 'buildgrid-ui'
 import { addMonths } from 'date-fns'
-import { toast } from 'sonner'
 import { CurrencyField } from '../forms/currency-field'
 import { DateFormField } from '../forms/date-form-field'
 import { LoadButton } from '../forms/load-button'
@@ -80,9 +79,7 @@ export const TransactionForm = (props: TransactionFormProps) => {
 			times: transactionToEdit?.times ?? '1',
 			notes: transactionToEdit?.notes ?? '',
 			tags: transactionToEdit?.tags ?? [],
-			date: transactionToEdit?.date
-				? toISODate(transactionToEdit.date)
-				: todayISODate(),
+			date: transactionToEdit?.date ? toISODate(transactionToEdit.date) : todayISODate(),
 			completed: transactionToEdit?.isCompleted ?? true,
 		},
 	})
@@ -183,11 +180,11 @@ export const TransactionForm = (props: TransactionFormProps) => {
 				type="single"
 				value={formType}
 				onValueChange={handleTypeChange}
-				className="justify-center mb-6"
+				className="mb-6 w-full justify-center"
 			>
 				<ToggleGroupItem
 					value={AmountTypes.expanses}
-					className={`transition-all ${
+					className={`min-w-0 transition-all ${
 						formType === AmountTypes.expanses
 							? '!bg-expense !text-white hover:!bg-expense/80 flex-1'
 							: '!bg-expense/30 !text-expense hover:!bg-expense/50'
@@ -197,7 +194,7 @@ export const TransactionForm = (props: TransactionFormProps) => {
 				</ToggleGroupItem>
 				<ToggleGroupItem
 					value={AmountTypes.income}
-					className={`transition-all ${
+					className={`min-w-0 transition-all ${
 						formType === AmountTypes.income
 							? '!bg-income !text-white hover:!bg-income/80 flex-1'
 							: '!bg-income/30 !text-income hover:!bg-income/50'
@@ -294,9 +291,7 @@ export const TransactionForm = (props: TransactionFormProps) => {
 						render={({ field }) => (
 							<FormItem className="flex flex-row items-center justify-between border border-border p-4">
 								<div className="space-y-0.5">
-									<FormLabel className="text-sm font-semibold">
-										Já foi pago
-									</FormLabel>
+									<FormLabel className="text-sm font-semibold">Já foi pago</FormLabel>
 									<p className="text-xs text-muted-foreground">
 										Desmarque para deixar como pendente
 									</p>
@@ -308,18 +303,22 @@ export const TransactionForm = (props: TransactionFormProps) => {
 						)}
 					/>
 
-					<LoadButton
-						type="submit"
-						size="xl"
-						className={`w-full ${
-							formType === AmountTypes.expanses
-								? 'bg-expense/90 hover:bg-expense'
-								: 'bg-income/90 hover:bg-income'
-						}`}
-						isLoading={addEntryMutation.isPending || editUpdateMutation.isPending}
-					>
-						Salvar
-					</LoadButton>
+					{/* pinned to the bottom of the scrolling dialog; no side bleed, so the form never
+					    gets wider than the dialog on phones (where its padding is only p-2) */}
+					<div className="sticky -bottom-6 -mb-6 bg-background pb-6 pt-3">
+						<LoadButton
+							type="submit"
+							size="xl"
+							className={`w-full ${
+								formType === AmountTypes.expanses
+									? 'bg-expense/90 hover:bg-expense'
+									: 'bg-income/90 hover:bg-income'
+							}`}
+							isLoading={addEntryMutation.isPending || editUpdateMutation.isPending}
+						>
+							Salvar
+						</LoadButton>
+					</div>
 				</form>
 			</Form>
 		</div>

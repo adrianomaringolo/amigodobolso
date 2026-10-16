@@ -10,7 +10,7 @@ import {
 	RENDA_EXEMPLO,
 } from './exemplo'
 
-const EM_DESTAQUE = ['essential', 'leisure', 'financial-security']
+const EM_DESTAQUE = ['essential', 'financial-security', 'leisure']
 
 /**
  * The hero's proof: a month's bill, read in seconds. The month flag on top,

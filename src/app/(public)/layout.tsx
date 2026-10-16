@@ -6,14 +6,14 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
 	return (
 		<div className="flex min-h-dvh flex-col bg-background">
 			<header className="bg-primary text-primary-foreground">
-				<div className="mx-auto flex h-14 max-w-3xl items-center px-4 md:px-6">
+				<div className="mx-auto flex h-[4.25rem] max-w-3xl items-center px-4 md:px-6">
 					<Link href="/login" className="flex items-center gap-2.5" aria-label="Amigo do Bolso">
 						<Image
 							src="/logo-letter-white.png"
 							alt="Amigo do Bolso"
-							width={500}
-							height={101}
-							className="h-8 w-auto"
+							width={529}
+							height={128}
+							className="h-[3.125rem] w-auto"
 						/>
 					</Link>
 				</div>

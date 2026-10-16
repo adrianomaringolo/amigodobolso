@@ -1,6 +1,6 @@
 import { expect, test } from './fixtures'
 
-test.describe('Navegação até "Dica de Amigo"', () => {
+test.describe('Navegação até "Dica do Amigo"', () => {
 	test('mobile: aparece na barra inferior e leva para a página', async ({
 		page,
 		isMobile,
@@ -9,13 +9,13 @@ test.describe('Navegação até "Dica de Amigo"', () => {
 		await page.goto('/ajuda')
 
 		const bar = page.getByRole('navigation', { name: 'Navegação', exact: true })
-		await expect(bar.getByRole('link', { name: 'Dica de Amigo' })).toBeVisible()
+		await expect(bar.getByRole('link', { name: 'Dica do Amigo' })).toBeVisible()
 		// Perfil saiu da barra (continua no menu do avatar)
 		await expect(bar.getByRole('link', { name: 'Perfil' })).toHaveCount(0)
 
-		await bar.getByRole('link', { name: 'Dica de Amigo' }).click()
+		await bar.getByRole('link', { name: 'Dica do Amigo' }).click()
 		await expect(page).toHaveURL(/\/educacao$/)
-		await expect(bar.getByRole('link', { name: 'Dica de Amigo' })).toHaveAttribute(
+		await expect(bar.getByRole('link', { name: 'Dica do Amigo' })).toHaveAttribute(
 			'aria-current',
 			'page',
 		)
@@ -90,10 +90,10 @@ test.describe('Navegação até "Dica de Amigo"', () => {
 		test.skip(!!isMobile, 'menu do topo só aparece no desktop')
 		await page.goto('/inicio')
 
-		await page.getByRole('link', { name: 'Dica de Amigo' }).click()
+		await page.getByRole('link', { name: 'Dica do Amigo' }).click()
 		await expect(page).toHaveURL(/\/educacao$/)
 		await expect(
-			page.getByRole('heading', { name: 'Dica de Amigo', level: 1 }),
+			page.getByRole('heading', { name: 'Dica do Amigo', level: 1 }),
 		).toBeVisible()
 	})
 })

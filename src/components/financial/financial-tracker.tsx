@@ -75,7 +75,8 @@ export function FinancialTracker(props: FinancialTrackerProps) {
 			</button>
 
 			<Dialog modal open={isOpen} onOpenChange={(open) => setIsOpen(open)}>
-				<DialogContent>
+				{/* capped to the visible viewport and scrollable, so Salvar is always reachable */}
+				<DialogContent className="max-h-[calc(100dvh-2rem)] overflow-y-auto">
 					<DialogHeader className="sr-only">
 						<DialogTitle>Adicionar lançamento</DialogTitle>
 						<DialogDescription>Adicione os dados do novo lançamento</DialogDescription>

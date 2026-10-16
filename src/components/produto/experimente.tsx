@@ -28,7 +28,7 @@ const NIVEIS: { level: FlagLevel; chip: string; faixa: string; texto: string }[]
 		level: 'vermelha',
 		chip: 'no vermelho',
 		faixa: 'acima de 100%',
-		texto: 'Passou do plano. Você vê na hora, não no fim do mês.',
+		texto: 'Gastou mais do que devia na categoria. Você fica sabendo na hora e não no fim do mês.',
 	},
 ]
 
@@ -126,14 +126,16 @@ export function Experimente() {
 			<div className="flex flex-col justify-between gap-6 bg-card px-5 py-5 md:px-7 md:py-6">
 				<div>
 					<label htmlFor={id} className="text-lg font-bold leading-snug text-foreground">
-						Quanto você gastou com lazer este mês?
+						Quanto você gastou com diversão este mês?
 					</label>
 					<p className="mt-1 text-sm text-muted-foreground">
-						Arraste. Com uma renda de {formatCurrency(4800)}, o plano reserva{' '}
+						Veja como funciona. Por exemplo, se a renda for {formatCurrency(4800)}, o gasto com
+						Diversão deveria ser{' '}
 						<span className="tabular font-semibold text-foreground">
 							{formatCurrency(reading.target)}
-						</span>{' '}
-						para o lazer.
+						</span>
+						. O Amigo do Bolso vai te avisando até onde você pode ir, para não gastar além do
+						que pode.
 					</p>
 				</div>
 
@@ -143,7 +145,7 @@ export function Experimente() {
 							<span className={cn('flex h-9 w-9 items-center justify-center border bg-card', s.border, s.text)}>
 								{reading.icon('w-[18px] h-[18px]')}
 							</span>
-							<span className="notice-label !text-xs text-foreground">Lazer</span>
+							<span className="notice-label !text-xs text-foreground">Diversão</span>
 						</span>
 						<span key={reading.flag.level} className="tag-pop inline-flex">
 							<BandeiraTag flag={reading.flag} />

@@ -1,6 +1,6 @@
 # Testes e2e (Playwright)
 
-Cobrem o fluxo de **Dica de Amigo** (visão geral, série, artigo, marcar como lido), a navegação
+Cobrem o fluxo de **Dica do Amigo** (visão geral, série, artigo, marcar como lido), a navegação
 (barra inferior no mobile, menu do topo no desktop), o acesso sem login e o **guia de instalação
 no iOS** (Safari e Chrome).
 

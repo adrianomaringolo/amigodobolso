@@ -11,9 +11,9 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	AlertDialogTrigger,
+	toast,
 } from 'buildgrid-ui'
 import { Trash2 } from 'lucide-react'
-import { toast } from 'sonner'
 import { LoadButton } from '../forms/load-button'
 
 type TransactionItemRemoveProps = {

@@ -9,7 +9,7 @@ const TABS = [
 	{ icon: LayoutGrid, label: 'Início', href: '/inicio' },
 	{ icon: ScrollText, label: 'Lançamentos', href: '/lancamentos' },
 	{ icon: ChartPie, label: 'Relatórios', href: '/relatorios' },
-	{ icon: GraduationCap, label: 'Dica de Amigo', href: '/educacao' },
+	{ icon: GraduationCap, label: 'Dica do Amigo', href: '/educacao' },
 ]
 
 /** Fixed bottom bar for phones — the daily add-entry loop always one thumb away. */

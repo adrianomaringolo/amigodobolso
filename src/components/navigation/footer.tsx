@@ -32,9 +32,6 @@ export function FooterComponent() {
 					>
 						Política de privacidade
 					</Link>
-					<Link href="/ajuda" className="hover:text-foreground hover:underline">
-						Ajuda
-					</Link>
 				</nav>
 			</div>
 		</footer>

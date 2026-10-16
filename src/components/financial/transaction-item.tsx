@@ -11,10 +11,10 @@ import {
 	DialogFooter,
 	DialogHeader,
 	DialogTitle,
+	toast,
 } from 'buildgrid-ui'
-import { BadgeAlert, BadgeCheck, Pencil, Repeat2 } from 'lucide-react'
+import { CircleCheck, Pencil, Repeat2 } from 'lucide-react'
 import { useState } from 'react'
-import { toast } from 'sonner'
 import { TooltipMessage } from '../helpers/tooltip-message'
 import { AmountValue } from './amount-value'
 import { TransactionTypes } from './financial.types'
@@ -41,9 +41,20 @@ export const TransactionItem = (props: TransactionItemProps) => {
 		monthYear: getMonthYear(transaction.date),
 	})
 
+	// The icon alone is ambiguous on touch (no hover tooltip), so the toast says
+	// exactly what changed and offers an undo.
 	const handleComplete = async () => {
-		await updateEntryMutation.mutateAsync({ ...transaction, isCompleted: !isCompleted })
-		toast.success('Lançamento atualizado')
+		const nowCompleted = !isCompleted
+		await updateEntryMutation.mutateAsync({ ...transaction, isCompleted: nowCompleted })
+		const kind = amount > 0 ? 'Receita' : 'Despesa'
+		const done = amount > 0 ? 'marcada como recebida' : 'marcada como paga'
+		toast.success(`${kind} ${nowCompleted ? done : 'voltou para pendente'}`, {
+			description,
+			action: {
+				label: 'Desfazer',
+				onClick: () => updateEntryMutation.mutate({ ...transaction, isCompleted }),
+			},
+		})
 	}
 
 	return (
@@ -78,14 +89,17 @@ export const TransactionItem = (props: TransactionItemProps) => {
 					onClick={handleComplete}
 					className={cn(
 						'shrink-0 rounded-sm p-1 transition-colors',
-						isCompleted ? 'text-flag-blue' : 'text-muted-foreground hover:text-foreground',
+						isCompleted
+							? 'text-flag-blue'
+							: 'text-muted-foreground hover:text-foreground',
 					)}
 					aria-label={isCompleted ? 'Efetivado' : 'Marcar como pago'}
 				>
+					{/* paid: filled check · pending: outline check */}
 					{isCompleted ? (
-						<BadgeCheck className="h-5 w-5" />
+						<CircleCheck className="h-6 w-6 fill-flag-blue text-card" />
 					) : (
-						<BadgeAlert className="h-5 w-5" />
+						<CircleCheck className="h-6 w-6" />
 					)}
 				</button>
 			</TooltipMessage>
@@ -97,15 +111,12 @@ export const TransactionItem = (props: TransactionItemProps) => {
 						<DialogDescription>{formatDateAndWeekdayAndYear(date)}</DialogDescription>
 					</DialogHeader>
 					<div className="space-y-4 py-2">
-						<AmountValue
-							value={amount}
-							className="tabular text-2xl font-bold"
-							signed
-						/>
+						<AmountValue value={amount} className="tabular text-2xl font-bold" signed />
 						{times && parseInt(times) > 1 && (
 							<p className="flex items-center gap-1.5 text-sm text-muted-foreground">
 								<Repeat2 className="h-4 w-4" />
-								Parcelado em {times}x de <AmountValue value={amount} className="tabular" />
+								Parcelado em {times}x de{' '}
+								<AmountValue value={amount} className="tabular" />
 							</p>
 						)}
 						<div className="flex items-center gap-3 border-t border-border pt-4">
@@ -137,7 +148,7 @@ export const TransactionItem = (props: TransactionItemProps) => {
 			</Dialog>
 
 			<Dialog modal open={isEditing} onOpenChange={setIsEditing}>
-				<DialogContent>
+				<DialogContent className="max-h-[calc(100dvh-2rem)] overflow-y-auto">
 					<DialogHeader className="sr-only">
 						<DialogTitle>Editar lançamento</DialogTitle>
 						<DialogDescription>Edite os dados do lançamento</DialogDescription>

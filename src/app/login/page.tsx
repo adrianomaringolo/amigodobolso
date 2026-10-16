@@ -12,9 +12,9 @@ import { useRouter } from 'next/navigation'
 import { FormEvent, Suspense, useState } from 'react'
 
 const SAMPLE = [
-	{ label: 'Necessidades essenciais', used: 1980, target: 2475 },
-	{ label: 'Lazer', used: 520, target: 450 },
-	{ label: 'Tranquilidade financeira', used: 300, target: 450 },
+	{ label: 'Necessidades Essenciais', used: 1980, target: 2475 },
+	{ label: 'Tranquilidade Financeira', used: 300, target: 450 },
+	{ label: 'Diversão', used: 520, target: 450 },
 ]
 
 export default function Login() {
@@ -52,9 +52,9 @@ export default function Login() {
 					<Image
 						src="/logo-letter-white.png"
 						alt="Amigo do Bolso"
-						width={500}
-						height={101}
-						className="h-9 w-auto shrink-0 self-start md:h-10"
+						width={529}
+						height={128}
+						className="h-[2.875rem] w-auto shrink-0 self-start md:h-[3.125rem]"
 						priority
 					/>
 

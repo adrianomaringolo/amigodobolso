@@ -5,6 +5,14 @@ import { ArrowLeft, ArrowRight, Clock } from 'lucide-react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
+type ArtigoParams = { params: Promise<{ serie: string; artigo: string }> }
+
+export async function generateMetadata({ params }: ArtigoParams) {
+	const { serie, artigo } = await params
+	const found = getArticle(serie, artigo)
+	return { title: found ? `${found.article.title} · Dica do Amigo` : 'Dica do Amigo' }
+}
+
 export default async function ArtigoPage({
 	params,
 }: {

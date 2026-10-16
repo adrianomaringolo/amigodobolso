@@ -5,12 +5,20 @@ import { useState } from 'react'
 import { YearBarChart } from './year-bar-chart'
 
 export const AnnualChart = () => {
-	const { data: entries } = useGetMonthlyEntrySums()
+	const { data: entries, isLoading, isError } = useGetMonthlyEntrySums()
 
 	const [year, setYear] = useState(new Date().getFullYear())
 
-	if (!entries) {
-		return null
+	if (isLoading) {
+		return <p className="notice-label">Carregando…</p>
+	}
+
+	if (isError || !entries) {
+		return (
+			<p className="border border-dashed border-border px-4 py-8 text-center text-sm text-muted-foreground">
+				Não foi possível carregar o resumo anual. Tente novamente em instantes.
+			</p>
+		)
 	}
 
 	return (

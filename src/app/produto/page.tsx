@@ -18,7 +18,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-	title: { absolute: `${SITE_NAME} — pra onde foi o seu dinheiro este mês?` },
+	title: { absolute: `${SITE_NAME} — para onde vai seu dinheiro todo mês?` },
 	description:
 		'Lance o que entra e o que sai. Cada categoria do seu mês hasteia uma bandeira azul, amarela ou vermelha, seguindo o método Dolfyn. Grátis, no celular.',
 	alternates: { canonical: '/produto' },
@@ -42,16 +42,16 @@ function CtaPrincipal({ className, children }: { className?: string; children: R
 }
 
 const LANCAMENTOS = [
-	{ desc: 'Mercado do mês', cat: 'Necessidades essenciais', valor: '− R$ 612,40', status: 'pago' },
+	{ desc: 'Mercado do mês', cat: 'Necessidades Essenciais', valor: '− R$ 612,40', status: 'pago' },
 	{ desc: 'Salário', cat: 'Receita', valor: '+ R$ 4.800,00', status: 'pago', entrada: true },
-	{ desc: 'Show no sábado', cat: 'Lazer', valor: '− R$ 180,00', status: 'pago' },
-	{ desc: 'Curso de inglês · 3/10', cat: 'Desenvolvimento pessoal', valor: '− R$ 150,00', status: 'pendente' },
+	{ desc: 'Show no sábado', cat: 'Diversão', valor: '− R$ 180,00', status: 'pago' },
+	{ desc: 'Curso de inglês · 3/10', cat: 'Desenvolvimento Pessoal', valor: '− R$ 150,00', status: 'pendente' },
 ]
 
 const RECURSOS = [
 	{ icon: CalendarClock, texto: 'Pago ou pendente, parcelas e etiquetas em cada lançamento.' },
 	{ icon: ChartColumn, texto: 'Relatórios do mês e do ano, por categoria.' },
-	{ icon: GraduationCap, texto: 'Dica de Amigo: seu espaço para educação financeira.' },
+	{ icon: GraduationCap, texto: 'Dica do Amigo: seu espaço para educação financeira.' },
 	{ icon: Smartphone, texto: 'Instala na tela do celular. Entre com e-mail ou Google.' },
 ]
 
@@ -76,27 +76,27 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
 			{/* masthead + hero share the brand-blue field */}
 			<div className="bg-primary text-primary-foreground">
-				<header className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-4 md:px-6">
+				<header className="mx-auto flex h-[4.5rem] w-full max-w-6xl items-center justify-between gap-4 px-4 md:h-20 md:px-6">
 					<Link href="/produto" aria-label={SITE_NAME}>
 						<Image
 							src="/logo-letter-white.png"
 							alt={SITE_NAME}
-							width={500}
-							height={101}
-							className="h-7 w-auto"
+							width={529}
+							height={128}
+							className="h-12 w-auto md:h-14"
 							priority
 						/>
 					</Link>
 					<nav className="flex items-center gap-1 sm:gap-3">
 						<Link
 							href="/login"
-							className="px-3 py-2 text-sm font-semibold text-primary-foreground/85 underline-offset-4 hover:text-primary-foreground hover:underline"
+							className="px-3 py-2.5 text-sm font-semibold text-primary-foreground/85 md:text-base underline-offset-4 hover:text-primary-foreground hover:underline"
 						>
 							Entrar
 						</Link>
 						<Link
 							href="/register"
-							className="rounded-lg bg-accent px-3.5 py-2 text-sm font-bold text-foreground transition-colors hover:bg-accent/90"
+							className="rounded-lg bg-accent px-4 py-2.5 text-sm font-bold md:text-base text-foreground transition-colors hover:bg-accent/90"
 						>
 							Criar conta
 						</Link>
@@ -107,14 +107,15 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 				<section className="mx-auto grid w-full max-w-6xl gap-10 px-4 pt-10 md:px-6 md:pt-16 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:pt-20">
 					<div className="lg:pb-24">
 						<h1 className="max-w-[13ch] text-[2.75rem] font-extrabold leading-[0.98] tracking-[-0.035em] sm:text-6xl lg:text-[4.75rem]">
-							Pra onde foi o seu dinheiro este mês?
+							Para onde vai seu dinheiro todo mês?
 						</h1>
 						<p className="mt-6 max-w-[34rem] text-lg leading-relaxed text-primary-foreground/85">
-							O Amigo do Bolso responde como a conta de luz: cada categoria do seu mês hasteia
-							uma bandeira <strong className="text-primary-foreground">azul</strong>,{' '}
+							O Amigo do Bolso responde como na conta de luz: cada categoria tem uma bandeira:{' '}
+							<strong className="text-primary-foreground">azul</strong>,{' '}
 							<strong className="text-primary-foreground">amarela</strong> ou{' '}
-							<strong className="text-primary-foreground">vermelha</strong>. Você vê na hora se
-							está dentro do plano. Sem planilha.
+							<strong className="text-primary-foreground">vermelha</strong>. Assim, você vê de
+							forma simples e na hora se está gastando mais do que pode. Sem planilha, sem
+							complicação.
 						</p>
 						<div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-5">
 							<CtaPrincipal>Criar minha conta grátis</CtaPrincipal>
@@ -150,11 +151,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 				<section className="mx-auto w-full max-w-6xl px-4 pt-52 sm:pt-60 md:px-6 lg:pt-48">
 					<div className="reveal max-w-2xl">
 						<h2 className="text-3xl font-extrabold leading-tight tracking-[-0.025em] md:text-[2.5rem]">
-							Três bandeiras. Você já sabe ler.
+							Três bandeiras. Simples e direto.
 						</h2>
 						<p className="mt-3 text-base leading-relaxed text-muted-foreground">
-							É o mesmo sinal da conta de luz, aplicado a cada parte do seu dinheiro. A bandeira muda
-							conforme você gasta, no meio do mês, enquanto ainda dá para ajustar.
+							Cada categoria, uma bandeira, que vai mudando conforme você gasta. Assim, fica fácil
+							ver onde precisa ajustar, para seguir com tranquilidade financeira.
 						</p>
 					</div>
 					<div className="reveal mt-8">
@@ -170,20 +171,21 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 								Um plano pronto, não uma planilha.
 							</h2>
 							<p className="mt-4 text-base leading-relaxed text-muted-foreground">
-								O Amigo do Bolso segue o{' '}
+								O Amigo do Bolso segue a{' '}
 								<a
 									href={DOLFYN}
 									target="_blank"
 									rel="noopener noreferrer"
 									className="font-semibold text-foreground underline decoration-accent decoration-2 underline-offset-4 hover:decoration-foreground"
 								>
-									método Dolfyn
+									metodologia Dolfyn
 								</a>
-								: a sua renda se divide em seis partes, cada uma com um alvo em porcentagem. Quando a
-								renda muda, o plano se ajusta sozinho.
+								: a sua renda é dividida em seis categorias, cada uma com um alvo em porcentagem.
+								Quando a renda muda, o plano se ajusta sozinho.
 							</p>
 							<p className="mt-4 text-base leading-relaxed text-muted-foreground">
-								Você não precisa inventar categorias nem decidir valores. Só lançar.
+								Você não precisa inventar categorias nem decidir valores. Apenas lançar e o seu Amigo do
+								Bolso faz o resto.
 							</p>
 						</div>
 						<div className="reveal">
@@ -238,7 +240,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
 						<div className="reveal order-1 lg:order-2">
 							<h2 className="text-3xl font-extrabold leading-tight tracking-[-0.025em] md:text-[2.5rem]">
-								Você lança. A conta fica pronta.
+								Você lança. O Amigo faz o resto.
 							</h2>
 							<p className="mt-4 text-base leading-relaxed text-muted-foreground">
 								Anote o que entra e o que sai, na categoria certa. O Amigo do Bolso soma, compara com

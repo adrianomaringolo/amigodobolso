@@ -14,6 +14,24 @@ export function Markdown({ content }: { content: string }) {
 						</h2>
 					),
 					p: ({ children }) => <p className="mb-4">{children}</p>,
+					// Tutorial screenshots: a phone-width frame with the alt text as caption.
+					// Spans (not figure) because markdown wraps images in a <p>.
+					img: ({ src, alt }) => (
+						<span className="my-5 block">
+							{/* eslint-disable-next-line @next/next/no-img-element */}
+							<img
+								src={typeof src === 'string' ? src : undefined}
+								alt={alt ?? ''}
+								loading="lazy"
+								className="mx-auto block w-full max-w-[300px] border border-border shadow-bill"
+							/>
+							{alt && (
+								<span className="mx-auto mt-2 block max-w-[300px] text-center text-xs text-muted-foreground">
+									{alt}
+								</span>
+							)}
+						</span>
+					),
 					ul: ({ children }) => (
 						<ul className="mb-4 ml-5 list-disc space-y-1.5">{children}</ul>
 					),

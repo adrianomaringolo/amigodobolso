@@ -11,6 +11,7 @@
 		"format": "pretty-quick && npm run lint",
 		"test:e2e": "playwright test",
 		"test:e2e:ios": "E2E_WEBKIT=1 playwright test --project=mobile-safari",
+		"tutorials:capture": "node scripts/tutorials/capture.mjs",
 		"prepare": "husky"
 	},
 	"dependencies": {
