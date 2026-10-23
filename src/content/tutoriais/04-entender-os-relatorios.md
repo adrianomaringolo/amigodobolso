@@ -25,7 +25,7 @@ Embaixo de cada medidor está quanto ainda resta e, logo abaixo, quanto foi gast
 
 ## Quanto falta em cada categoria
 
-A tabela compara o **real** (o que você gastou, em % da renda) com o **ideal** (o alvo do método). A coluna **A completar** diz quanto ainda cabe na categoria este mês. Valores em vermelho, com +, mostram quanto passou do alvo.
+A tabela compara o **real** (o que você gastou, em % da renda) com o **ideal** (o alvo do método). A coluna **A completar** diz quanto ainda cabe na categoria este mês. Valores negativos, em vermelho, mostram quanto passou do alvo.
 
 ![A tabela real / ideal / a completar: Compras de Longo Prazo passou R$ 110,00](/tutoriais/entender-os-relatorios/04-quanto-falta.png)
 

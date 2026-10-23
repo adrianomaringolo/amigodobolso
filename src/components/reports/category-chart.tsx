@@ -135,11 +135,7 @@ export const CategoryChart = ({ entries }: CategoryChartProps) => {
 									left < 0 ? 'text-expense' : 'text-foreground',
 								)}
 							>
-								{income <= 0
-									? '—'
-									: left < 0
-										? `+${formatCurrency(-left)}`
-										: formatCurrency(left)}
+								{income <= 0 ? '—' : formatCurrency(left)}
 							</span>
 						</li>
 					)
