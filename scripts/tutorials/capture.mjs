@@ -110,11 +110,17 @@ function seedEntries() {
 		entry(day(0, 8), -120, 'Doação para o abrigo', 'charity'),
 		entry(day(0, 9), -210, 'Cinema e pizza', 'leisure', { tags: ['família'] }),
 		entry(day(0, 12), -260, 'Show no sábado', 'leisure'),
-		entry(day(0, 10), -350, 'Notebook (2/6)', 'long-term', { times: '6' }),
+		entry(day(0, 10), -350, 'Notebook (2/6)', 'long-term', {
+			times: '6',
+			installment_group: '00000000-0000-4000-8000-0000000000b1',
+			installment_number: 2,
+		}),
 		entry(day(0, 11), -300, 'Passagens de fim de ano', 'long-term', { tags: ['viagem'] }),
 		entry(day(0, 25), -150, 'Curso de inglês (3/10)', 'personal-growth', {
 			times: '10',
 			is_completed: false,
+			installment_group: '00000000-0000-4000-8000-0000000000b2',
+			installment_number: 3,
 		}),
 	]
 	// five previous months, for the category history and the annual chart
@@ -379,6 +385,12 @@ const TUTORIALS = {
 		await page.getByText('Curso de inglês (3/10)').click()
 		await dialog(page).waitFor()
 		await shot('detalhe-parcela')
+
+		await dialog(page).getByRole('button', { name: 'Editar' }).click()
+		await page.getByRole('button', { name: 'Salvar' }).click()
+		const scope = page.getByRole('alertdialog')
+		await scope.getByText('Alterar quais parcelas?').waitFor()
+		await shot('editar-quais-parcelas')
 	},
 
 	async 'etiquetas-e-filtros'(page, shot) {
@@ -424,10 +436,7 @@ const TUTORIALS = {
 		await scrollTo(page, page.getByText('Gasto por categoria'), 80)
 		await shot('gasto-por-categoria')
 
-		await scrollTo(page, page.getByText('Distribuição de despesas'), 80)
-		await shot('plano-ideal-e-seu-mes')
-
-		await scrollTo(page, page.getByText('Plano ideal'), -60)
+		await scrollTo(page, page.getByText('Distribuição de despesas'), -60)
 		await scrollTo(page, page.locator('li', { hasText: 'R$ 2.300,00 de' }), 110)
 		await shot('medidores')
 

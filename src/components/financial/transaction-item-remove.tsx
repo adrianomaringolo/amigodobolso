@@ -1,6 +1,8 @@
 import { useUser } from '@/lib/hooks/use-user'
 import { FinancialEntry } from '@/lib/types/Entry.type'
+import { hasFollowingInstallments } from '@/lib/utils/installments'
 import { useDeleteEntry } from '@/services/entries/useDeleteEntry'
+import { useDeleteFollowingInstallments } from '@/services/entries/useDeleteFollowingInstallments'
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -30,6 +32,11 @@ export const TransactionItemRemove = (props: TransactionItemRemoveProps) => {
 		userId: user?.id as string,
 		monthYear,
 	})
+	const deleteFollowingMutation = useDeleteFollowingInstallments({
+		userId: user?.id as string,
+	})
+
+	const hasFollowing = hasFollowingInstallments(transaction)
 
 	const onRemove = () => {
 		deleteMutation.mutateAsync(transaction.id).then(() => {
@@ -37,10 +44,19 @@ export const TransactionItemRemove = (props: TransactionItemRemoveProps) => {
 		})
 	}
 
+	const onRemoveFollowing = () => {
+		deleteFollowingMutation.mutateAsync(transaction).then(() => {
+			toast.success('Parcelas removidas com sucesso')
+		})
+	}
+
 	return (
 		<AlertDialog>
 			<AlertDialogTrigger asChild>
-				<LoadButton variant="destructive" isLoading={deleteMutation.isPending}>
+				<LoadButton
+					variant="destructive"
+					isLoading={deleteMutation.isPending || deleteFollowingMutation.isPending}
+				>
 					<Trash2 className="mr-1.5 h-4 w-4" />
 					Remover
 				</LoadButton>
@@ -49,13 +65,23 @@ export const TransactionItemRemove = (props: TransactionItemRemoveProps) => {
 				<AlertDialogHeader>
 					<AlertDialogTitle>Tem certeza?</AlertDialogTitle>
 					<AlertDialogDescription>
-						Essa ação não pode ser desfeita. Você tem certeza que deseja excluir esse
-						lançamento?
+						{hasFollowing
+							? `Essa ação não pode ser desfeita. Esta é a parcela ${transaction.installmentNumber} de ${transaction.times}: excluir só ela ou ela e as seguintes?`
+							: 'Essa ação não pode ser desfeita. Você tem certeza que deseja excluir esse lançamento?'}
 					</AlertDialogDescription>
 				</AlertDialogHeader>
-				<AlertDialogFooter>
+				<AlertDialogFooter className="gap-2">
 					<AlertDialogCancel>Cancelar</AlertDialogCancel>
-					<AlertDialogAction onClick={onRemove}>Excluir</AlertDialogAction>
+					{hasFollowing ? (
+						<>
+							<AlertDialogAction onClick={onRemove}>Só esta</AlertDialogAction>
+							<AlertDialogAction onClick={onRemoveFollowing}>
+								Esta e as seguintes
+							</AlertDialogAction>
+						</>
+					) : (
+						<AlertDialogAction onClick={onRemove}>Excluir</AlertDialogAction>
+					)}
 				</AlertDialogFooter>
 			</AlertDialogContent>
 		</AlertDialog>

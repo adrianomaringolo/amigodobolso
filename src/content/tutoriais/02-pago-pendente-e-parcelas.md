@@ -48,4 +48,8 @@ Toque em qualquer lançamento para ver os detalhes: data, valor, categoria e, se
 
 ![Os detalhes da parcela 3 de 10 do curso de inglês](/tutoriais/pago-pendente-e-parcelas/05-detalhe-parcela.png)
 
+Ao editar ou remover uma parcela, o app pergunta se a mudança vale **só para esta** ou para **esta e as seguintes**. Lançou a compra no mês errado? Edite a primeira parcela, corrija a data e escolha "Esta e as seguintes": as outras parcelas acompanham, uma por mês.
+
+![A pergunta "Alterar quais parcelas?", com as opções Esta e as seguintes, Só esta e Cancelar](/tutoriais/pago-pendente-e-parcelas/06-editar-quais-parcelas.png)
+
 > Use os pendentes como lembrete: no começo do mês, lance as contas fixas sem marcar como pagas e vá marcando conforme paga.

@@ -9,6 +9,10 @@ export interface FinancialEntry {
 	createdAt: string
 	category: string
 	tags?: string[]
+	/** Same uuid on every installment of one split purchase. */
+	installmentGroup?: string | null
+	/** 1-based position inside `installmentGroup`. */
+	installmentNumber?: number | null
 }
 
 export interface UserTag {

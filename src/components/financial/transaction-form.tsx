@@ -17,10 +17,25 @@ import { useUser } from '@/lib/hooks/use-user'
 import { FinancialEntry } from '@/lib/types/Entry.type'
 import { formatCurrency } from '@/lib/utils'
 import { parseLocalDate, toISODate, todayISODate } from '@/lib/utils/date'
+import { hasFollowingInstallments } from '@/lib/utils/installments'
 import { useAddEntry } from '@/services/entries/useAddEntry'
 import { useGetTags } from '@/services/entries/useGetTags'
 import { useUpdateEntry } from '@/services/entries/useUpdateEntry'
-import { Switch, ToggleGroup, ToggleGroupItem, toast } from 'buildgrid-ui'
+import { useUpdateFollowingInstallments } from '@/services/entries/useUpdateFollowingInstallments'
+import {
+	AlertDialog,
+	AlertDialogCancel,
+	AlertDialogContent,
+	AlertDialogDescription,
+	AlertDialogFooter,
+	AlertDialogHeader,
+	AlertDialogTitle,
+	Button,
+	Switch,
+	ToggleGroup,
+	ToggleGroupItem,
+	toast,
+} from 'buildgrid-ui'
 import { addMonths } from 'date-fns'
 import { CurrencyField } from '../forms/currency-field'
 import { DateFormField } from '../forms/date-form-field'
@@ -66,6 +81,12 @@ export const TransactionForm = (props: TransactionFormProps) => {
 
 	const addEntryMutation = useAddEntry({ userId: user?.id as string, monthYear })
 	const editUpdateMutation = useUpdateEntry({ userId: user?.id as string, monthYear })
+	const updateFollowingMutation = useUpdateFollowingInstallments({
+		userId: user?.id as string,
+	})
+
+	// edit of an installment waiting for "only this one" / "this and the following"
+	const [pendingEdit, setPendingEdit] = useState<FinancialEntry | null>(null)
 
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
@@ -106,17 +127,40 @@ export const TransactionForm = (props: TransactionFormProps) => {
 		}
 
 		if (transactionToEdit) {
-			await editUpdateMutation.mutateAsync({ ...transactionToEdit, ...newTransaction })
-			toast.success('Lançamento atualizado com sucesso')
-			handleClose()
-			form.reset()
+			const edited: FinancialEntry = {
+				...transactionToEdit,
+				...newTransaction,
+				createdAt: transactionToEdit.createdAt,
+			}
+			if (hasFollowingInstallments(transactionToEdit)) {
+				setPendingEdit(edited)
+			} else {
+				await saveEdit(edited, false)
+			}
 		} else {
 			handleAddingTimes(newTransaction)
 		}
 	}
 
+	const saveEdit = async (entry: FinancialEntry, includeFollowing: boolean) => {
+		if (includeFollowing) {
+			await updateFollowingMutation.mutateAsync(entry)
+		} else {
+			await editUpdateMutation.mutateAsync(entry)
+		}
+		toast.success(
+			includeFollowing
+				? 'Parcelas atualizadas com sucesso'
+				: 'Lançamento atualizado com sucesso',
+		)
+		setPendingEdit(null)
+		handleClose()
+		form.reset()
+	}
+
 	const handleAddingTimes = async (transaction: TransactionFormValues) => {
 		const times = Math.max(1, parseInt(transaction.times ?? '1'))
+		const installmentGroup = times > 1 ? crypto.randomUUID() : null
 
 		for (let i = 0; i < times; i++) {
 			await addEntryMutation.mutate({
@@ -126,6 +170,8 @@ export const TransactionForm = (props: TransactionFormProps) => {
 					times > 1
 						? `${transaction.description} (${i + 1}/${times})`
 						: transaction.description,
+				installmentGroup,
+				installmentNumber: times > 1 ? i + 1 : null,
 			})
 		}
 
@@ -314,13 +360,50 @@ export const TransactionForm = (props: TransactionFormProps) => {
 									? 'bg-expense/90 hover:bg-expense'
 									: 'bg-income/90 hover:bg-income'
 							}`}
-							isLoading={addEntryMutation.isPending || editUpdateMutation.isPending}
+							isLoading={
+								addEntryMutation.isPending ||
+								editUpdateMutation.isPending ||
+								updateFollowingMutation.isPending
+							}
 						>
 							Salvar
 						</LoadButton>
 					</div>
 				</form>
 			</Form>
+
+			<AlertDialog
+				open={!!pendingEdit}
+				onOpenChange={(open) => !open && setPendingEdit(null)}
+			>
+				<AlertDialogContent>
+					<AlertDialogHeader>
+						<AlertDialogTitle>Alterar quais parcelas?</AlertDialogTitle>
+						<AlertDialogDescription>
+							Esta é a parcela {transactionToEdit?.installmentNumber} de{' '}
+							{transactionToEdit?.times}. Se mudar a data, as seguintes acompanham, uma
+							por mês.
+						</AlertDialogDescription>
+					</AlertDialogHeader>
+					<AlertDialogFooter className="gap-2">
+						<AlertDialogCancel>Cancelar</AlertDialogCancel>
+						<Button
+							variant="outline"
+							disabled={editUpdateMutation.isPending || updateFollowingMutation.isPending}
+							onClick={() => pendingEdit && saveEdit(pendingEdit, false)}
+						>
+							Só esta
+						</Button>
+						<LoadButton
+							isLoading={updateFollowingMutation.isPending}
+							disabled={editUpdateMutation.isPending}
+							onClick={() => pendingEdit && saveEdit(pendingEdit, true)}
+						>
+							Esta e as seguintes
+						</LoadButton>
+					</AlertDialogFooter>
+				</AlertDialogContent>
+			</AlertDialog>
 		</div>
 	)
 }
