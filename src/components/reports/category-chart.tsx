@@ -12,7 +12,7 @@ type CategoryChartProps = {
 }
 
 // The category hues in financial.types are tuned for flags, and two of them are
-// near-identical blues — a pie needs every slice tellable apart.
+// near-identical blues — the legend needs every category tellable apart.
 const SLICE_COLORS: Partial<Record<CategoryKey, string>> = {
 	essential: 'hsl(209 54% 30%)',
 	'financial-security': 'hsl(174 55% 32%)',
@@ -22,14 +22,11 @@ const SLICE_COLORS: Partial<Record<CategoryKey, string>> = {
 	'personal-growth': 'hsl(209 22% 60%)',
 }
 
-type Slice = { key: string; color: string; pct: number }
-
 /**
- * The plan next to the month — two pies with the same slice order and colours:
- * the Dolfyn split (ideal) and how spending actually split. The legend carries
- * real % vs. ideal % and how much is left in each category. Both are shares
- * of the month's income, so they compare directly; the grey left in "Seu mês"
- * is income not yet spent. With no income lançada, total spending is the base.
+ * The plan next to the month: a fuel gauge per category, then a legend with
+ * real % vs. ideal % and how much is left in each one. Both percentages are
+ * shares of the month's income, so they compare directly. With no income
+ * lançada, total spending is the base.
  */
 export const CategoryChart = ({ entries }: CategoryChartProps) => {
 	const { income, expenses, categories } = computeReadings(entries)
@@ -41,36 +38,14 @@ export const CategoryChart = ({ entries }: CategoryChartProps) => {
 		realPct: base > 0 ? (c.used / base) * 100 : 0,
 	}))
 
-	// Spending above income would overflow the circle — scale the slices to fit.
-	const realTotal = rows.reduce((acc, r) => acc + r.realPct, 0)
-	const fit = realTotal > 100 ? 100 / realTotal : 1
-
-	const ideal: Slice[] = rows.map((r) => ({
-		key: r.key,
-		color: r.sliceColor,
-		pct: r.targetPct,
-	}))
-	const real: Slice[] = rows.map((r) => ({
-		key: r.key,
-		color: r.sliceColor,
-		pct: r.realPct * fit,
-	}))
-
 	return (
 		<Painel title="Distribuição de despesas">
-			<div className="grid grid-cols-2 gap-4 sm:gap-8">
-				<Pie title="Plano ideal" slices={ideal} />
-				<Pie
-					title="Seu mês"
-					slices={real}
-					empty={expenses === 0 ? 'Nenhuma despesa lançada' : undefined}
-				/>
-			</div>
-
-			{/* criticality per category: needle = spent as a % of that category's target */}
-			<ul className="mt-6 grid grid-cols-2 gap-px border border-border bg-border sm:grid-cols-3">
+			{/* a fuel tank per category: needle = what is left of that category's target */}
+			<ul className="grid grid-cols-2 gap-px border border-border bg-border sm:grid-cols-3">
 				{rows.map((r) => {
-					const pct = income > 0 && r.target > 0 ? (r.used / r.target) * 100 : undefined
+					const hasTarget = income > 0 && r.target > 0
+					const left = Math.max(r.target - r.used, 0)
+					const over = hasTarget && r.used > r.target
 					return (
 						<li
 							key={r.key}
@@ -83,25 +58,44 @@ export const CategoryChart = ({ entries }: CategoryChartProps) => {
 								/>
 								{r.label}
 							</span>
-							<Gauge pct={pct} className="max-w-[120px]" />
+							<Gauge
+								pct={hasTarget ? (left / r.target) * 100 : undefined}
+								className="max-w-[120px]"
+							/>
 							<span
 								data-reading
 								className={cn(
 									'tabular -mt-0.5 text-base font-bold',
-									pct === undefined
-										? 'text-muted-foreground'
-										: FLAG_STYLES[r.flag.level].text,
+									hasTarget ? FLAG_STYLES[r.flag.level].text : 'text-muted-foreground',
 								)}
 							>
-								{pct === undefined ? '—' : `${Math.round(pct)}%`}
+								{hasTarget ? (
+									<>
+										<span className="text-[0.6875rem] font-normal text-muted-foreground">
+											restam{' '}
+										</span>
+										{formatCurrency(left)}
+									</>
+								) : (
+									'—'
+								)}
 							</span>
 							<span className="tabular text-[0.6875rem] text-muted-foreground">
-								{pct === undefined
-									? 'sem alvo'
-									: `${formatCurrency(r.used)} de ${formatCurrency(r.target)}`}
+								{hasTarget ? (
+									<>
+										<span className={cn(over && 'font-semibold text-expense')}>
+											{formatCurrency(r.used)}
+										</span>{' '}
+										de {formatCurrency(r.target)}
+									</>
+								) : (
+									'sem alvo'
+								)}
 							</span>
 							<span className="sr-only">
-								{pct === undefined ? '' : `${r.flag.chip}, ${Math.round(pct)}% do alvo`}
+								{hasTarget
+									? `${r.flag.chip}, restam ${formatCurrency(left)} do alvo`
+									: ''}
 							</span>
 						</li>
 					)
@@ -158,66 +152,10 @@ export const CategoryChart = ({ entries }: CategoryChartProps) => {
 				</p>
 			) : (
 				<p className="mt-3 text-xs text-muted-foreground">
-					Percentuais sobre a receita do mês. Em cinza, o que ainda não foi gasto; valores
-					em vermelho passaram do alvo da categoria.
+					Percentuais sobre a receita do mês. Valores em vermelho passaram do alvo da
+					categoria.
 				</p>
 			)}
 		</Painel>
-	)
-}
-
-/** A pie drawn as dashed strokes on a circle of circumference 100 — one per slice. */
-function Pie({
-	title,
-	slices,
-	empty,
-}: {
-	title: string
-	slices: Slice[]
-	empty?: string
-}) {
-	let offset = 0
-	return (
-		<figure className="flex flex-col items-center gap-2">
-			<svg
-				viewBox="0 0 42 42"
-				className="w-full max-w-[180px]"
-				role="img"
-				aria-label={title}
-			>
-				<circle
-					cx="21"
-					cy="21"
-					r="15.9155"
-					fill="none"
-					stroke="hsl(var(--border))"
-					strokeWidth="10"
-				/>
-				{!empty &&
-					slices
-						.filter((s) => s.pct > 0)
-						.map((s) => {
-							const dash = (
-								<circle
-									key={s.key}
-									cx="21"
-									cy="21"
-									r="15.9155"
-									fill="none"
-									stroke={s.color}
-									strokeWidth="10"
-									strokeDasharray={`${s.pct} ${100 - s.pct}`}
-									strokeDashoffset={25 - offset}
-								/>
-							)
-							offset += s.pct
-							return dash
-						})}
-			</svg>
-			<figcaption className="notice-label text-center !text-xs text-foreground">
-				{title}
-			</figcaption>
-			{empty && <p className="text-center text-xs text-muted-foreground">{empty}</p>}
-		</figure>
 	)
 }

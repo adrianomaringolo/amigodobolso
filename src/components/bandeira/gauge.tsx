@@ -1,19 +1,19 @@
 import { cn } from '@/lib/utils'
 import { useId } from 'react'
 
-/** The dial runs 0–150% of the category target; anything past that pins the needle. */
-const MAX = 150
+/** The dial runs from an empty tank (0%, left) to a full one (100%, right). */
+const MAX = 100
 
-// A horizontal gradient across the dial. Offsets are where each value lands on
-// the arc's x axis (x = cos of its angle), so the pure flag colours sit on the
-// flagFor() thresholds: blue up to ~60%, amber at 85–100%, red from ~120%.
+// A horizontal gradient across the dial, red at "vazio" and blue at "cheio".
+// Offsets are where each value lands on the arc's x axis (x = cos of its angle),
+// so the pure flag colours sit on the flagFor() thresholds read as what is left:
+// red at 0, amber up to 15% left (85% spent), blue from ~40% left.
 const STOPS = [
-	{ offset: 0, color: 'hsl(var(--flag-blue))' },
-	{ offset: 0.345, color: 'hsl(var(--flag-blue))' }, // 60%
-	{ offset: 0.604, color: 'hsl(var(--flag-amber-fill))' }, // 85%
-	{ offset: 0.75, color: 'hsl(var(--flag-amber-fill))' }, // 100%
-	{ offset: 0.905, color: 'hsl(var(--flag-red))' }, // 120%
-	{ offset: 1, color: 'hsl(var(--flag-red))' },
+	{ offset: 0, color: 'hsl(var(--flag-red))' }, // nothing left
+	{ offset: 0.055, color: 'hsl(var(--flag-amber-fill))' }, // 15% left
+	{ offset: 0.12, color: 'hsl(var(--flag-amber-fill))' }, // ~22% left
+	{ offset: 0.345, color: 'hsl(var(--flag-blue))' }, // 40% left
+	{ offset: 1, color: 'hsl(var(--flag-blue))' },
 ]
 
 const CX = 50
@@ -33,9 +33,10 @@ function arc(from: number, to: number) {
 }
 
 /**
- * A criticality dial: a blue → amber → red gradient, the needle at `pct` (spent as
- * a % of the category target). With `pct` undefined (no target yet) the dial
- * is drawn neutral with no needle.
+ * A fuel gauge for a category: the needle starts at "cheio" (right, blue) and
+ * falls toward "vazio" (left, red) as the target gets spent. `pct` is what is
+ * left of the target, in %; an overrun stays pinned at 0. With `pct` undefined
+ * (no target yet) the dial is drawn neutral with no needle.
  */
 export function Gauge({ pct, className }: { pct?: number; className?: string }) {
 	// useId() contains ':' / '«»', which break a url(#…) reference — keep it alphanumeric
