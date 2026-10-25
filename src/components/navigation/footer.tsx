@@ -17,6 +17,18 @@ export function FooterComponent() {
 						>
 							Dolfyn
 						</a>
+					</span>{' '}
+					·{' '}
+					<span className="whitespace-nowrap">
+						desenvolvido por{' '}
+						<a
+							href="https://adrianomaringolo.dev/"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="font-semibold text-foreground hover:underline"
+						>
+							adrianomaringolo.dev
+						</a>
 					</span>
 				</p>
 				<nav className="flex flex-wrap gap-x-4 gap-y-2">

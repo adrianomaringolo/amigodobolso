@@ -1,14 +1,18 @@
 import { FooterComponent } from '@/components/navigation/footer'
 import { ContaExemplo } from '@/components/produto/conta-exemplo'
+import { ComoFunciona, Faq, PERGUNTAS } from '@/components/produto/faq'
 import { Experimente } from '@/components/produto/experimente'
 import { Metodo } from '@/components/produto/metodo'
-import { SITE_NAME } from '@/lib/site'
+import { DOLFYN_INSTAGRAM, DOLFYN_LINKEDIN, DOLFYN_URL, SITE_NAME, SITE_URL } from '@/lib/site'
 import { cn } from '@/lib/utils'
 import {
 	ArrowRight,
 	CalendarClock,
 	ChartColumn,
+	Globe,
 	GraduationCap,
+	Instagram,
+	Linkedin,
 	Scissors,
 	Smartphone,
 	Tags,
@@ -17,14 +21,70 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 
+const TITLE = `${SITE_NAME} — para onde vai seu dinheiro todo mês?`
+const DESCRIPTION =
+	'Controle de gastos pelo celular: lance o que entra e o que sai e veja, em bandeiras azul, amarela ou vermelha, se cada categoria do mês está dentro do plano. Método Dolfyn, grátis.'
+
 export const metadata: Metadata = {
-	title: { absolute: `${SITE_NAME} — para onde vai seu dinheiro todo mês?` },
-	description:
-		'Lance o que entra e o que sai. Cada categoria do seu mês hasteia uma bandeira azul, amarela ou vermelha, seguindo o método Dolfyn. Grátis, no celular.',
+	title: { absolute: TITLE },
+	description: DESCRIPTION,
 	alternates: { canonical: '/produto' },
+	openGraph: {
+		type: 'website',
+		locale: 'pt_BR',
+		url: '/produto',
+		siteName: SITE_NAME,
+		title: TITLE,
+		description: DESCRIPTION,
+	},
+	twitter: {
+		card: 'summary_large_image',
+		title: TITLE,
+		description: DESCRIPTION,
+	},
 }
 
-const DOLFYN = 'https://dolfyn.com.br/'
+const JSON_LD = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': 'WebApplication',
+			'@id': `${SITE_URL}/#app`,
+			name: SITE_NAME,
+			url: `${SITE_URL}/produto`,
+			description: DESCRIPTION,
+			applicationCategory: 'FinanceApplication',
+			operatingSystem: 'Web, Android, iOS',
+			inLanguage: 'pt-BR',
+			offers: { '@type': 'Offer', price: '0', priceCurrency: 'BRL' },
+			publisher: { '@id': `${DOLFYN_URL}#organization` },
+		},
+		{
+			'@type': 'Organization',
+			'@id': `${DOLFYN_URL}#organization`,
+			name: 'Dolfyn',
+			legalName: 'Adriano Maríngolo Gomes Desenvolvimento de Software Ltda.',
+			url: DOLFYN_URL,
+			sameAs: [DOLFYN_URL, DOLFYN_INSTAGRAM, DOLFYN_LINKEDIN],
+			contactPoint: {
+				'@type': 'ContactPoint',
+				email: 'contato@dolfyn.com.br',
+				contactType: 'customer support',
+				availableLanguage: 'pt-BR',
+			},
+		},
+		{
+			'@type': 'FAQPage',
+			mainEntity: PERGUNTAS.map(({ pergunta, resposta }) => ({
+				'@type': 'Question',
+				name: pergunta,
+				acceptedAnswer: { '@type': 'Answer', text: resposta },
+			})),
+		},
+	],
+}
+
+const DOLFYN = DOLFYN_URL
 
 function CtaPrincipal({ className, children }: { className?: string; children: React.ReactNode }) {
 	return (
@@ -48,6 +108,12 @@ const LANCAMENTOS = [
 	{ desc: 'Curso de inglês · 3/10', cat: 'Desenvolvimento Pessoal', valor: '− R$ 150,00', status: 'pendente' },
 ]
 
+const REDES_DOLFYN = [
+	{ icon: Globe, label: 'Site', handle: 'dolfyn.com.br', href: DOLFYN_URL },
+	{ icon: Instagram, label: 'Instagram', handle: '@dolfynoficial', href: DOLFYN_INSTAGRAM },
+	{ icon: Linkedin, label: 'LinkedIn', handle: 'Dolfyn', href: DOLFYN_LINKEDIN },
+]
+
 const RECURSOS = [
 	{ icon: CalendarClock, texto: 'Pago ou pendente, parcelas e etiquetas em cada lançamento.' },
 	{ icon: ChartColumn, texto: 'Relatórios do mês e do ano, por categoria.' },
@@ -59,21 +125,9 @@ export default function ProdutoPage() {
 	return (
 		<div className="flex min-h-dvh flex-col bg-background">
 			<script
-				type="application/impeccable+contract"
-				data-seed="ad0fe9dd"
-				dangerouslySetInnerHTML={{
-					__html: `
-SURFACE CONTRACT · /produto · seed ad0fe9dd · surface round · mode persuade · card "Pra onde foi o dinheiro?" (THE ROLL)
-THESIS: Answer the question every salaried Brazilian asks at month's end with a bill read in seconds; refuses the fintech hero-metric and the feature-card grid.
-OWN-WORLD: the established "A Bandeira" bill world (DESIGN.md): brand-blue field, bill-paper sheets, ink text, one orange action, azul/amarela/vermelha flags, Archivo + Spline Sans Mono, square corners, perforated edges.
-STORY: visitor sees the question, reads a sample month's bill, drags a category to watch its flag change, sets their income against the Dolfyn method, tears off the stub to sign up.
-FIRST VIEWPORT: blue field; left the question at display scale + orange "Criar minha conta grátis"; right a paper bill sheet (month flag + 3 meters) stamped EXEMPLO, overhanging onto paper.
-FORM: structure 5 of 7 (pergunta → resposta), dealt lead. Signature interaction: the lazer slider; motion: meters read in once on load.
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
-`,
-				}}
+				type="application/ld+json"
+				dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD).replace(/</g, '\\u003c') }}
 			/>
-
 			{/* masthead + hero share the brand-blue field */}
 			<div className="bg-primary text-primary-foreground">
 				<header className="mx-auto flex h-[4.5rem] w-full max-w-6xl items-center justify-between gap-4 px-4 md:h-20 md:px-6">
@@ -109,7 +163,11 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 						<h1 className="max-w-[13ch] text-[2.75rem] font-extrabold leading-[0.98] tracking-[-0.035em] sm:text-6xl lg:text-[4.75rem]">
 							Para onde vai seu dinheiro todo mês?
 						</h1>
-						<p className="mt-6 max-w-[34rem] text-lg leading-relaxed text-primary-foreground/85">
+						<p className="mt-6 max-w-[34rem] text-lg font-semibold leading-relaxed text-primary-foreground">
+							O Amigo do Bolso é um aplicativo gratuito de controle de gastos pessoais, para o
+							celular, que mostra com bandeiras se você está dentro do plano do mês.
+						</p>
+						<p className="mt-4 max-w-[34rem] text-lg leading-relaxed text-primary-foreground/85">
 							O Amigo do Bolso responde como na conta de luz: cada categoria tem uma bandeira:{' '}
 							<strong className="text-primary-foreground">azul</strong>,{' '}
 							<strong className="text-primary-foreground">amarela</strong> ou{' '}
@@ -258,6 +316,14 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 					</div>
 				</section>
 
+				{/* how it works + FAQ: plain text answers for readers and answer engines */}
+				<section className="mx-auto w-full max-w-6xl px-4 pt-24 md:px-6 md:pt-32">
+					<div className="reveal grid gap-10 lg:grid-cols-2 lg:gap-14">
+						<ComoFunciona />
+						<Faq />
+					</div>
+				</section>
+
 				{/* the tear-off stub */}
 				<section className="mx-auto w-full max-w-6xl px-4 pb-20 pt-24 md:px-6 md:pt-32">
 					<div className="scissors-track relative">
@@ -298,6 +364,32 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 								</div>
 							))}
 						</dl>
+					</div>
+				</section>
+
+				{/* who is behind the method */}
+				<section className="mx-auto w-full max-w-6xl px-4 pb-16 md:px-6">
+					<div className="reveal flex flex-col gap-4 border border-border bg-card px-5 py-5 md:flex-row md:items-center md:justify-between md:px-8">
+						<p className="text-sm text-muted-foreground">
+							<strong className="text-foreground">Conheça a Dolfyn</strong>, criadora do método por
+							trás do Amigo do Bolso.
+						</p>
+						<ul className="flex flex-wrap gap-x-6 gap-y-2">
+							{REDES_DOLFYN.map(({ icon: Icon, label, handle, href }) => (
+								<li key={label}>
+									<a
+										href={href}
+										target="_blank"
+										rel="noopener noreferrer"
+										aria-label={`${label} da Dolfyn`}
+										className="inline-flex items-center gap-2 text-sm font-semibold text-foreground underline-offset-4 hover:underline"
+									>
+										<Icon className="h-[18px] w-[18px] text-primary" strokeWidth={1.75} aria-hidden />
+										{handle}
+									</a>
+								</li>
+							))}
+						</ul>
 					</div>
 				</section>
 			</main>

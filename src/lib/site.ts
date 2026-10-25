@@ -2,7 +2,7 @@
 
 export const SITE_URL =
 	process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ||
-	'https://amigodobolso.vercel.app'
+	'https://amigodobolso.dolfyn.com.br'
 
 export const SITE_NAME = 'Amigo do Bolso'
 
@@ -10,3 +10,9 @@ export const SITE_DESCRIPTION =
 	'A conta do seu mês. Cada categoria de gasto hasteia uma bandeira — azul, amarela ou vermelha — e você vê na hora se passou do plano. Sem planilha.'
 
 export const SITE_TAGLINE = 'A conta do seu mês, em bandeiras'
+
+export const DOLFYN_URL = 'https://dolfyn.com.br/'
+
+export const DOLFYN_INSTAGRAM = 'https://www.instagram.com/dolfynoficial/'
+
+export const DOLFYN_LINKEDIN = 'https://www.linkedin.com/company/dolfynoficial'

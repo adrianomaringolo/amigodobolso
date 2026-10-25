@@ -32,12 +32,13 @@ export const metadata: Metadata = {
 		'método Dolfyn',
 		'planejamento financeiro',
 		'app de finanças',
+		'controle financeiro pessoal',
+		'quanto posso gastar',
 	],
 	authors: [{ name: SITE_NAME }],
 	creator: SITE_NAME,
 	manifest: '/manifest.webmanifest',
 	icons: {
-		icon: '/favicon.png',
 		apple: '/web-app-manifest-192x192.png',
 	},
 	formatDetection: { telephone: false },
@@ -75,50 +76,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 	return (
 		<html lang="pt-BR" className={`${sans.variable} ${mono.variable}`}>
 			<body>
-				{/*
-				  Direction contract — kept as a real emitted node (JSX comments are compiled
-				  away) so the seed key survives the production build and the build is auditable.
-				*/}
-				<script
-					type="application/impeccable+contract"
-					data-seed="74b9605f"
-					dangerouslySetInnerHTML={{
-						__html: `
-DIRECTION CONTRACT · seed 74b9605f · direction round · mode operate · card model-pick (IMPECCABLE'S PICK)
-
-THESIS: A conta de luz do seu mês. Every category flies a bandeira tarifária — azul,
-amarela, vermelha — the escalation signal every Brazilian already reads on the electric
-bill. Refuses the fintech dashboard of donut cards and the big-balance hero-metric; the
-reading is the health, not the number.
-
-OWN-WORLD: Warm bill-paper ground (#f7f5ef), institutional deep-blue ink (#16324f), brand
-blue (#09659c) as primary, Amigo do Bolso orange (#f28e38) reserved for the one primary action. Bandeira blue / amber / red
-are strictly semantic, one per category, never decorative. Archivo for official-notice
-labels and headings; Spline Sans Mono for every reading — R$ values, meter counts, the
-consumption histogram. Square corners (radius .25rem), ruled hairlines, tabular figures,
-meter-dial and boleto detailing.
-
-STORY: The user opens the month, reads the bandeira geral at the top ("dentro do plano" or
-not), scans six category medidores each showing gasto / alvo and its flag, taps one to see
-its lançamentos, adds an entry from the fixed orange action.
-
-FIRST VIEWPORT (mobile): blue masthead with the mark; a bill header with greeting + selected
-month; the bandeira geral as a full-width panel with the month's flag at display scale and
-one plain-language line; below it the six medidores as a single column of meter rows — flag
-chip, category name in caps, mono gasto/alvo, a filled bar against the shared target tick,
-and the last-6-months micro-histogram. Fixed bottom bar carries "+ Lançar" in orange.
-
-FORM: "A Bandeira" — bandeira tarifária / conta de serviço público. Ranked #1 of 7 grounded
-directions; taken as IMPECCABLE'S PICK over the roll's "A Feira". Seed 74b9605f.
-RAISE · RIGOR TABULAR (from declined "Campo de Dados"): every value is mono, aligned,
-tabular, and every flag doubles its colour with a word + %.
-RAISE · ESCALA ÚNICA (from competitive "O Traçado do Mês"): all six categories read against
-one shared %-of-income scale, never six private scales.
-
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
-`,
-					}}
-				/>
 				<PageContentArea>{children}</PageContentArea>
 			</body>
 		</html>

@@ -1,7 +1,30 @@
 import withPWAInit from '@ducanh2912/next-pwa'
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+// Private and auth screens: keep them out of search results.
+const NOINDEX_PATHS = [
+	'inicio',
+	'lancamentos',
+	'relatorios',
+	'educacao',
+	'perfil',
+	'ajuda',
+	'admin',
+	'login',
+	'register',
+	'recover',
+	'reset-password',
+	'auth',
+]
+
+const nextConfig = {
+	async headers() {
+		return NOINDEX_PATHS.map((path) => ({
+			source: `/${path}/:path*`,
+			headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow' }],
+		}))
+	},
+}
 
 const withPWA = withPWAInit({
 	dest: 'public',
