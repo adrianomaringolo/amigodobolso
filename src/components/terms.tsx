@@ -51,7 +51,7 @@ export const Terms = () => {
 			<h2 className={h2Classes}>6. Contato</h2>
 			<p className={pClasses}>
 				Para dúvidas ou suporte, entre em contato conosco pelo e-mail:
-				[seu-email@dominio.com].
+				contato@dolfyn.com.br.
 			</p>
 		</section>
 	)
