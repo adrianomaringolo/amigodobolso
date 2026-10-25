@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Redefinir sua senha | Amigo do Bolso</title>
+  </head>
+  <body style="margin:0;padding:0;background-color:#f7f5ef;">
+    <div style="display:none;max-height:0;overflow:hidden;opacity:0;">
+      Use o link para criar uma nova senha no Amigo do Bolso.
+    </div>
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f7f5ef;">
+      <tr>
+        <td align="center" style="padding:24px 12px;">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:520px;border:1px solid #d6d2c4;background-color:#fcfbf7;font-family:Archivo,'Helvetica Neue',Arial,sans-serif;">
+            <tr>
+              <td align="left" style="background-color:#09659c;padding:18px 28px;">
+                <img src="https://amigodobolso.dolfyn.com.br/logo-letter-white.png" alt="Amigo do Bolso" width="150" height="36" style="display:block;border:0;height:36px;width:auto;" />
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:32px 28px 8px;color:#163150;">
+                <h1 style="margin:0 0 16px;font-size:22px;line-height:1.3;font-weight:700;color:#163150;">Redefinir sua senha</h1>
+                <p style="margin:0 0 16px;font-size:16px;line-height:1.6;color:#163150;">
+                  Recebemos um pedido para criar uma nova senha para a conta
+                  <strong>{{ .Email }}</strong>. Toque no botão abaixo para escolher a nova senha.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td align="left" style="padding:8px 28px 24px;">
+                <a href="{{ .ConfirmationURL }}" style="display:inline-block;background-color:#f28e38;color:#ffffff;font-size:16px;font-weight:700;line-height:1;text-decoration:none;padding:15px 28px;">Criar nova senha</a>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:0 28px 28px;color:#163150;">
+                <p style="margin:0 0 16px;font-size:14px;line-height:1.6;color:#4a5d73;">
+                  Por segurança, o link vale por tempo limitado e só pode ser usado uma vez.
+                  Se o botão não funcionar, copie e cole este endereço no navegador:
+                </p>
+                <p style="margin:0 0 16px;font-size:13px;line-height:1.5;word-break:break-all;">
+                  <a href="{{ .ConfirmationURL }}" style="color:#09659c;">{{ .ConfirmationURL }}</a>
+                </p>
+                <p style="margin:0;font-size:14px;line-height:1.6;color:#4a5d73;">
+                  Não pediu a troca? Pode ignorar este e-mail: sua senha continua a mesma.
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <td style="border-top:1px solid #d6d2c4;padding:16px 28px;font-size:12px;line-height:1.5;color:#6b7a8c;">
+                Amigo do Bolso · A conta do seu mês, em bandeiras<br />
+                Dúvidas? Fale com a gente: <a href="mailto:contato@dolfyn.com.br" style="color:#6b7a8c;">contato@dolfyn.com.br</a>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
