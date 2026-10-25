@@ -57,7 +57,7 @@ export function ContaMasthead({ isAdmin = false }: { isAdmin?: boolean }) {
 				label: 'Encerrar',
 				onClick: async () => {
 					await supabase.auth.signOut()
-					router.push('/login')
+					router.push('/produto')
 					router.refresh()
 				},
 			},

@@ -111,7 +111,7 @@ export default function UserProfile() {
 		// The auth user no longer exists; drop the local session too.
 		await supabase.auth.signOut({ scope: 'local' })
 		toast.success('Sua conta e todos os seus dados foram excluídos')
-		router.push('/login')
+		router.push('/produto')
 		router.refresh()
 	}
 
