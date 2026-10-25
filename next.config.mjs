@@ -18,6 +18,8 @@ const NOINDEX_PATHS = [
 ]
 
 const nextConfig = {
+	// Inline the critical CSS so it no longer blocks the first paint (mobile LCP).
+	experimental: { inlineCss: true },
 	async headers() {
 		return NOINDEX_PATHS.map((path) => ({
 			source: `/${path}/:path*`,

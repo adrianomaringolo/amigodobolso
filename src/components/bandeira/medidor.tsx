@@ -21,12 +21,15 @@ export function Medidor({
 	href,
 	onOpen,
 	className,
+	headingAs: Heading = 'h3',
 }: {
 	reading: CategoryReading
 	history?: ConsumoPonto[]
 	href?: string
 	onOpen?: () => void
 	className?: string
+	/** Heading level of the category name; the landing sample sits right under the page's h1. */
+	headingAs?: 'h2' | 'h3'
 }) {
 	const s = FLAG_STYLES[reading.flag.level]
 	const Wrapper: React.ElementType = onOpen ? 'button' : href ? 'a' : 'div'
@@ -58,9 +61,9 @@ export function Medidor({
 
 				<div className="min-w-0 flex-1">
 					<div className="flex items-baseline justify-between gap-2">
-						<h3 className="notice-label truncate !text-xs text-foreground">
+						<Heading className="notice-label truncate !text-xs text-foreground">
 							{reading.label}
-						</h3>
+						</Heading>
 						<span className="notice-label shrink-0 !normal-case !tracking-normal">
 							{reading.targetPct}% da renda
 						</span>

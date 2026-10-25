@@ -15,7 +15,6 @@ import {
 	Linkedin,
 	Scissors,
 	Smartphone,
-	Tags,
 } from 'lucide-react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
@@ -184,7 +183,7 @@ export default function ProdutoPage() {
 								Já tenho conta
 							</Link>
 						</div>
-						<p className="mt-6 text-sm text-primary-foreground/70">
+						<p className="mt-6 text-sm text-primary-foreground/85">
 							Grátis · feito para o celular · plano pelo{' '}
 							<a
 								href={DOLFYN}

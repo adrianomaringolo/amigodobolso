@@ -38,13 +38,13 @@ export function ContaExemplo({ className }: { className?: string }) {
 				className="border-0 border-b shadow-none"
 			/>
 
-			<div className="meter-reveal [&_h3]:overflow-visible [&_h3]:whitespace-normal">
+			<div className="meter-reveal [&_h2]:overflow-visible [&_h2]:whitespace-normal">
 				{LEITURAS_EXEMPLO.map((reading) => (
 					<div
 						key={reading.key}
 						className={EM_DESTAQUE.includes(reading.key) ? undefined : 'hidden lg:block'}
 					>
-						<Medidor reading={reading} />
+						<Medidor reading={reading} headingAs="h2" />
 					</div>
 				))}
 			</div>
