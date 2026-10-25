@@ -84,9 +84,8 @@ export default function ResetPassword() {
 					</div>
 					<div>
 						<label className="notice-label mb-1.5 block">Confirmação</label>
-						<Input
+						<PasswordField showStrengthMeter={false}
 							name="cpassword"
-							type="password"
 							value={confirmation}
 							onChange={(e) => setConfirmation(e.target.value)}
 							placeholder="Confirme sua senha"

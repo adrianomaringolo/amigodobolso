@@ -6,6 +6,7 @@ import { flagFor } from '@/components/bandeira/flag'
 import { createClient } from '@/lib/supabase/client'
 import { authErrors } from '@/lib/types/Auth.type'
 import { Button, Input, useDialog } from 'buildgrid-ui'
+import { Eye, EyeOff } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -20,6 +21,7 @@ const SAMPLE = [
 export default function Login() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+	const [showPassword, setShowPassword] = useState(false)
 	const router = useRouter()
 
 	const supabase = createClient()
@@ -69,9 +71,7 @@ export default function Login() {
 						</p>
 
 						<div className="mt-2 border border-white/15 bg-white/[0.06] p-4">
-							<p className="notice-label !text-primary-foreground/55">
-								Exemplo · agosto
-							</p>
+							<p className="notice-label !text-primary-foreground/55">Exemplo · agosto</p>
 							<ul className="mt-3 space-y-2.5">
 								{SAMPLE.map((s) => {
 									const flag = flagFor(s.used, s.target)
@@ -88,9 +88,7 @@ export default function Login() {
 						</div>
 					</div>
 
-					<p className="notice-label !text-primary-foreground/45">
-						método Dolfyn
-					</p>
+					<p className="notice-label !text-primary-foreground/45">método Dolfyn</p>
 				</aside>
 
 				{/* Right — the form */}
@@ -125,17 +123,32 @@ export default function Login() {
 
 							<label className="block">
 								<span className="notice-label">Senha</span>
-								<Input
-									sizing="lg"
-									name="password"
-									type="password"
-									autoComplete="current-password"
-									required
-									placeholder="••••••••"
-									value={password}
-									onChange={(e) => setPassword(e.target.value)}
-									className="mt-1.5"
-								/>
+								<div className="relative mt-1.5">
+									<Input
+										sizing="lg"
+										name="password"
+										type={showPassword ? 'text' : 'password'}
+										autoComplete="current-password"
+										required
+										placeholder="••••••••"
+										value={password}
+										onChange={(e) => setPassword(e.target.value)}
+										className="pr-11"
+									/>
+									<button
+										type="button"
+										onClick={() => setShowPassword((v) => !v)}
+										aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
+										aria-pressed={showPassword}
+										className="absolute inset-y-0 right-0 flex w-11 items-center justify-center text-muted-foreground hover:text-foreground"
+									>
+										{showPassword ? (
+											<EyeOff className="h-5 w-5" aria-hidden />
+										) : (
+											<Eye className="h-5 w-5" aria-hidden />
+										)}
+									</button>
+								</div>
 							</label>
 
 							<div className="flex justify-end">

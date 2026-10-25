@@ -187,9 +187,8 @@ export default function UserProfile() {
 								</div>
 								<div className="space-y-1.5">
 									<Label htmlFor="confirm-password">Confirme a nova senha</Label>
-									<Input
+									<PasswordField showStrengthMeter={false}
 										id="confirm-password"
-										type="password"
 										value={confirmation}
 										onChange={(e) => setConfirmation(e.target.value)}
 										autoComplete="new-password"
