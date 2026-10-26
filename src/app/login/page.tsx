@@ -47,7 +47,7 @@ export default function Login() {
 	}
 
 	return (
-		<Suspense>
+		<>
 			<div className="grid min-h-dvh md:grid-cols-2">
 				{/* Left — the pitch, in the world */}
 				<aside className="flex flex-col justify-between gap-10 bg-primary px-6 py-10 text-primary-foreground md:px-12 md:py-14">
@@ -61,23 +61,23 @@ export default function Login() {
 					/>
 
 					<div className="space-y-5">
-						<p className="notice-label !text-primary-foreground/60">A conta do seu mês</p>
+						<p className="notice-label !text-primary-foreground/90">A conta do seu mês</p>
 						<h2 className="text-3xl font-bold leading-tight md:text-4xl">
 							Cada categoria hasteia uma bandeira. Você vê na hora se passou do plano.
 						</h2>
-						<p className="max-w-md text-sm text-primary-foreground/75">
+						<p className="max-w-md text-sm text-primary-foreground/90">
 							Azul, amarela, vermelha — inspirado na bandeira da conta de luz, agora
 							aplicado ao seu dinheiro. Sem planilha.
 						</p>
 
 						<div className="mt-2 border border-white/15 bg-white/[0.06] p-4">
-							<p className="notice-label !text-primary-foreground/55">Exemplo · agosto</p>
+							<p className="notice-label !text-primary-foreground/90">Exemplo · agosto</p>
 							<ul className="mt-3 space-y-2.5">
 								{SAMPLE.map((s) => {
 									const flag = flagFor(s.used, s.target)
 									return (
 										<li key={s.label} className="flex items-center justify-between gap-3">
-											<span className="text-sm text-primary-foreground/85">
+											<span className="text-sm text-primary-foreground/90">
 												{s.label}
 											</span>
 											<BandeiraTag flag={flag} size="sm" />
@@ -88,7 +88,7 @@ export default function Login() {
 						</div>
 					</div>
 
-					<p className="notice-label !text-primary-foreground/45">método Dolfyn</p>
+					<p className="notice-label !text-primary-foreground/90">método Dolfyn</p>
 				</aside>
 
 				{/* Right — the form */}
@@ -99,7 +99,7 @@ export default function Login() {
 							Bom te ver de novo.{' '}
 							<Link
 								href="/register"
-								className="font-semibold text-accent hover:underline"
+								className="font-semibold text-accent-text hover:underline"
 							>
 								Criar uma conta
 							</Link>
@@ -154,7 +154,7 @@ export default function Login() {
 							<div className="flex justify-end">
 								<Link
 									href="/recover"
-									className="text-sm font-medium text-accent hover:underline"
+									className="text-sm font-medium text-accent-text hover:underline"
 								>
 									Esqueci minha senha
 								</Link>
@@ -171,20 +171,33 @@ export default function Login() {
 							<span className="h-px flex-1 bg-border" />
 						</div>
 
-						<GoogleLoginButton />
+						{/* useSearchParams lives only in this button; the Suspense keeps the rest of the page server-rendered */}
+						<Suspense
+							fallback={
+								<Button
+									type="button"
+									variant="outline"
+									size="lg"
+									className="w-full"
+									disabled
+								/>
+							}
+						>
+							<GoogleLoginButton />
+						</Suspense>
 
 						<p className="mt-8 text-center text-xs text-muted-foreground">
 							Ao continuar, você concorda com os{' '}
 							<Link
 								href="/termos-de-uso"
-								className="font-semibold text-accent hover:underline"
+								className="font-semibold text-accent-text hover:underline"
 							>
 								Termos de uso
 							</Link>{' '}
 							e a{' '}
 							<Link
 								href="/politica-de-privacidade"
-								className="font-semibold text-accent hover:underline"
+								className="font-semibold text-accent-text hover:underline"
 							>
 								Política de privacidade
 							</Link>
@@ -193,6 +206,6 @@ export default function Login() {
 					</div>
 				</main>
 			</div>
-		</Suspense>
+		</>
 	)
 }

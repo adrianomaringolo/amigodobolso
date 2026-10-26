@@ -31,6 +31,7 @@
 
 		--accent: 28 88% 58%; /* #f28e38 brand secondary — the one action colour */
 		--accent-foreground: 0 0% 100%;
+		--accent-text: 28 88% 34%; /* #a3520b — brand orange darkened for text links on paper (4.5:1+) */
 
 		--destructive: 4 66% 45%; /* #be2f26 bandeira vermelha */
 		--destructive-foreground: 40 24% 97%;
@@ -87,6 +88,7 @@
 		--muted-foreground: 209 20% 38%;
 		--accent: 28 88% 58%;
 		--accent-foreground: 0 0% 100%;
+		--accent-text: 28 88% 34%; /* #a3520b — brand orange darkened for text links on paper (4.5:1+) */
 		--destructive: 4 66% 45%;
 		--destructive-foreground: 40 24% 97%;
 		--border: 40 13% 80%;

@@ -26,7 +26,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
 				</article>
 				<Link
 					href="/login"
-					className="mt-6 inline-block text-sm font-semibold text-accent hover:underline"
+					className="mt-6 inline-block text-sm font-semibold text-accent-text hover:underline"
 				>
 					← Voltar para o login
 				</Link>

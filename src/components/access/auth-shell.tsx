@@ -30,15 +30,15 @@ export const AuthShell = ({
 				/>
 			</Link>
 			<div className="space-y-3">
-				<p className="notice-label !text-primary-foreground/60">A conta do seu mês</p>
+				<p className="notice-label !text-primary-foreground/90">A conta do seu mês</p>
 				<p className="text-lg font-bold leading-snug">
 					Cada categoria hasteia uma bandeira — azul, amarela ou vermelha.
 				</p>
-				<p className="text-sm text-primary-foreground/70">
+				<p className="text-sm text-primary-foreground/90">
 					Inspirado na bandeira da conta de luz, agora para o seu dinheiro.
 				</p>
 			</div>
-			<p className="notice-label !text-primary-foreground/50">
+			<p className="notice-label !text-primary-foreground/90">
 				método Dolfyn
 			</p>
 		</aside>
@@ -72,7 +72,7 @@ export const AuthShell = ({
 				{showBackToLogin && (
 					<Link
 						href="/login"
-						className="mt-6 block text-center text-sm font-semibold text-accent hover:underline"
+						className="mt-6 block text-center text-sm font-semibold text-accent-text hover:underline"
 					>
 						Voltar para o login
 					</Link>

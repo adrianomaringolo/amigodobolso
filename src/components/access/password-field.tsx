@@ -1,7 +1,7 @@
 'use client'
 
 import { PasswordInput } from 'buildgrid-ui'
-import { ComponentProps } from 'react'
+import { ComponentProps, useEffect, useRef } from 'react'
 
 type PasswordFieldProps = ComponentProps<typeof PasswordInput>
 
@@ -13,13 +13,28 @@ const ptBrLabels = {
 	veryStrong: 'Muito forte',
 }
 
-/** `PasswordInput` do buildgrid-ui com os textos em pt-BR. */
-export const PasswordField = (props: PasswordFieldProps) => (
-	<PasswordInput
-		strengthTitle="Força da senha"
-		strengthLabels={ptBrLabels}
-		showPasswordLabel="Mostrar senha"
-		hidePasswordLabel="Esconder senha"
-		{...props}
-	/>
-)
+const STRENGTH_TITLE = 'Força da senha'
+
+/**
+ * `PasswordInput` do buildgrid-ui com os textos em pt-BR.
+ * A barra de força da lib não tem nome acessível; aqui ela ganha um `aria-label`.
+ */
+export const PasswordField = (props: PasswordFieldProps) => {
+	const ref = useRef<HTMLDivElement>(null)
+
+	useEffect(() => {
+		ref.current?.querySelector('[role="progressbar"]')?.setAttribute('aria-label', STRENGTH_TITLE)
+	})
+
+	return (
+		<div ref={ref}>
+			<PasswordInput
+				strengthTitle={STRENGTH_TITLE}
+				strengthLabels={ptBrLabels}
+				showPasswordLabel="Mostrar senha"
+				hidePasswordLabel="Esconder senha"
+				{...props}
+			/>
+		</div>
+	)
+}

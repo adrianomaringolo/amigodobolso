@@ -33,7 +33,7 @@ export const Privacy = () => {
 				Para dúvidas, solicitações ou exercício de direitos de privacidade, use:{' '}
 				<a
 					href={`mailto:${contactEmail}`}
-					className="font-semibold text-accent hover:underline"
+					className="font-semibold text-accent-text hover:underline"
 				>
 					{contactEmail}
 				</a>
