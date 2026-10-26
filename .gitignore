@@ -57,3 +57,7 @@ next-env.d.ts
 /test-results/
 /playwright-report/
 /blob-report/
+
+# vídeo do produto: telas capturadas, takes de voz e renders (gerados)
+/video/build/
+/video/output/

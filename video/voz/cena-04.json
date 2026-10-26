@@ -1,0 +1,115 @@
+{
+  "text": "No dia a dia, você só lança o que entra e o que sai: o valor, a descrição, a categoria... e pronto. ",
+  "words": [
+    {
+      "w": "No",
+      "start": 0,
+      "end": 0.08
+    },
+    {
+      "w": "dia",
+      "start": 0.12,
+      "end": 0.24
+    },
+    {
+      "w": "a",
+      "start": 0.32,
+      "end": 0.4
+    },
+    {
+      "w": "dia,",
+      "start": 0.48,
+      "end": 1.04
+    },
+    {
+      "w": "você",
+      "start": 1.088,
+      "end": 1.28
+    },
+    {
+      "w": "só",
+      "start": 1.333,
+      "end": 1.44
+    },
+    {
+      "w": "lança",
+      "start": 1.5,
+      "end": 1.84
+    },
+    {
+      "w": "o",
+      "start": 1.88,
+      "end": 1.92
+    },
+    {
+      "w": "que",
+      "start": 1.96,
+      "end": 2.08
+    },
+    {
+      "w": "entra",
+      "start": 2.147,
+      "end": 2.48
+    },
+    {
+      "w": "e",
+      "start": 2.52,
+      "end": 2.56
+    },
+    {
+      "w": "o",
+      "start": 2.6,
+      "end": 2.64
+    },
+    {
+      "w": "que",
+      "start": 2.66,
+      "end": 2.72
+    },
+    {
+      "w": "sai:",
+      "start": 2.82,
+      "end": 3.52
+    },
+    {
+      "w": "o",
+      "start": 3.56,
+      "end": 3.6
+    },
+    {
+      "w": "valor,",
+      "start": 3.68,
+      "end": 4.32
+    },
+    {
+      "w": "a",
+      "start": 4.42,
+      "end": 4.52
+    },
+    {
+      "w": "descrição,",
+      "start": 4.549,
+      "end": 5.28
+    },
+    {
+      "w": "a",
+      "start": 5.32,
+      "end": 5.36
+    },
+    {
+      "w": "categoria",
+      "start": 5.432,
+      "end": 6.32
+    },
+    {
+      "w": "e",
+      "start": 6.36,
+      "end": 6.4
+    },
+    {
+      "w": "pronto.",
+      "start": 6.469,
+      "end": 6.96
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "text": "Tem também contas pendentes, parcelas, etiquetas... e a Dica do Amigo, para aprender mais sobre dinheiro. ",
+  "words": [
+    {
+      "w": "Tem",
+      "start": 0,
+      "end": 0.08
+    },
+    {
+      "w": "também",
+      "start": 0.137,
+      "end": 0.48
+    },
+    {
+      "w": "contas",
+      "start": 0.528,
+      "end": 0.8
+    },
+    {
+      "w": "pendentes,",
+      "start": 0.848,
+      "end": 1.76
+    },
+    {
+      "w": "parcelas,",
+      "start": 1.829,
+      "end": 2.72
+    },
+    {
+      "w": "etiquetas",
+      "start": 2.787,
+      "end": 4.08
+    },
+    {
+      "w": "e",
+      "start": 4.12,
+      "end": 4.16
+    },
+    {
+      "w": "a",
+      "start": 4.2,
+      "end": 4.24
+    },
+    {
+      "w": "Dica",
+      "start": 4.32,
+      "end": 4.48
+    },
+    {
+      "w": "do",
+      "start": 4.533,
+      "end": 4.64
+    },
+    {
+      "w": "Amigo,",
+      "start": 4.667,
+      "end": 5.12
+    },
+    {
+      "w": "para",
+      "start": 5.2,
+      "end": 5.52
+    },
+    {
+      "w": "aprender",
+      "start": 5.564,
+      "end": 5.92
+    },
+    {
+      "w": "mais",
+      "start": 6,
+      "end": 6.32
+    },
+    {
+      "w": "sobre",
+      "start": 6.413,
+      "end": 6.88
+    },
+    {
+      "w": "dinheiro.",
+      "start": 6.942,
+      "end": 7.52
+    }
+  ]
+}

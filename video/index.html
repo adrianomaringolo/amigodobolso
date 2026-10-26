@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>Amigo do Bolso — vídeo do produto</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..900&family=Spline+Sans+Mono:wght@400..700&display=block" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<!--
+  Vídeo do produto. As telas são capturas do app de verdade, numa conta
+  fictícia (scripts/telas.mjs); aqui elas entram num celular e numa janela,
+  sobre o mundo "A Bandeira" (DESIGN.md): campo azul da marca, folhas de
+  papel de conta, bandeiras azul/amarela/vermelha, um laranja de ação.
+  Uma timeline GSAP pausada move tudo no ritmo da narração (build/timeline.js);
+  o render.mjs posiciona a timeline quadro a quadro (window.__seek).
+
+  ?t=12.5        abre parado nesse instante
+  ?play          toca em tempo real, com o áudio (revisão)
+  ?captions=0    sem a legenda queimada (para usar a faixa .vtt)
+-->
+<div id="stage">
+  <!-- fundo: campo azul; a folha de papel sobe por cima (borda picotada) -->
+  <div class="field"><div class="field__hatch"></div></div>
+  <div class="sheet"><div class="sheet__tint"></div></div>
+
+  <!-- 1 · o mês acabou -->
+  <section class="s-head">
+    <p class="head-a"><span class="hw">O</span> <span class="hw">mês</span> <span class="hw">acabou…</span></p>
+    <h1 class="head-b"><span class="hw">pra</span> <span class="hw">onde</span> <span class="hw">foi</span><br /><span class="hw">o</span> <span class="hw">seu</span> <span class="hw hw--hot">dinheiro?</span></h1>
+  </section>
+  <div class="bills"></div>
+
+  <!-- 2 · marca: grande no centro, depois fica pequena no canto -->
+  <div class="brand"><img class="brand__logo" src="../public/logo.png" alt="" /><span class="brand__name">Amigo do Bolso</span></div>
+  <div class="flags">
+    <p class="flags__kicker">como na conta de luz</p>
+    <div class="flags__row">
+      <div class="flag flag--blue"><svg viewBox="0 0 64 64"><path class="pole" d="M14 6v54" /><path class="cloth" d="M16 8h36l-8 11 8 11H16z" /></svg><span>azul</span></div>
+      <div class="flag flag--amber"><svg viewBox="0 0 64 64"><path class="pole" d="M14 6v54" /><path class="cloth" d="M16 8h36l-8 11 8 11H16z" /></svg><span>amarela</span></div>
+      <div class="flag flag--red"><svg viewBox="0 0 64 64"><path class="pole" d="M14 6v54" /><path class="cloth" d="M16 8h36l-8 11 8 11H16z" /></svg><span>vermelha</span></div>
+    </div>
+  </div>
+
+  <!-- 3 · o método: a renda dividida em seis -->
+  <section class="copy" data-c="metodo"><p class="kicker">Método Dolfyn</p><h2>Um plano pronto, não uma planilha.</h2><p class="lede">Você não inventa categorias nem decide valores.</p></section>
+  <div class="plan">
+    <div class="plan__head"><span>Seu plano do mês</span><span class="plan__ex">exemplo</span></div>
+    <div class="plan__income"><span>renda</span><b>R$ 5.400,00</b></div>
+    <div class="plan__bar"></div>
+    <ul class="plan__rows"></ul>
+    <div class="plan__perf"></div>
+    <div class="stamp">sem planilha</div>
+  </div>
+
+  <!-- texto de cada parte, à esquerda -->
+  <section class="copy" data-c="lancar"><p class="kicker">Lançamentos</p><h2>Você lança.<br />O Amigo faz o resto.</h2><ul><li>O valor</li><li>A descrição</li><li>A categoria</li></ul></section>
+  <section class="copy" data-c="bandeiras"><p class="kicker">Os seis medidores</p><h2>Cada categoria, uma bandeira.</h2></section>
+  <div class="legend">
+    <div class="lg lg--blue"><i class="lg__flag"></i><div><b>No azul</b><span>dentro do plano</span></div></div>
+    <div class="lg lg--amber"><i class="lg__flag"></i><div><b>No amarelo</b><span>perto do limite</span></div></div>
+    <div class="lg lg--red"><i class="lg__flag"></i><div><b>No vermelho</b><span>passou do plano</span></div></div>
+  </div>
+  <section class="copy" data-c="relatorios"><p class="kicker">Relatórios</p><h2>O mês e o ano,<br />por categoria.</h2><ul><li>Resumo do mês</li><li>Histórico do ano</li><li>Cada categoria</li></ul></section>
+
+  <!-- 7 · e tem mais -->
+  <section class="copy copy--center" data-c="extras"><p class="kicker">E tem mais</p><h2>Feito para o dia a dia</h2></section>
+  <div class="tiles">
+    <div class="tile tile--amber" data-i="clock"><span class="tile__ic"></span><b>Contas pendentes</b><small>pago ou a pagar</small></div>
+    <div class="tile tile--blue" data-i="calendar-range"><span class="tile__ic"></span><b>Parcelas</b><small>à vista ou em vezes</small></div>
+    <div class="tile tile--orange" data-i="tag"><span class="tile__ic"></span><b>Etiquetas</b><small>para achar e filtrar</small></div>
+    <div class="tile tile--red" data-i="graduation-cap"><span class="tile__ic"></span><b>Dica do Amigo</b><small>educação financeira</small></div>
+  </div>
+
+  <!-- janela do computador (mostra a coluna do app, sem as margens vazias) -->
+  <div class="win">
+    <div class="win__bar"><i></i><i></i><i></i><span class="win__url">amigodobolso.dolfyn.com.br</span></div>
+    <div class="win__screen">
+      <div class="dscr" data-s="relatorios"><div class="page"><img src="build/telas/d-relatorios-full.png" /><div class="ring ring--d"></div></div></div>
+    </div>
+  </div>
+
+  <!-- celular -->
+  <div class="phone">
+    <div class="phone__screen">
+      <div class="scr" data-s="lancamentos"><div class="page"><img src="build/telas/m-lancamentos.png" /><div class="ring"></div></div></div>
+      <div class="scr" data-s="form"><div class="page"><img src="build/telas/m-form-vazio.png" /><div class="ring"></div></div></div>
+      <div class="scr" data-s="categorias"><div class="page"><img src="build/telas/m-categorias.png" /><div class="ring"></div></div></div>
+      <div class="scr" data-s="preenchido"><div class="page"><img src="build/telas/m-form-preenchido.png" /><div class="ring"></div></div></div>
+      <div class="scr" data-s="salvo"><div class="page"><img src="build/telas/m-salvo.png" /><div class="ring"></div></div></div>
+      <div class="scr" data-s="inicio"><div class="page"><img src="build/telas/m-inicio-full.png" /><div class="ring"></div></div><div class="bar bar--top"></div><div class="bar bar--nav"></div></div>
+      <div class="scr" data-s="mapa"><div class="page"><img src="build/telas/m-mapa.png" /><div class="ring"></div></div></div>
+      <div class="tap"></div>
+    </div>
+  </div>
+
+  <!-- fecho -->
+  <section class="s-end">
+    <img class="end-logo" src="../public/logo.png" alt="" />
+    <p class="end-name">Amigo do Bolso</p>
+    <p class="end-line">Descubra pra onde vai o seu dinheiro.</p>
+    <p class="end-url"><span class="end-free">grátis</span>amigodobolso.dolfyn.com.br</p>
+    <p class="end-project">Um projeto <b>Dolfyn</b></p>
+  </section>
+  <p class="end-credit">feito por adrianomaringolo.dev</p>
+
+  <div class="captions"><p class="cap"></p></div>
+</div>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="build/timeline.js"></script>
+<script src="build/icons.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

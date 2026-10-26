@@ -1,0 +1,65 @@
+{
+  "text": "O Amigo do Bolso responde... como na conta de luz: com bandeiras. ",
+  "words": [
+    {
+      "w": "O",
+      "start": 0.072,
+      "end": 0.08
+    },
+    {
+      "w": "Amigo",
+      "start": 0.133,
+      "end": 0.32
+    },
+    {
+      "w": "do",
+      "start": 0.373,
+      "end": 0.48
+    },
+    {
+      "w": "Bolso",
+      "start": 0.52,
+      "end": 0.8
+    },
+    {
+      "w": "responde",
+      "start": 0.86,
+      "end": 1.76
+    },
+    {
+      "w": "como",
+      "start": 1.792,
+      "end": 1.92
+    },
+    {
+      "w": "na",
+      "start": 1.973,
+      "end": 2.08
+    },
+    {
+      "w": "conta",
+      "start": 2.12,
+      "end": 2.32
+    },
+    {
+      "w": "de",
+      "start": 2.373,
+      "end": 2.48
+    },
+    {
+      "w": "luz:",
+      "start": 2.56,
+      "end": 2.88
+    },
+    {
+      "w": "com",
+      "start": 3.04,
+      "end": 3.52
+    },
+    {
+      "w": "bandeiras.",
+      "start": 3.573,
+      "end": 5
+    }
+  ]
+}

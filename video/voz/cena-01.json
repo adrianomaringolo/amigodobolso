@@ -1,0 +1,70 @@
+{
+  "text": "O mês acabou... e você não sabe pra onde foi o seu dinheiro? ",
+  "words": [
+    {
+      "w": "O",
+      "start": 0.072,
+      "end": 0.08
+    },
+    {
+      "w": "mês",
+      "start": 0.16,
+      "end": 0.4
+    },
+    {
+      "w": "acabou",
+      "start": 0.464,
+      "end": 1.52
+    },
+    {
+      "w": "e",
+      "start": 1.56,
+      "end": 1.6
+    },
+    {
+      "w": "você",
+      "start": 1.664,
+      "end": 1.92
+    },
+    {
+      "w": "não",
+      "start": 1.98,
+      "end": 2.16
+    },
+    {
+      "w": "sabe",
+      "start": 2.24,
+      "end": 2.56
+    },
+    {
+      "w": "pra",
+      "start": 2.58,
+      "end": 2.64
+    },
+    {
+      "w": "onde",
+      "start": 2.704,
+      "end": 2.96
+    },
+    {
+      "w": "foi",
+      "start": 3.02,
+      "end": 3.2
+    },
+    {
+      "w": "o",
+      "start": 3.24,
+      "end": 3.28
+    },
+    {
+      "w": "seu",
+      "start": 3.34,
+      "end": 3.52
+    },
+    {
+      "w": "dinheiro?",
+      "start": 3.573,
+      "end": 4.6
+    }
+  ]
+}

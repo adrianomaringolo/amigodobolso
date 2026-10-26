@@ -1,0 +1,80 @@
+{
+  "text": "Amigo do Bolso. É grátis... descubra pra onde vai o seu dinheiro... Um projeto Dôlfyn. ",
+  "words": [
+    {
+      "w": "Amigo",
+      "start": 0.147,
+      "end": 0.4
+    },
+    {
+      "w": "do",
+      "start": 0.427,
+      "end": 0.48
+    },
+    {
+      "w": "Bolso.",
+      "start": 0.54,
+      "end": 1.04
+    },
+    {
+      "w": "É",
+      "start": 1.32,
+      "end": 1.6
+    },
+    {
+      "w": "grátis",
+      "start": 1.691,
+      "end": 2.8
+    },
+    {
+      "w": "descubra",
+      "start": 2.864,
+      "end": 3.28
+    },
+    {
+      "w": "pra",
+      "start": 3.34,
+      "end": 3.52
+    },
+    {
+      "w": "onde",
+      "start": 3.568,
+      "end": 3.76
+    },
+    {
+      "w": "vai",
+      "start": 3.82,
+      "end": 4
+    },
+    {
+      "w": "o",
+      "start": 4.04,
+      "end": 4.08
+    },
+    {
+      "w": "seu",
+      "start": 4.14,
+      "end": 4.32
+    },
+    {
+      "w": "dinheiro",
+      "start": 4.364,
+      "end": 6.479
+    },
+    {
+      "w": "Um",
+      "start": 6.542,
+      "end": 6.56
+    },
+    {
+      "w": "projeto",
+      "start": 6.62,
+      "end": 7.04
+    },
+    {
+      "w": "Dôlfyn.",
+      "start": 7.12,
+      "end": 7.68
+    }
+  ]
+}

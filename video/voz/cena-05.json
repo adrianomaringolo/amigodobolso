@@ -1,0 +1,120 @@
+{
+  "text": "E cada categoria ergue a sua bandeira: azul, quando está dentro do plano... amarela, quando chega perto do limite... e vermelha, quando passou. ",
+  "words": [
+    {
+      "w": "E",
+      "start": 0,
+      "end": 0.16
+    },
+    {
+      "w": "cada",
+      "start": 0.208,
+      "end": 0.4
+    },
+    {
+      "w": "categoria",
+      "start": 0.456,
+      "end": 0.96
+    },
+    {
+      "w": "ergue",
+      "start": 1.02,
+      "end": 1.28
+    },
+    {
+      "w": "a",
+      "start": 1.32,
+      "end": 1.36
+    },
+    {
+      "w": "sua",
+      "start": 1.4,
+      "end": 1.52
+    },
+    {
+      "w": "bandeira:",
+      "start": 1.573,
+      "end": 2.4
+    },
+    {
+      "w": "azul,",
+      "start": 2.507,
+      "end": 2.88
+    },
+    {
+      "w": "quando",
+      "start": 2.926,
+      "end": 3.2
+    },
+    {
+      "w": "está",
+      "start": 3.248,
+      "end": 3.44
+    },
+    {
+      "w": "dentro",
+      "start": 3.486,
+      "end": 3.76
+    },
+    {
+      "w": "do",
+      "start": 3.787,
+      "end": 3.84
+    },
+    {
+      "w": "plano",
+      "start": 3.907,
+      "end": 4.64
+    },
+    {
+      "w": "amarela,",
+      "start": 4.693,
+      "end": 5.28
+    },
+    {
+      "w": "quando",
+      "start": 5.326,
+      "end": 5.6
+    },
+    {
+      "w": "chega",
+      "start": 5.66,
+      "end": 6
+    },
+    {
+      "w": "perto",
+      "start": 6.04,
+      "end": 6.32
+    },
+    {
+      "w": "do",
+      "start": 6.347,
+      "end": 6.4
+    },
+    {
+      "w": "limite",
+      "start": 6.48,
+      "end": 7.36
+    },
+    {
+      "w": "e",
+      "start": 7.4,
+      "end": 7.44
+    },
+    {
+      "w": "vermelha,",
+      "start": 7.5,
+      "end": 8.08
+    },
+    {
+      "w": "quando",
+      "start": 8.149,
+      "end": 8.56
+    },
+    {
+      "w": "passou.",
+      "start": 8.608,
+      "end": 10.48
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "model": "eleven_v3",
+  "voice_id": "dX7gRq1dIvLTgUaWpEFn",
+  "voice_name": "Rafael Valente (biblioteca ElevenLabs, pt-BR, narrador)",
+  "voice_settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.8,
+    "style": 0.2,
+    "use_speaker_boost": true
+  },
+  "nota": "eleven_v3 ignora voice_settings.speed: o ritmo vem das tags, das reticências e do respiro entre as cenas. Tags e reticências não vão para a legenda; o campo legenda tem a pontuação de leitura (mesmas palavras, na mesma ordem). A última palavra às vezes sai cortada: o [pause] no fim deixa a palavra terminar.",
+  "gap": 1.0,
+  "lead": 1.0,
+  "tail": 4.4,
+  "music": {
+    "file": "~/Projects/personal/adrianomaringolo.dev/instagram-reels/music/motivating-mornings.mp3",
+    "volume": 0.2
+  },
+  "cenas": [
+    {
+      "id": "pergunta",
+      "text": "[warmly] O mês acabou... e você não sabe pra onde foi o seu dinheiro? [pause]",
+      "legenda": "O mês acabou, e você não sabe pra onde foi o seu dinheiro?",
+      "hold": 0.6
+    },
+    {
+      "id": "marca",
+      "text": "[warmly] O Amigo do Bolso responde... como na conta de luz: com bandeiras. [pause]",
+      "legenda": "O Amigo do Bolso responde como na conta de luz: com bandeiras.",
+      "hold": 0.4
+    },
+    {
+      "id": "metodo",
+      "text": "Pelo método Dôlfyn, a sua renda é dividida em seis categorias, cada uma com o seu alvo. Você não precisa montar planilha nenhuma... [long pause]",
+      "legenda": "Pelo método Dolfyn, a sua renda é dividida em seis categorias, cada uma com o seu alvo. Você não precisa montar planilha nenhuma.",
+      "hold": 0.8
+    },
+    {
+      "id": "lancar",
+      "text": "No dia a dia, você só lança o que entra e o que sai: o valor, a descrição, a categoria... e pronto. [pause]",
+      "legenda": "No dia a dia, você só lança o que entra e o que sai: o valor, a descrição, a categoria, e pronto.",
+      "hold": 0.6
+    },
+    {
+      "id": "bandeiras",
+      "text": "E cada categoria ergue a sua bandeira: azul, quando está dentro do plano... amarela, quando chega perto do limite... e vermelha, quando passou. [pause]",
+      "legenda": "E cada categoria ergue a sua bandeira: azul, quando está dentro do plano. Amarela, quando chega perto do limite. E vermelha, quando passou.",
+      "hold": 0.8
+    },
+    {
+      "id": "relatorios",
+      "text": "Nos relatórios, você vê o mês e o ano, categoria por categoria... no celular ou no computador. [pause]",
+      "legenda": "Nos relatórios, você vê o mês e o ano, categoria por categoria, no celular ou no computador.",
+      "hold": 0.8
+    },
+    {
+      "id": "extras",
+      "text": "Tem também contas pendentes, parcelas, etiquetas... e a Dica do Amigo, para aprender mais sobre dinheiro. [pause]",
+      "legenda": "Tem também contas pendentes, parcelas, etiquetas, e a Dica do Amigo, para aprender mais sobre dinheiro.",
+      "hold": 0.8
+    },
+    {
+      "id": "fecho",
+      "text": "[warmly] Amigo do Bolso. É grátis... descubra pra onde vai o seu dinheiro... [pause] Um projeto Dôlfyn. [long pause]",
+      "legenda": "Amigo do Bolso. É grátis: descubra pra onde vai o seu dinheiro. Um projeto Dolfyn."
+    }
+  ]
+}
