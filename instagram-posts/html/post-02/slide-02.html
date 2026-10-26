@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Spline+Sans+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/slide.css">
+<style>
+.head { display: flex; align-items: center; gap: 28px; margin-top: 40px; }
+.head .chip { font-size: 40px; padding: 12px 24px 12px 18px; }
+.faixa { font-size: 32px; color: var(--ink-muted); }
+.title { margin-top: 44px; font-size: 104px; }
+.lead { margin-top: 24px; max-width: 24ch; }
+.meter { position: absolute; left: 88px; right: 88px; bottom: 196px; padding: 56px 48px; display: flex; align-items: center; gap: 44px; }
+.meter .cat { display: flex; align-items: center; gap: 14px; font-weight: 700; font-size: 30px; }
+.meter .sw { width: 18px; height: 18px; border-radius: 2px; }
+.meter .left { margin-top: 18px; font-size: 26px; color: var(--ink-muted); }
+.meter .left b { font-size: 52px; font-weight: 700; margin-left: 8px; }
+.meter .of { margin-top: 10px; font-size: 28px; color: var(--ink-muted); white-space: nowrap; }
+.ex { position: absolute; top: 24px; right: 28px; font-size: 18px; }
+.azul-t { color: var(--flag-blue); } .amarela-t { color: var(--flag-amber); } .vermelha-t { color: var(--flag-red); }
+</style>
+</head>
+<body class="paper">
+<div class="slide">
+
+<p class="label">Bandeira azul</p>
+<div class="head"><img src="../../assets/icons/bandeira-azul.svg" alt="" style="height:120px"><span class="chip azul">no azul</span><span class="mono faixa">até 84% do alvo</span></div>
+<h2 class="title">Dentro do plano.</h2>
+<p class="lead">Pode seguir o mês tranquilo.</p>
+<div class="meter panel">
+  <span class="label ex">Exemplo</span>
+  <svg viewBox="0 0 100 58" width="380" aria-hidden="true">
+<defs><linearGradient id="g1" gradientUnits="userSpaceOnUse" x1="12" x2="88">
+<stop offset="0" stop-color="#be2f26"/><stop offset="0.055" stop-color="#f0a017"/><stop offset="0.12" stop-color="#f0a017"/><stop offset="0.345" stop-color="#09659c"/><stop offset="1" stop-color="#09659c"/></linearGradient></defs>
+<path d="M 12.00 50.00 A 38 38 0 0 1 88.00 50.00" fill="none" stroke="url(#g1)" stroke-width="11"/>
+<line x1="50" y1="50" x2="38.90" y2="23.21" stroke="#16324f" stroke-width="3" stroke-linecap="round"/>
+<circle cx="50" cy="50" r="4.5" fill="#16324f"/></svg>
+  <div>
+    <div class="cat"><span class="sw c-leisure"></span>Diversão</div>
+    <p class="left mono">restam<b class="azul-t">R$ 180,00</b></p>
+    <p class="of mono">R$ 300,00 de R$ 480,00</p>
+  </div>
+</div>
+
+<div class="foot"><div class="brand"><img src="../../assets/logos/logo.png" alt="">Amigo do Bolso</div><div class="progress"><span class=""></span><span class="on"></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span></div></div>
+</div>
+</body>
+</html>

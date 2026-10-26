@@ -1,0 +1,56 @@
+{
+  "title": "O método Dolfyn: seu salário dividido em seis",
+  "date": "2026-10-23",
+  "type": "carousel",
+  "tags": [
+    "lançamento",
+    "explicador",
+    "método"
+  ],
+  "format": "1080x1350",
+  "caption": "🧮 E se o seu salário já chegasse com um plano?\n\nO Amigo do Bolso segue o método Dolfyn: a sua renda é dividida em seis categorias, cada uma com um alvo.\n\n🛒 Necessidades Essenciais: 55%\n🐷 Tranquilidade Financeira: 10%\n📅 Compras de Longo Prazo: 10%\n😊 Diversão: 10%\n🎓 Desenvolvimento Pessoal: 10%\n❤️ Fazer Pelo Outro: 5%\n\nCom renda de R$ 4.000,00, por exemplo, são R$ 2.200,00 para o essencial e R$ 400,00 para se divertir sem culpa. O app faz essa conta para você, e se a renda mudar, o plano se ajusta sozinho. ✅\n\nVocê não precisa inventar categorias nem decidir valores. Só lançar.\n\n👉 Crie sua conta grátis em amigodobolso.vercel.app\n\n💬 Qual dessas categorias anda esquecida no seu mês?",
+  "hashtags": [
+    "amigodobolso",
+    "metododolfyn",
+    "financaspessoais",
+    "educacaofinanceira",
+    "orcamento",
+    "orcamentopessoal",
+    "controlefinanceiro",
+    "planejamentofinanceiro",
+    "dinheiro",
+    "organizacaofinanceira"
+  ],
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "title": "Capa",
+      "description": "Seu salário, dividido em seis; barra da renda pelo método"
+    },
+    {
+      "file": "slide-02.html",
+      "title": "O essencial",
+      "description": "Necessidades Essenciais, 55%: o básico para viver"
+    },
+    {
+      "file": "slide-03.html",
+      "title": "O futuro",
+      "description": "Tranquilidade Financeira e Compras de Longo Prazo, 10% cada"
+    },
+    {
+      "file": "slide-04.html",
+      "title": "O agora",
+      "description": "Diversão, Desenvolvimento Pessoal e Fazer Pelo Outro"
+    },
+    {
+      "file": "slide-05.html",
+      "title": "Em reais",
+      "description": "Exemplo com renda de R$ 4.000,00 convertida pelo método"
+    },
+    {
+      "file": "slide-06.html",
+      "title": "Fecho",
+      "description": "Convite: comece com um plano pronto, com a URL"
+    }
+  ]
+}

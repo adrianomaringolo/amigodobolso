@@ -1,0 +1,55 @@
+{
+  "title": "Lançamento: para onde vai seu dinheiro todo mês?",
+  "date": "2026-10-23",
+  "type": "carousel",
+  "tags": [
+    "lançamento",
+    "apresentação"
+  ],
+  "format": "1080x1350",
+  "caption": "👋 Chegou o Amigo do Bolso!\n\nO salário cai na conta e, quando o mês acaba, fica a pergunta: pra onde foi o dinheiro? 🤔\n\nO Amigo do Bolso responde do jeito da conta de luz: cada categoria do seu mês tem uma bandeira.\n\n🔵 No azul: dentro do plano.\n🟡 No amarelo: chegando no limite.\n🔴 No vermelho: passou do plano, e você fica sabendo na hora.\n\nO plano já vem pronto, pelo método Dolfyn: sua renda dividida em seis categorias, cada uma com um alvo. Sem planilha. Você só lança o que entra e o que sai.\n\n✅ Grátis\n📱 Feito para o celular\n🔑 Entre com e-mail ou Google\n\n👉 Crie sua conta em amigodobolso.vercel.app\n\n💬 E aí, você sabe pra onde foi o seu dinheiro no mês passado?",
+  "hashtags": [
+    "amigodobolso",
+    "financaspessoais",
+    "educacaofinanceira",
+    "orcamento",
+    "controlefinanceiro",
+    "organizacaofinanceira",
+    "dinheiro",
+    "planejamentofinanceiro",
+    "metododolfyn",
+    "app"
+  ],
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "title": "Capa",
+      "description": "Pergunta da landing em escala de capa, com a conta do mês em amarelo"
+    },
+    {
+      "file": "slide-02.html",
+      "title": "O problema",
+      "description": "O salário some e ninguém sabe onde; extrato com interrogações"
+    },
+    {
+      "file": "slide-03.html",
+      "title": "A resposta",
+      "description": "Cada categoria tem uma bandeira: azul, amarela ou vermelha"
+    },
+    {
+      "file": "slide-04.html",
+      "title": "Na prática",
+      "description": "Tela real dos seis medidores no celular"
+    },
+    {
+      "file": "slide-05.html",
+      "title": "O método",
+      "description": "Plano pronto pelo método Dolfyn: seis categorias com alvo em %"
+    },
+    {
+      "file": "slide-06.html",
+      "title": "Fecho",
+      "description": "Convite para criar a conta, com a URL"
+    }
+  ]
+}

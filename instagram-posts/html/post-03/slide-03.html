@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Spline+Sans+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/slide.css">
+<style>
+.title { margin-top: 24px; max-width: 15ch; }
+.cats { margin-top: 56px; }
+.cat { display: grid; grid-template-columns: 96px 1fr auto; gap: 0 32px; align-items: start; padding: 40px 0; border-top: 2px solid var(--hairline); }
+.cats .cat:last-child { border-bottom: 2px solid var(--hairline); }
+.cat .ic { width: 96px; height: 96px; border: 2px solid var(--hairline); background: var(--panel); display: flex; align-items: center; justify-content: center; color: var(--primary); border-radius: 4px; }
+.cat h3 { display: flex; align-items: center; gap: 14px; font-size: 40px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+.cat .sw { width: 18px; height: 18px; border-radius: 2px; flex: none; }
+.cat p { margin-top: 12px; font-size: 32px; line-height: 1.4; color: var(--ink-muted); }
+.cat .pct { font-size: 72px; font-weight: 700; line-height: 1; color: var(--ink); }
+.hl { position: absolute; left: 88px; right: 88px; bottom: 196px; }
+.hl .label { font-size: 22px; }
+.hl .split { margin-top: 16px; height: 40px; }
+.split .off { background: var(--hairline); }
+</style>
+</head>
+<body class="paper">
+<div class="slide">
+
+<p class="label">Para depois</p>
+<h2 class="title">Uma parte do mês é do seu futuro.</h2>
+<div class="cats">
+<div class="cat">
+  <span class="ic"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 17h3v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3a3.16 3.16 0 0 0 2-2h1a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-1a5 5 0 0 0-2-4V3a4 4 0 0 0-3.2 1.6l-.3.4H11a6 6 0 0 0-6 6v1a5 5 0 0 0 2 4v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1z"/><path d="M16 10h.01"/><path d="M2 8v1a2 2 0 0 0 2 2h1"/></svg></span>
+  <div><h3><span class="sw c-financial-security"></span>Tranquilidade Financeira</h3><p>Guardar e investir em você. O método pede: trate como uma conta fixa do mês.</p></div>
+  <span class="mono pct">10%</span>
+</div>
+<div class="cat">
+  <span class="ic"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m14 18 4-4 4 4"/><path d="M16 2v4"/><path d="M18 22v-8"/><path d="M21 11.343V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h9"/><path d="M3 10h18"/><path d="M8 2v4"/></svg></span>
+  <div><h3><span class="sw c-long-term"></span>Compras de Longo Prazo</h3><p>Carro, casa, a grande viagem: o que precisa de planejamento.</p></div>
+  <span class="mono pct">10%</span>
+</div></div>
+<div class="hl"><p class="label">Sua renda do mês · <span class="mono">20%</span> aqui</p><div class="split"><span class="off" style="flex:55"></span><span class="c-financial-security" style="flex:10"></span><span class="off" style="flex:5"></span><span class="off" style="flex:10"></span><span class="c-long-term" style="flex:10"></span><span class="off" style="flex:10"></span></div></div>
+
+<div class="foot"><div class="brand"><img src="../../assets/logos/logo.png" alt="">Amigo do Bolso</div><div class="progress"><span class=""></span><span class=""></span><span class="on"></span><span class=""></span><span class=""></span><span class=""></span></div></div>
+</div>
+</body>
+</html>

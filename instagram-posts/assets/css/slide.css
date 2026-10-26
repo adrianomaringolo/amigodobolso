@@ -1,0 +1,212 @@
+/*
+ * Base compartilhada dos slides do Amigo do Bolso (1080×1350).
+ * O mundo "A conta de luz do seu mês" do DESIGN.md: papel de conta, tinta azul
+ * institucional, uma cor de ação (laranja), bandeiras azul / amarela / vermelha,
+ * Archivo para texto e Spline Sans Mono para todo valor ou medida.
+ *
+ * Uso, a partir de html/post-NN/slide-NN.html:
+ *   <link rel="stylesheet" href="../../assets/css/slide.css">
+ *   <body class="paper"> ou <body class="field"> (campo azul)
+ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+	--paper: #f7f5ef;
+	--panel: #fcfbf7;
+	--ink: #16324f;
+	--ink-muted: #4d5f70;
+	--primary: #09659c;
+	--accent: #f28e38;
+	--hairline: #d0ccc2;
+	--flag-blue: #09659c;
+	--flag-blue-soft: #deedf7;
+	--flag-amber: #9a5f13;
+	--flag-amber-fill: #f0a017;
+	--flag-amber-soft: #f6ead4;
+	--flag-red: #be2f26;
+	--flag-red-soft: #f6e2e0;
+}
+
+html, body { width: 1080px; height: 1350px; overflow: hidden; }
+
+body {
+	font-family: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+	color: var(--ink);
+	-webkit-font-smoothing: antialiased;
+}
+
+/* fundo de papel com a trama de segurança da conta, a ~2% */
+body.paper {
+	background:
+		repeating-linear-gradient(135deg, rgba(22, 50, 79, 0.022) 0 2px, transparent 2px 9px),
+		var(--paper);
+}
+
+/* campo azul da marca (capa e fecho) — a cor vai no body, senão o screenshot sai branco */
+body.field {
+	background: var(--primary);
+	color: var(--paper);
+}
+
+.slide {
+	position: relative;
+	width: 1080px;
+	height: 1350px;
+	padding: 96px 88px 0;
+	overflow: hidden;
+}
+
+/* ------------------------------------------------------------------ tipografia */
+
+.label {
+	font-weight: 600;
+	font-size: 26px;
+	letter-spacing: 0.09em;
+	text-transform: uppercase;
+	color: var(--ink-muted);
+}
+.field .label { color: rgba(247, 245, 239, 0.75); }
+
+.display {
+	font-weight: 800;
+	font-size: 112px;
+	line-height: 0.98;
+	letter-spacing: -0.035em;
+	text-wrap: balance;
+}
+
+.title {
+	font-weight: 800;
+	font-size: 80px;
+	line-height: 1.02;
+	letter-spacing: -0.03em;
+	text-wrap: balance;
+}
+
+.lead {
+	font-size: 38px;
+	line-height: 1.4;
+	color: var(--ink-muted);
+	text-wrap: pretty;
+}
+.field .lead { color: rgba(247, 245, 239, 0.88); }
+
+.mono {
+	font-family: 'Spline Sans Mono', ui-monospace, monospace;
+	font-variant-numeric: tabular-nums lining-nums;
+	letter-spacing: -0.01em;
+}
+
+/* ------------------------------------------------------------------ peças da conta */
+
+/* painel de extrato: papel mais claro, filete, sombra de folha sobre a mesa */
+.panel {
+	background: var(--panel);
+	border: 2px solid var(--hairline);
+	border-radius: 6px;
+	box-shadow: 0 2px 0 0 var(--hairline), 0 24px 48px -28px rgba(20, 50, 80, 0.35);
+}
+
+.rule { height: 2px; background: var(--hairline); }
+
+/* linha picotada do boleto */
+.perf {
+	height: 0;
+	border-top: 2px dashed var(--hairline);
+}
+.field .perf { border-top-color: rgba(247, 245, 239, 0.35); }
+
+/* chip de bandeira: sempre palavra + cor, nunca só a cor */
+.chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 14px;
+	padding: 8px 18px 8px 14px;
+	border-radius: 3px;
+	font-family: 'Spline Sans Mono', ui-monospace, monospace;
+	font-weight: 700;
+	font-size: 30px;
+}
+.chip.azul { background: var(--flag-blue-soft); color: var(--flag-blue); }
+.chip.amarela { background: var(--flag-amber-soft); color: var(--flag-amber); }
+.chip.vermelha { background: var(--flag-red-soft); color: var(--flag-red); }
+
+/* botão de ação: laranja com texto em tinta (branco no laranja não passa AA) */
+.cta {
+	display: inline-flex;
+	align-items: center;
+	gap: 18px;
+	padding: 30px 44px;
+	border-radius: 6px;
+	background: var(--accent);
+	color: var(--ink);
+	font-weight: 800;
+	font-size: 34px;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+/* celular com uma tela real do app; sangra pela base do slide */
+.phone {
+	position: absolute;
+	width: 500px;
+	border: 14px solid var(--ink);
+	border-bottom: 0;
+	border-radius: 64px 64px 0 0;
+	overflow: hidden;
+	background: var(--ink);
+	box-shadow: 0 40px 80px -40px rgba(20, 50, 80, 0.55);
+}
+.phone img { display: block; width: 100%; border-radius: 50px 50px 0 0; }
+
+/* ------------------------------------------------------------------ rodapé fixo */
+
+.foot {
+	position: absolute;
+	left: 88px;
+	right: 88px;
+	bottom: 0;
+	height: 132px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-top: 2px dashed var(--hairline);
+	background: inherit;
+}
+.field .foot { border-top-color: rgba(247, 245, 239, 0.35); }
+
+.brand {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	font-weight: 800;
+	font-size: 30px;
+	letter-spacing: -0.02em;
+}
+.brand img { height: 52px; }
+
+.progress { display: flex; gap: 10px; }
+.progress span {
+	width: 14px;
+	height: 14px;
+	border-radius: 2px;
+	background: var(--hairline);
+}
+.progress span.on { background: var(--accent); }
+.field .progress span { background: rgba(247, 245, 239, 0.3); }
+.field .progress span.on { background: var(--accent); }
+
+/* rótulo dentro de painel de papel, mesmo sobre o campo azul */
+.panel .label { color: var(--ink-muted); }
+.panel { color: var(--ink); }
+
+/* barra da renda dividida pelo método (cores das fatias do app) */
+.split { display: flex; height: 36px; gap: 4px; }
+.split span { border-radius: 2px; }
+.c-essential { background: hsl(209 54% 30%); }
+.c-financial-security { background: hsl(174 55% 32%); }
+.c-charity { background: hsl(4 62% 47%); }
+.c-leisure { background: hsl(43 85% 50%); }
+.c-long-term { background: hsl(268 32% 48%); }
+.c-personal-growth { background: hsl(209 22% 60%); }

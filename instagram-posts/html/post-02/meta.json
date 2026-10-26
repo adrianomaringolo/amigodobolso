@@ -1,0 +1,55 @@
+{
+  "title": "Três bandeiras: como ler o Amigo do Bolso",
+  "date": "2026-10-23",
+  "type": "carousel",
+  "tags": [
+    "lançamento",
+    "explicador"
+  ],
+  "format": "1080x1350",
+  "caption": "🚦 Azul, amarela ou vermelha: qual é a bandeira do seu mês?\n\nNo Amigo do Bolso, cada categoria do seu orçamento tem uma bandeira, igual à da conta de luz. Ela muda conforme você gasta:\n\n🔵 No azul (até 84% do alvo): dentro do plano. Pode seguir o mês tranquilo.\n🟡 No amarelo (de 85% a 100%): chegando no limite. Hora de segurar um pouco.\n🔴 No vermelho (acima de 100%): passou do plano. Você fica sabendo na hora, e não no fim do mês.\n\nE o mês inteiro também tem bandeira: se uma categoria passa do plano, ele vai para o vermelho. Uma olhada e você já sabe onde ajustar. 🎯\n\nSem planilha, sem conta de cabeça. Você lança, o app hasteia as bandeiras.\n\n👉 Crie sua conta grátis em amigodobolso.vercel.app\n\n💬 Se você tivesse que chutar: qual categoria do seu mês estaria no vermelho?",
+  "hashtags": [
+    "amigodobolso",
+    "financaspessoais",
+    "educacaofinanceira",
+    "orcamento",
+    "controlefinanceiro",
+    "organizacaofinanceira",
+    "dinheiro",
+    "metododolfyn",
+    "planejamentofinanceiro",
+    "dicasfinanceiras"
+  ],
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "title": "Capa",
+      "description": "Três bandeiras. Simples e direto. Com as três bandeiras num painel"
+    },
+    {
+      "file": "slide-02.html",
+      "title": "Bandeira azul",
+      "description": "no azul: até 84% do alvo; medidor de exemplo da Diversão"
+    },
+    {
+      "file": "slide-03.html",
+      "title": "Bandeira amarela",
+      "description": "no amarelo: de 85% a 100%; medidor de exemplo da Diversão"
+    },
+    {
+      "file": "slide-04.html",
+      "title": "Bandeira vermelha",
+      "description": "no vermelho: acima de 100%; medidor de exemplo da Diversão"
+    },
+    {
+      "file": "slide-05.html",
+      "title": "Bandeira do mês",
+      "description": "O mês inteiro também tem bandeira: a pior categoria manda"
+    },
+    {
+      "file": "slide-06.html",
+      "title": "Fecho",
+      "description": "Convite: veja a bandeira do seu mês, com a URL"
+    }
+  ]
+}

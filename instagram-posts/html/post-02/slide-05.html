@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Spline+Sans+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/slide.css">
+<style>
+.title { margin-top: 24px; max-width: 16ch; }
+.lead { margin-top: 24px; font-size: 34px; max-width: 30ch; }
+.bill { margin-top: 48px; padding: 32px 40px 12px; position: relative; }
+.month { display: flex; align-items: center; gap: 22px; padding-bottom: 26px; border-bottom: 2px dashed var(--hairline); }
+.month b { font-size: 34px; }
+.bill li { list-style: none; display: flex; align-items: center; gap: 18px; padding: 16px 0; border-bottom: 2px solid var(--hairline); font-size: 28px; }
+.bill li:last-child { border-bottom: 0; }
+.bill .sw { width: 16px; height: 16px; border-radius: 2px; flex: none; }
+.bill .name { flex: 1; }
+.bill .chip { font-size: 22px; padding: 4px 12px; }
+.bill .pct { width: 84px; text-align: right; font-size: 26px; color: var(--ink-muted); }
+.ex { position: absolute; top: 30px; right: 40px; font-size: 18px; }
+</style>
+</head>
+<body class="paper">
+<div class="slide">
+
+<p class="label">E o mês?</p>
+<h2 class="title">O mês também tem bandeira.</h2>
+<p class="lead">Se uma categoria passa do plano, o mês vai para o vermelho. Uma olhada e você já sabe.</p>
+<div class="bill panel">
+  <span class="label ex">Exemplo</span>
+  <div class="month"><img src="../../assets/icons/bandeira-vermelha.svg" alt="" style="height:64px"><div><p class="label" style="font-size:20px">Bandeira do mês</p><b>Alguma categoria passou do plano</b></div></div>
+  <ul><li><span class="sw c-essential"></span><span class="name">Necessidades Essenciais</span><span class="chip azul">no azul</span><span class="mono pct">83%</span></li><li><span class="sw c-financial-security"></span><span class="name">Tranquilidade Financeira</span><span class="chip azul">no azul</span><span class="mono pct">63%</span></li><li><span class="sw c-charity"></span><span class="name">Fazer Pelo Outro</span><span class="chip azul">no azul</span><span class="mono pct">50%</span></li><li><span class="sw c-leisure"></span><span class="name">Diversão</span><span class="chip amarela">no amarelo</span><span class="mono pct">90%</span></li><li><span class="sw c-long-term"></span><span class="name">Compras de Longo Prazo</span><span class="chip vermelha">no vermelho</span><span class="mono pct">120%</span></li><li><span class="sw c-personal-growth"></span><span class="name">Desenvolvimento Pessoal</span><span class="chip azul">no azul</span><span class="mono pct">28%</span></li></ul>
+</div>
+
+<div class="foot"><div class="brand"><img src="../../assets/logos/logo.png" alt="">Amigo do Bolso</div><div class="progress"><span class=""></span><span class=""></span><span class=""></span><span class=""></span><span class="on"></span><span class=""></span></div></div>
+</div>
+</body>
+</html>

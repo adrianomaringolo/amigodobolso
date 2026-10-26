@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800&family=Spline+Sans+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/slide.css">
+<style>
+.title { margin-top: 24px; max-width: 15ch; }
+.cats { margin-top: 56px; }
+.cat { display: grid; grid-template-columns: 96px 1fr auto; gap: 0 32px; align-items: start; padding: 40px 0; border-top: 2px solid var(--hairline); }
+.cats .cat:last-child { border-bottom: 2px solid var(--hairline); }
+.cat .ic { width: 96px; height: 96px; border: 2px solid var(--hairline); background: var(--panel); display: flex; align-items: center; justify-content: center; color: var(--primary); border-radius: 4px; }
+.cat h3 { display: flex; align-items: center; gap: 14px; font-size: 40px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+.cat .sw { width: 18px; height: 18px; border-radius: 2px; flex: none; }
+.cat p { margin-top: 12px; font-size: 32px; line-height: 1.4; color: var(--ink-muted); }
+.cat .pct { font-size: 72px; font-weight: 700; line-height: 1; color: var(--ink); }
+.hl { position: absolute; left: 88px; right: 88px; bottom: 196px; }
+.hl .label { font-size: 22px; }
+.hl .split { margin-top: 16px; height: 40px; }
+.split .off { background: var(--hairline); }
+
+.big { margin-top: 64px; display: flex; align-items: baseline; gap: 24px; }
+.big .mono { font-size: 240px; font-weight: 700; line-height: 0.9; letter-spacing: -0.04em; color: var(--primary); }
+.big span:last-child { font-size: 40px; font-weight: 700; color: var(--ink-muted); }
+</style>
+</head>
+<body class="paper">
+<div class="slide">
+
+<p class="label">Mais da metade</p>
+<h2 class="title">Primeiro, o que não dá para deixar de pagar.</h2>
+<div class="big"><span class="mono">55%</span><span>da renda</span></div>
+<div class="cats">
+<div class="cat">
+  <span class="ic"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></span>
+  <div><h3><span class="sw c-essential"></span>Necessidades Essenciais</h3><p>Aluguel, mercado, contas de água, luz e telefone, impostos. O básico para viver.</p></div>
+  
+</div></div>
+<div class="hl"><p class="label">Sua renda do mês · <span class="mono">55%</span> aqui</p><div class="split"><span class="c-essential" style="flex:55"></span><span class="off" style="flex:10"></span><span class="off" style="flex:5"></span><span class="off" style="flex:10"></span><span class="off" style="flex:10"></span><span class="off" style="flex:10"></span></div></div>
+
+<div class="foot"><div class="brand"><img src="../../assets/logos/logo.png" alt="">Amigo do Bolso</div><div class="progress"><span class=""></span><span class="on"></span><span class=""></span><span class=""></span><span class=""></span><span class=""></span></div></div>
+</div>
+</body>
+</html>

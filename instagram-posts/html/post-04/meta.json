@@ -1,0 +1,55 @@
+{
+  "title": "Comece em 3 passos",
+  "date": "2026-10-23",
+  "type": "carousel",
+  "tags": [
+    "lançamento",
+    "passo a passo"
+  ],
+  "format": "1080x1350",
+  "caption": "🚀 Comece no Amigo do Bolso em 3 passos:\n\n1️⃣ Lance a receita do mês: salário, extras, vendas. É sobre ela que o plano divide as categorias.\n2️⃣ Lance cada despesa e escolha a categoria. Pago ou pendente, à vista ou parcelado.\n3️⃣ Acompanhe as bandeiras: cada categoria mostra quanto ainda cabe no mês. 🔵🟡🔴\n\n📱 Dica: deixe o app na tela do celular. Não precisa de loja de aplicativos.\n• Android: abra o site e toque em \"Instalar app\".\n• iPhone: no Safari, toque em Compartilhar e depois em \"Adicionar à Tela de Início\".\n\n✅ Grátis. Entre com e-mail ou Google.\n\n👉 amigodobolso.vercel.app\n\n💾 Salve este post para fazer o passo a passo depois!",
+  "hashtags": [
+    "amigodobolso",
+    "financaspessoais",
+    "educacaofinanceira",
+    "orcamento",
+    "controlefinanceiro",
+    "organizacaofinanceira",
+    "dinheiro",
+    "metododolfyn",
+    "planejamentofinanceiro",
+    "dicasfinanceiras"
+  ],
+  "slides": [
+    {
+      "file": "slide-01.html",
+      "title": "Capa",
+      "description": "Comece em 3 passos, com a lista dos passos num painel"
+    },
+    {
+      "file": "slide-02.html",
+      "title": "Passo 1",
+      "description": "Formulário de receita no celular"
+    },
+    {
+      "file": "slide-03.html",
+      "title": "Passo 2",
+      "description": "Formulário de despesa com a lista das seis categorias"
+    },
+    {
+      "file": "slide-04.html",
+      "title": "Passo 3",
+      "description": "Os seis medidores do mês"
+    },
+    {
+      "file": "slide-05.html",
+      "title": "Instale no celular",
+      "description": "Como instalar o app na tela de início, Android e iPhone"
+    },
+    {
+      "file": "slide-06.html",
+      "title": "Fecho",
+      "description": "Convite: crie sua conta e faça o passo 1 hoje, com a URL"
+    }
+  ]
+}
