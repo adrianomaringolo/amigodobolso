@@ -43,6 +43,7 @@ function readSeriesArticles(series: string): Article[] {
 				title: data.title || file,
 				description: data.description || '',
 				order: Number(data.seriesOrder) || 0,
+				audio: data.audio || undefined,
 				readingMinutes: Math.max(1, Math.round(words / WORDS_PER_MINUTE)),
 				content,
 			}

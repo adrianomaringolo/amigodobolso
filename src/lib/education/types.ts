@@ -5,6 +5,8 @@ export interface Article {
 	title: string
 	description: string
 	order: number
+	/** Optional lesson audio (public path), played above the text. */
+	audio?: string
 	readingMinutes: number
 	content: string
 }

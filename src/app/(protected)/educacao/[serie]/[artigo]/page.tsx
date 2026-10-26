@@ -48,6 +48,10 @@ export default async function ArtigoPage({
 				</p>
 			</header>
 
+			{article.audio && (
+				<audio controls preload="metadata" src={article.audio} className="w-full" />
+			)}
+
 			<Markdown content={article.content} />
 
 			<div className="border-t border-border pt-4">
