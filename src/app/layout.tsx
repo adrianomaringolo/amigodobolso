@@ -1,5 +1,6 @@
 import { PageContentArea } from '@/components/navigation/page-content-area'
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from '@/lib/site'
+import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Archivo, Spline_Sans_Mono } from 'next/font/google'
 import './globals.css'
@@ -77,6 +78,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 		<html lang="pt-BR" className={`${sans.variable} ${mono.variable}`}>
 			<body>
 				<PageContentArea>{children}</PageContentArea>
+				<Analytics />
 			</body>
 		</html>
 	)
