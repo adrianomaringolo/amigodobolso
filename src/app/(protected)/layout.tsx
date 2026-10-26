@@ -3,6 +3,7 @@
 import { BottomBar } from '@/components/navigation/bottom-bar'
 import { ContaMasthead } from '@/components/navigation/conta-masthead'
 import { FooterComponent } from '@/components/navigation/footer'
+import { SupportProvider } from '@/components/support/support-dialog'
 import { createClient } from '@/lib/supabase/client'
 import { authErrors } from '@/lib/types/Auth.type'
 import { useDialog } from 'buildgrid-ui'
@@ -80,13 +81,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 	}
 
 	return (
-		<div className="flex min-h-dvh flex-col bg-background pb-[calc(5rem+env(safe-area-inset-bottom))] lg:pb-0">
-			<ContaMasthead />
-			<main className="mx-auto w-full max-w-5xl flex-1 px-4 pb-8 pt-6 md:px-6 md:pt-8 lg:pb-14">
-				{children}
-			</main>
-			<FooterComponent />
-			<BottomBar />
-		</div>
+		<SupportProvider>
+			<div className="flex min-h-dvh flex-col bg-background pb-[calc(5rem+env(safe-area-inset-bottom))] lg:pb-0">
+				<ContaMasthead />
+				<main className="mx-auto w-full max-w-5xl flex-1 px-4 pb-8 pt-6 md:px-6 md:pt-8 lg:pb-14">
+					{children}
+				</main>
+				<FooterComponent />
+				<BottomBar />
+			</div>
+		</SupportProvider>
 	)
 }

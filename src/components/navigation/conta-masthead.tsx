@@ -21,6 +21,7 @@ import {
 	HelpCircle,
 	LayoutGrid,
 	Lock,
+	LifeBuoy,
 	LogOut,
 	ScrollText,
 	User,
@@ -29,6 +30,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import InstallPWAButton from '../install-pwa-button'
+import { useSupport } from '../support/support-dialog'
 
 export const NAV_ITEMS = [
 	{ icon: LayoutGrid, label: 'Início', href: '/inicio' },
@@ -43,6 +45,7 @@ export function ContaMasthead({ isAdmin = false }: { isAdmin?: boolean }) {
 	const supabase = createClient()
 	const dialog = useDialog()
 	const { user } = useUser()
+	const { openSupport } = useSupport()
 
 	const userNames = user?.name?.split(' ') ?? []
 	const userInitials =
@@ -107,21 +110,35 @@ export function ContaMasthead({ isAdmin = false }: { isAdmin?: boolean }) {
 
 				<div className="ml-auto flex shrink-0 items-center gap-1">
 					<InstallPWAButton />
-					{/* "Como usar" lives as an icon beside the avatar — reachable on every screen size */}
-					<Link
-						href="/ajuda"
-						aria-label="Como usar"
-						title="Como usar"
-						aria-current={pathname.startsWith('/ajuda') ? 'page' : undefined}
-						className={cn(
-							'flex h-10 w-10 items-center justify-center rounded-sm outline-none transition-colors hover:bg-white/10 focus-visible:bg-white/10',
-							pathname.startsWith('/ajuda')
-								? 'text-primary-foreground'
-								: 'text-primary-foreground/75 hover:text-primary-foreground',
-						)}
-					>
-						<HelpCircle className="h-6 w-6" strokeWidth={2} />
-					</Link>
+					{/* Help menu: how-to guide and support — reachable on every screen size */}
+					<DropdownMenu>
+						<DropdownMenuTrigger asChild>
+							<button
+								aria-label="Ajuda"
+								title="Ajuda"
+								className={cn(
+									'flex h-10 w-10 items-center justify-center rounded-sm outline-none transition-colors hover:bg-white/10 focus-visible:bg-white/10',
+									pathname.startsWith('/ajuda')
+										? 'text-primary-foreground'
+										: 'text-primary-foreground/75 hover:text-primary-foreground',
+								)}
+							>
+								<HelpCircle className="h-6 w-6" strokeWidth={2} />
+							</button>
+						</DropdownMenuTrigger>
+						<DropdownMenuContent className="w-56" align="end">
+							<DropdownMenuItem asChild>
+								<Link href="/ajuda">
+									<HelpCircle className="mr-2 h-4 w-4" />
+									Como usar
+								</Link>
+							</DropdownMenuItem>
+							<DropdownMenuItem onClick={openSupport}>
+								<LifeBuoy className="mr-2 h-4 w-4" />
+								Fale com o suporte
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					</DropdownMenu>
 					<DropdownMenu>
 						<DropdownMenuTrigger asChild>
 							<button

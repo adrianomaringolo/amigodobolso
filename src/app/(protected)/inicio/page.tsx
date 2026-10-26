@@ -7,12 +7,13 @@ import { useCategoryHistory } from '@/components/bandeira/use-category-history'
 import { useReadings } from '@/components/bandeira/use-readings'
 import { AmountValue } from '@/components/financial/amount-value'
 import { TransactionTypes } from '@/components/financial/financial.types'
+import { useSupport } from '@/components/support/support-dialog'
 import { useUser } from '@/lib/hooks/use-user'
 import { authErrors } from '@/lib/types/Auth.type'
 import { formatDateAndMonth } from '@/lib/utils/date'
 import { useGetEntries } from '@/services/entries/useGetEntries'
 import { useDialog } from 'buildgrid-ui'
-import { BadgeAlert } from 'lucide-react'
+import { BadgeAlert, LifeBuoy } from 'lucide-react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { useEffect } from 'react'
@@ -27,6 +28,7 @@ export default function Dashboard() {
 	const { user } = useUser()
 	const searchParams = useSearchParams()
 	const dialog = useDialog()
+	const { openSupport } = useSupport()
 
 	useEffect(() => {
 		const errorCode = searchParams.get('error_code')
@@ -95,8 +97,8 @@ export default function Dashboard() {
 					{readings.income <= 0 ? (
 						<div className="px-4 py-10 text-center">
 							<p className="text-sm text-muted-foreground">
-								Lance sua <strong className="text-foreground">receita</strong> do mês
-								para o plano dividir os alvos das categorias.
+								Lance sua <strong className="text-foreground">receita</strong> do mês para
+								o plano dividir os alvos das categorias.
 							</p>
 							<Link
 								href="/lancamentos?m=nova"
@@ -192,6 +194,24 @@ export default function Dashboard() {
 								})}
 							</ul>
 						)}
+					</Painel>
+
+					<Painel title="Precisa de ajuda?">
+						<div className="flex items-center gap-3">
+							<span className="flex h-9 w-9 shrink-0 items-center justify-center border border-border text-muted-foreground">
+								<LifeBuoy className="h-4 w-4" />
+							</span>
+							<p className="min-w-0 flex-1 text-sm text-foreground/80">
+								Dúvidas ou sugestões? Fale com a gente por e-mail.
+							</p>
+						</div>
+						<button
+							type="button"
+							onClick={openSupport}
+							className="mt-3 flex min-h-11 w-full items-center justify-center bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90"
+						>
+							Falar com o suporte
+						</button>
 					</Painel>
 				</div>
 			</div>
