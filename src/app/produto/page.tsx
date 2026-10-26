@@ -1,11 +1,16 @@
 import { FooterComponent } from '@/components/navigation/footer'
 import { ContaExemplo } from '@/components/produto/conta-exemplo'
 import { ComoFunciona, Faq, PERGUNTAS } from '@/components/produto/faq'
+import { DicaDoAmigo } from '@/components/produto/dica-do-amigo'
 import { Experimente } from '@/components/produto/experimente'
+import { RelatoriosExemplo } from '@/components/produto/relatorios-exemplo'
 import { Metodo } from '@/components/produto/metodo'
+import { RevelarNoScroll } from '@/components/produto/revelar-no-scroll'
+import { getAllSeries } from '@/lib/education/content'
 import { DOLFYN_INSTAGRAM, DOLFYN_LINKEDIN, DOLFYN_URL, SITE_NAME, SITE_URL } from '@/lib/site'
 import { cn } from '@/lib/utils'
 import {
+	ArrowDown,
 	ArrowRight,
 	CalendarClock,
 	ChartColumn,
@@ -121,12 +126,14 @@ const RECURSOS = [
 ]
 
 export default function ProdutoPage() {
+	const serieDicas = getAllSeries()[0]
 	return (
 		<div className="flex min-h-dvh flex-col bg-background">
 			<script
 				type="application/ld+json"
 				dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD).replace(/</g, '\\u003c') }}
 			/>
+			<RevelarNoScroll />
 			{/* masthead + hero share the brand-blue field */}
 			<div className="bg-primary text-primary-foreground">
 				<header className="mx-auto flex h-[4.5rem] w-full max-w-6xl items-center justify-between gap-4 px-4 md:h-20 md:px-6">
@@ -204,8 +211,42 @@ export default function ProdutoPage() {
 			</div>
 
 			<main className="flex-1">
-				{/* how to read the flags — with the slider */}
+				{/* the product in a minute: video, or the interactive examples below */}
 				<section className="mx-auto w-full max-w-6xl px-4 pt-52 sm:pt-60 md:px-6 lg:pt-48">
+					<div className="reveal grid items-center gap-6 lg:grid-cols-[1fr_1.7fr] lg:gap-12">
+						<div>
+							<h2 className="text-3xl font-extrabold leading-tight tracking-[-0.025em] md:text-[2.5rem]">
+								Veja em pouco mais de um minuto.
+							</h2>
+							<p className="mt-3 text-base leading-relaxed text-muted-foreground">
+								Assista ao vídeo ou, se preferir, navegue pelos exemplos interativos logo abaixo.
+							</p>
+							<a
+								href="#exemplos"
+								className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-foreground underline decoration-accent decoration-2 underline-offset-4 hover:decoration-foreground"
+							>
+								Ir para os exemplos
+								<ArrowDown className="h-4 w-4" strokeWidth={2.25} aria-hidden />
+							</a>
+						</div>
+						<div className="border border-border bg-card p-2 shadow-bill md:p-3">
+							<video
+								controls
+								playsInline
+								preload="none"
+								poster="/video/amigodobolso-poster.webp"
+								aria-label="Vídeo: como funciona o Amigo do Bolso"
+								className="aspect-video w-full bg-primary"
+							>
+								<source src="/video/amigodobolso-web.mp4" type="video/mp4" />
+								Seu navegador não reproduz vídeo. Use os exemplos interativos logo abaixo.
+							</video>
+						</div>
+					</div>
+				</section>
+
+				{/* how to read the flags — with the slider */}
+				<section id="exemplos" className="mx-auto w-full max-w-6xl scroll-mt-6 px-4 pt-24 md:px-6 md:pt-32">
 					<div className="reveal max-w-2xl">
 						<h2 className="text-3xl font-extrabold leading-tight tracking-[-0.025em] md:text-[2.5rem]">
 							Três bandeiras. Simples e direto.
@@ -313,6 +354,23 @@ export default function ProdutoPage() {
 							</ul>
 						</div>
 					</div>
+
+					{/* the reports, live: the real report components on a fictitious account */}
+					<div className="reveal mt-12 md:mt-16">
+						<h3 className="text-2xl font-extrabold leading-tight tracking-[-0.02em] md:text-3xl">
+							E os relatórios mostram o resto.
+						</h3>
+						<p className="mt-2 max-w-2xl text-base leading-relaxed text-muted-foreground">
+							Veja o mês categoria por categoria e o ano inteiro de uma vez. Experimente: troque o mês, passe o
+							mouse ou toque nas barras.
+						</p>
+						<RelatoriosExemplo className="mt-6" />
+					</div>
+				</section>
+
+				{/* Dica do Amigo: new content all the time */}
+				<section className="mx-auto w-full max-w-6xl px-4 pt-24 md:px-6 md:pt-32">
+					<DicaDoAmigo serie={serieDicas} />
 				</section>
 
 				{/* how it works + FAQ: plain text answers for readers and answer engines */}

@@ -355,18 +355,8 @@
 		}
 	}
 
-	/* scroll-driven entrances: progressive — without support, everything is simply visible */
+	/* scroll-driven decorations: progressive — without support, everything is simply visible */
 	@supports (animation-timeline: view()) {
-		.reveal {
-			animation: reveal-up linear both;
-			animation-timeline: view();
-			animation-range: entry 0% entry 55%;
-		}
-		.stagger > * {
-			animation: reveal-side linear both;
-			animation-timeline: view();
-			animation-range: entry calc(10% + var(--i, 0) * 12%) entry calc(70% + var(--i, 0) * 12%);
-		}
 		.bar-grow > * {
 			transform-origin: left;
 			animation: bar-grow linear both;
@@ -382,17 +372,16 @@
 			animation-range: entry 40% cover 45%;
 		}
 	}
-	@keyframes reveal-up {
-		from {
-			opacity: 0;
-			transform: translateY(28px);
-		}
+	/* entrances: RevelarNoScroll hides blocks below the fold and lifts them in as they come into view */
+	.reveal-pending {
+		opacity: 0;
+		transform: translateY(48px);
 	}
-	@keyframes reveal-side {
-		from {
-			opacity: 0;
-			transform: translateX(-16px);
-		}
+	.reveal-pending.is-visible {
+		opacity: 1;
+		transform: none;
+		transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+		transition-delay: calc(var(--i, 0) * 90ms);
 	}
 	@keyframes bar-grow {
 		from {
