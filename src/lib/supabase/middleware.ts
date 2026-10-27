@@ -1,8 +1,6 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
 
-import { getUserRole } from '../get-user-role'
-
 export async function updateSession(request: NextRequest) {
 	let supabaseResponse = NextResponse.next({
 		request,
@@ -37,8 +35,9 @@ export async function updateSession(request: NextRequest) {
 
 	console.log('user', user)
 
-	// Get the user's role using the custom getUserRole function
-	const role = await getUserRole()
+	// Role comes from the verified JWT claims (works with any signing key type)
+	const { data: claimsData } = await supabase.auth.getClaims()
+	const role = (claimsData?.claims.app_metadata as { role?: string } | undefined)?.role
 
 	// Redirect non-admin users trying to access admin pages to the home page
 	if (user && role !== 'admin' && request.nextUrl.pathname.startsWith('/admin')) {
