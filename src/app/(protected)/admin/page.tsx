@@ -1,8 +1,11 @@
-import { Painel } from '@/components/bandeira/painel'
-import { UsersTable } from '@/components/users/users-table'
+import { PainelVazio } from '@/components/bandeira/painel'
+import { UsersStats } from '@/components/users/users-stats'
+import { getAdminUsers, UsersTable } from '@/components/users/users-table'
 import { Lock } from 'lucide-react'
 
-export default function AdminPanel() {
+export default async function AdminPanel() {
+	const { users, error } = await getAdminUsers()
+
 	return (
 		<div className="space-y-5">
 			<header className="border-b border-border pb-3">
@@ -15,9 +18,14 @@ export default function AdminPanel() {
 				</p>
 			</header>
 
-			<Painel title="Usuários" bodyClassName="px-0 py-0">
-				<UsersTable />
-			</Painel>
+			{error ? (
+				<PainelVazio>Não foi possível carregar os usuários.</PainelVazio>
+			) : (
+				<>
+					<UsersStats users={users} />
+					<UsersTable users={users} />
+				</>
+			)}
 		</div>
 	)
 }
