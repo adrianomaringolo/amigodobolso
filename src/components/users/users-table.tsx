@@ -1,97 +1,68 @@
-'use client'
+import { PainelVazio } from '@/components/bandeira/painel'
+import { createClient } from '@/lib/supabase/server'
+import { format } from 'date-fns'
 
-export const UsersTable = () => {
-	// const { data: users = [], isLoading } = useGetUsers()
+type AdminUser = {
+	id: string
+	email: string | null
+	full_name: string | null
+	provider: string | null
+	created_at: string
+	last_sign_in_at: string | null
+}
 
-	// const [isAdminConfirmOpen, setIsAdminConfirmOpen] = useState(false)
-	// const [selectedUser, setSelectedUser] = useState({ uid: '' })
+const providerLabel: Record<string, string> = {
+	email: 'E-mail',
+	google: 'Google',
+}
 
-	// const functions = getFunctions()
+const formatDate = (value: string | null) =>
+	value ? format(new Date(value), 'dd/MM/yyyy HH:mm') : '—'
 
-	// const setAdmin = async (uid: string) => {
-	// 	const setAdminClaim = httpsCallable(functions, 'setAdminClaim')
+export async function UsersTable() {
+	const supabase = await createClient()
+	const { data, error } = await supabase.rpc('admin_list_users')
 
-	// 	try {
-	// 		const result = await setAdminClaim({ uid })
-	// 		const data = result.data as { message: string }
-	// 		console.log(data.message) // Success message
-	// 	} catch (error: unknown) {
-	// 		if (error instanceof Error) {
-	// 			console.error('Error setting admin claim:', error.message)
-	// 		} else {
-	// 			console.error('Error setting admin claim:', error)
-	// 		}
-	// 	}
-	// }
+	if (error) {
+		return <PainelVazio>Não foi possível carregar os usuários.</PainelVazio>
+	}
 
-	// if (isLoading) return <SkeletonTable rows={5} columns={3} />
+	const users = (data ?? []) as AdminUser[]
 
-	return null
-	// <>
-	// 	<Table>
-	// 		<TableHeader>
-	// 			<TableRow>
-	// 				<TableHead>Nome</TableHead>
-	// 				<TableHead>E-mail</TableHead>
-	// 				<TableHead></TableHead>
-	// 			</TableRow>
-	// 		</TableHeader>
-	// 		<TableBody>
-	// 			{users.map((user: User) => {
-	// 				return (
-	// 					<TableRow key={user.id}>
-	// 						<TableCell>
-	// 							<UserNameDisplay user={user} />
-	// 						</TableCell>
-	// 						<TableCell>{user.email}</TableCell>
-	// 						<TableCell>
-	// 							<DropdownMenu>
-	// 								<DropdownMenuTrigger asChild>
-	// 									<Button
-	// 										variant="outline"
-	// 										className="relative h-8 w-8 rounded-full "
-	// 									>
-	// 										<EllipsisVertical className="w-3 h-3" />
-	// 									</Button>
-	// 								</DropdownMenuTrigger>
-	// 								<DropdownMenuContent className="w-56" align="end" forceMount>
-	// 									<DropdownMenuItem
-	// 										onClick={() => {
-	// 											setSelectedUser(user)
-	// 											setIsAdminConfirmOpen(true)
-	// 										}}
-	// 									>
-	// 										<Lock className="mr-2 h-4 w-4" />
-	// 										<span>Definir como administrador</span>
-	// 									</DropdownMenuItem>
+	if (users.length === 0) {
+		return <PainelVazio>Nenhum usuário cadastrado.</PainelVazio>
+	}
 
-	// 									<DropdownMenuItem onClick={() => {}}>
-	// 										<Trash className="mr-2 h-4 w-4" />
-	// 										<span>Excluir dados do usuário</span>
-	// 									</DropdownMenuItem>
-	// 								</DropdownMenuContent>
-	// 							</DropdownMenu>
-	// 						</TableCell>
-	// 					</TableRow>
-	// 				)
-	// 			})}
-	// 		</TableBody>
-	// 	</Table>
-
-	// 	<AlertDialog open={isAdminConfirmOpen} onOpenChange={setIsAdminConfirmOpen}>
-	// 		<AlertDialogContent>
-	// 			<AlertDialogHeader>
-	// 				<AlertDialogTitle>
-	// 					Tem certeza que deseja promover esse usuário a ADMINISTRADOR?
-	// 				</AlertDialogTitle>
-	// 			</AlertDialogHeader>
-	// 			<AlertDialogFooter>
-	// 				<AlertDialogCancel>Cancelar</AlertDialogCancel>
-	// 				<AlertDialogAction onClick={() => setAdmin(selectedUser.id)}>
-	// 					Sim
-	// 				</AlertDialogAction>
-	// 			</AlertDialogFooter>
-	// 		</AlertDialogContent>
-	// 	</AlertDialog>
-	// </>
+	return (
+		<div className="overflow-x-auto">
+			<table className="w-full text-left text-sm">
+				<thead>
+					<tr className="notice-label border-b border-border">
+						<th className="px-4 py-2 font-medium">Nome</th>
+						<th className="px-4 py-2 font-medium">E-mail</th>
+						<th className="px-4 py-2 font-medium">Acesso</th>
+						<th className="px-4 py-2 font-medium">Cadastro</th>
+						<th className="px-4 py-2 font-medium">Último acesso</th>
+					</tr>
+				</thead>
+				<tbody>
+					{users.map((user) => (
+						<tr key={user.id} className="border-b border-border last:border-0">
+							<td className="px-4 py-2.5 text-foreground">{user.full_name ?? '—'}</td>
+							<td className="px-4 py-2.5">{user.email ?? '—'}</td>
+							<td className="px-4 py-2.5">
+								{user.provider ? (providerLabel[user.provider] ?? user.provider) : '—'}
+							</td>
+							<td className="whitespace-nowrap px-4 py-2.5">
+								{formatDate(user.created_at)}
+							</td>
+							<td className="whitespace-nowrap px-4 py-2.5">
+								{formatDate(user.last_sign_in_at)}
+							</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
+	)
 }

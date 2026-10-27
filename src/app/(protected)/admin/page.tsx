@@ -1,5 +1,3 @@
-'use client'
-
 import { Painel } from '@/components/bandeira/painel'
 import { UsersTable } from '@/components/users/users-table'
 import { Lock } from 'lucide-react'
@@ -13,7 +11,7 @@ export default function AdminPanel() {
 					Administração
 				</h1>
 				<p className="notice-label mt-0.5 !normal-case !tracking-normal">
-					gestão de usuários do Amigo do Bolso
+					usuários cadastrados no Amigo do Bolso
 				</p>
 			</header>
 
