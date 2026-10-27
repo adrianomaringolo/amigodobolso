@@ -61,6 +61,9 @@ export const metadata: Metadata = {
 		title: `${SITE_NAME} — ${SITE_TAGLINE}`,
 		description: SITE_DESCRIPTION,
 	},
+	verification: {
+		google: 'EUuZUPhTncpIUUUmAKzw8kTQ4AMoIagEYXjBMa1vhns',
+	},
 	other: {
 		'msapplication-TileColor': '#09659c',
 	},

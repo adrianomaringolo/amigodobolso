@@ -11,13 +11,13 @@ export const Privacy = () => {
 			</h1>
 
 			<p className={pClasses}>
-				<strong>Última atualização: 25 de outubro de 2026</strong>
+				<strong>Última atualização: 27 de outubro de 2026</strong>
 			</p>
 
 			<p className={pClasses}>
 				Esta Política explica como a{' '}
-				<strong>Adriano Maríngolo Gomes Desenvolvimento de Software Ltda.</strong>, CNPJ{' '}
-				<strong>59.563.105/0001-00</strong>, responsável pelo aplicativo{' '}
+				<strong>DOLFYN COMUNICAÇÃO E TREINAMENTO LTDA</strong>, CNPJ{' '}
+				<strong>00.581.179/0001-18</strong>, responsável pelo aplicativo{' '}
 				<strong>Amigo do Bolso</strong> (“nós”), trata dados pessoais de quem utiliza o
 				aplicativo (“você”). Leia também as informações exibidas no app. Esta versão
 				descreve as funcionalidades e os fornecedores atualmente informados; mudanças
@@ -26,8 +26,8 @@ export const Privacy = () => {
 
 			<h2 className={h2Classes}>1. Quem é responsável e como falar conosco</h2>
 			<p className={pClasses}>
-				O controlador dos dados pessoais tratados para operar o Amigo do Bolso é Adriano
-				Maríngolo Gomes Desenvolvimento de Software Ltda., CNPJ 59.563.105/0001-00.
+				O controlador dos dados pessoais tratados para operar o Amigo do Bolso é DOLFYN
+				COMUNICAÇÃO E TREINAMENTO LTDA, CNPJ 00.581.179/0001-18.
 			</p>
 			<p className={pClasses}>
 				Para dúvidas, solicitações ou exercício de direitos de privacidade, use:{' '}

@@ -67,7 +67,8 @@ const JSON_LD = {
 			'@type': 'Organization',
 			'@id': `${DOLFYN_URL}#organization`,
 			name: 'Dolfyn',
-			legalName: 'Adriano Maríngolo Gomes Desenvolvimento de Software Ltda.',
+			legalName: 'DOLFYN COMUNICAÇÃO E TREINAMENTO LTDA',
+			taxID: '00.581.179/0001-18',
 			url: DOLFYN_URL,
 			sameAs: [DOLFYN_URL, DOLFYN_INSTAGRAM, DOLFYN_LINKEDIN],
 			contactPoint: {
