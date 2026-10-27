@@ -3,6 +3,7 @@
 import { BottomBar } from '@/components/navigation/bottom-bar'
 import { ContaMasthead } from '@/components/navigation/conta-masthead'
 import { FooterComponent } from '@/components/navigation/footer'
+import { WelcomeDialog } from '@/components/navigation/welcome-dialog'
 import { SupportProvider } from '@/components/support/support-dialog'
 import { createClient } from '@/lib/supabase/client'
 import { authErrors } from '@/lib/types/Auth.type'
@@ -89,6 +90,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 				</main>
 				<FooterComponent />
 				<BottomBar />
+				<WelcomeDialog />
 			</div>
 		</SupportProvider>
 	)
