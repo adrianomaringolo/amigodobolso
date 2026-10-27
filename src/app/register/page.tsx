@@ -1,24 +1,20 @@
 'use client'
 
+import { GoogleLoginButton } from '@/components/access/google-login-button'
 import { AuthShell } from '@/components/access/auth-shell'
 import { PasswordField } from '@/components/access/password-field'
-import { Terms } from '@/components/terms'
 import { createClient } from '@/lib/supabase/client'
 import {
 	Button,
 	Checkbox,
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogHeader,
-	DialogTitle,
 	Input,
 	Label,
 	toast,
 	useDialog,
 } from 'buildgrid-ui'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { FormEvent, useState } from 'react'
+import { FormEvent, Suspense, useState } from 'react'
 
 export default function Register() {
 	const [email, setEmail] = useState('')
@@ -28,7 +24,6 @@ export default function Register() {
 	const [agreement, setAgreement] = useState(false)
 
 	const [isLoading, setIsLoading] = useState(false)
-	const [open, setOpen] = useState(false)
 
 	const router = useRouter()
 	const dialog = useDialog()
@@ -123,14 +118,23 @@ export default function Register() {
 						/>
 						<Label htmlFor="agreement">
 							Concordo com os{' '}
-							<Button
-								type="button"
-								variant="link"
-								onClick={() => setOpen(true)}
-								className="px-0 underline"
+							<Link
+								href="/termos-de-uso"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="font-semibold text-accent-text hover:underline"
 							>
-								termos
-							</Button>
+								Termos de uso
+							</Link>{' '}
+							e a{' '}
+							<Link
+								href="/politica-de-privacidade"
+								target="_blank"
+								rel="noopener noreferrer"
+								className="font-semibold text-accent-text hover:underline"
+							>
+								Política de privacidade
+							</Link>
 						</Label>
 					</div>
 				</div>
@@ -148,17 +152,20 @@ export default function Register() {
 				</div>
 			</form>
 
-			<Dialog open={open} onOpenChange={setOpen}>
-				<DialogContent className="max-h-screen">
-					<DialogHeader className="sr-only">
-						<DialogTitle>Termos de uso</DialogTitle>
-						<DialogDescription>
-							Termos de uso do aplicativo Amigo do Bolso
-						</DialogDescription>
-					</DialogHeader>
-					<Terms />
-				</DialogContent>
-			</Dialog>
+			<div className="my-6 flex items-center gap-3 text-xs text-muted-foreground">
+				<span className="h-px flex-1 bg-border" />
+				ou
+				<span className="h-px flex-1 bg-border" />
+			</div>
+
+			{/* useSearchParams lives only in this button; the Suspense keeps the rest of the page server-rendered */}
+			<Suspense
+				fallback={
+					<Button type="button" variant="outline" size="lg" className="w-full" disabled />
+				}
+			>
+				<GoogleLoginButton label="Criar conta com Google" />
+			</Suspense>
 		</AuthShell>
 	)
 }

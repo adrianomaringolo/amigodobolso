@@ -6,7 +6,7 @@ import { Loader } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 
-export const GoogleLoginButton = () => {
+export const GoogleLoginButton = ({ label = 'Acessar com Google' }: { label?: string }) => {
 	const [isGoogleLoading, setIsGoogleLoading] = useState<boolean>(false)
 	const supabase = createClient()
 
@@ -73,7 +73,7 @@ export const GoogleLoginButton = () => {
 					/>
 				</svg>
 			)}{' '}
-			Acessar com Google
+			{label}
 		</Button>
 	)
 }
