@@ -20,10 +20,10 @@ import {
 	GraduationCap,
 	HelpCircle,
 	LayoutGrid,
-	Lock,
 	LifeBuoy,
 	LogOut,
 	ScrollText,
+	ShieldCheck,
 	User,
 } from 'lucide-react'
 import Image from 'next/image'
@@ -39,12 +39,13 @@ export const NAV_ITEMS = [
 	{ icon: GraduationCap, label: 'Dica do Amigo', href: '/educacao' },
 ]
 
-export function ContaMasthead({ isAdmin = false }: { isAdmin?: boolean }) {
+export function ContaMasthead() {
 	const router = useRouter()
 	const pathname = usePathname()
 	const supabase = createClient()
 	const dialog = useDialog()
-	const { user } = useUser()
+	const { user, role } = useUser()
+	const isAdmin = role === 'admin'
 	const { openSupport } = useSupport()
 
 	const userNames = user?.name?.split(' ') ?? []
@@ -164,7 +165,7 @@ export function ContaMasthead({ isAdmin = false }: { isAdmin?: boolean }) {
 							{isAdmin && (
 								<DropdownMenuItem asChild>
 									<Link href="/admin">
-										<Lock className="mr-2 h-4 w-4" />
+										<ShieldCheck className="mr-2 h-4 w-4" />
 										Administração
 									</Link>
 								</DropdownMenuItem>
